@@ -143,7 +143,7 @@ svg { display: block; }
 /* under the title: the one-liner, then three facts spread evenly with thin rules between them (no box) */
 .hero .tagline { margin: 16px 0 0; font-size: 18px; color: var(--muted); }
 .facts {
-	max-width: 920px; margin: 40px auto 0;
+	max-width: 1000px; margin: 48px auto 0;
 	display: grid; grid-template-columns: 1fr 1px auto 1px 1fr; align-items: center; gap: 0 36px;
 }
 .fact { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; }
@@ -153,6 +153,8 @@ svg { display: block; }
 }
 .fact .label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .facts .rule { width: 1px; height: 44px; background: var(--soft-hover); }
+.fact.chips { gap: 8px; }
+.chip-row { display: flex; justify-content: center; gap: 8px; }
 .chip {
 	padding: 7px 13px; border-radius: 999px; background: var(--soft);
 	font-size: 14px; font-weight: 700; letter-spacing: 0;
@@ -167,12 +169,11 @@ svg { display: block; }
 	100% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0); }
 }
 .profile-note {
-	max-width: 780px; margin: 34px auto 0;
+	margin: 48px auto 0;
 	display: flex; gap: 10px; align-items: flex-start; justify-content: center;
 	font-size: 13px; line-height: 1.5; color: var(--muted); text-align: left;
 }
 .profile-note svg { width: 16px; height: 16px; flex: none; margin-top: 1px; }
-.profile-note span { text-wrap: balance; }
 
 /* search on the left, categories on the right (stays under the top bar while you scroll) */
 .filters {

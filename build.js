@@ -13,7 +13,7 @@ const BIO = {
 	tagline: "If you can imagine it, I can script it.",
 	// the three facts under the title: value, then the small label under it
 	years: "4 years", yearsLabel: "Roblox scripting & UI",
-	chips: "UI · Combat · Shops · Data", chipsLabel: "What I build",
+	chips: "UI · Combat · Guns · Pets & RNG · Shops · Data · Movement · Optimization", // (shown in two rows)
 };
 // the box next to "Do I work with AI?"
 const TRIAL = {
@@ -74,7 +74,7 @@ const fold = (s, lang) => s.toLocaleLowerCase(lang).normalize("NFD").replace(/[�
 // the English words of the page (the translations replace these by name)
 const EN = {
 	title: TITLE, kicker: BIO.kicker, focus: BIO.focus, tagline: BIO.tagline,
-	years: BIO.years, yearsLabel: BIO.yearsLabel, chips: BIO.chips, chipsLabel: BIO.chipsLabel,
+	years: BIO.years, yearsLabel: BIO.yearsLabel, chips: BIO.chips,
 	trialTitle: TRIAL.title, trialLead: TRIAL.lead, trialBody: TRIAL.body, trialStep: TRIAL.step[0], trialStepText: TRIAL.step[1], contact: TRIAL.contact,
 	commissions: "Commissions", open: "Open", closed: "Closed", commissionsOpen: "Commissions open.", note: NOTE,
 	aiQuestion: AI.question, aiLead: AI.lead, aiBody: AI.body,
@@ -100,6 +100,13 @@ const sections = order.categories.map((cat) => {
 	return { ...cat, list };
 }).filter((s) => s.list.length > 0);
 const total = sections.reduce((n, s) => n + s.list.length, 0);
+
+// the chips under the title, split into two even rows
+const chipRows = (list) => {
+	const chips = list.split(" · "), half = Math.ceil(chips.length / 2);
+	return [chips.slice(0, half), chips.slice(half)].map((row) =>
+		`<span class="chip-row">${row.map((c) => `<span class="chip">${esc(c)}</span>`).join("")}</span>`).join("");
+};
 
 function page(lang) {
 	const tr = lang === "en" ? {} : i18n[lang];
@@ -198,7 +205,7 @@ function page(lang) {
 		<div class="facts reveal">
 			<div class="fact"><span class="value">${esc(t("years"))}</span><span class="label">${esc(t("yearsLabel"))}</span></div>
 			<span class="rule" aria-hidden="true"></span>
-			<div class="fact chips"><span class="value">${t("chips").split(" · ").map((c) => `<span class="chip">${esc(c)}</span>`).join("")}</span><span class="label">${esc(t("chipsLabel"))}</span></div>
+			<div class="fact chips">${chipRows(t("chips"))}</div>
 			<span class="rule" aria-hidden="true"></span>
 			<div class="fact"><span class="value ${COMMISSIONS_OPEN ? "open" : "closed"}"><span class="dot"></span>${esc(t(COMMISSIONS_OPEN ? "open" : "closed"))}</span><span class="label">${esc(t("commissions"))}</span></div>
 		</div>
