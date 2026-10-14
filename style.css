@@ -140,36 +140,17 @@ svg { display: block; }
 	letter-spacing: -0.035em;
 	line-height: 1;
 }
-/* under the title: the one-liner, then three facts spread evenly with thin rules between them (no box) */
+/* everything centered: a small line above the title, the one-liner under it, then the skills in two rows */
+.hero .kicker { margin: 0 0 20px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .hero .tagline { margin: 16px 0 0; font-size: 18px; color: var(--muted); }
-.facts {
-	max-width: 1000px; margin: 48px auto 0;
-	display: grid; grid-template-columns: 1fr 1px auto 1px 1fr; align-items: center; gap: 0 36px;
-}
-.fact { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; }
-.fact .value {
-	height: 34px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-	font-size: 24px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap;
-}
-.fact .label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.facts .rule { width: 1px; height: 44px; background: var(--soft-hover); }
-.fact.chips { gap: 8px; }
+.chips { margin: 44px auto 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .chip-row { display: flex; justify-content: center; gap: 8px; }
 .chip {
 	padding: 7px 13px; border-radius: 999px; background: var(--soft);
-	font-size: 14px; font-weight: 700; letter-spacing: 0;
-}
-.fact .value.open { color: #30d158; gap: 10px; }
-.fact .value.closed { color: #ff453a; gap: 10px; }
-.fact .dot { width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
-.fact .open .dot { animation: pulse 2s infinite; }
-@keyframes pulse {
-	0% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.55); }
-	70% { box-shadow: 0 0 0 8px rgba(48, 209, 88, 0); }
-	100% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0); }
+	font-size: 14px; font-weight: 700;
 }
 .profile-note {
-	margin: 48px auto 0;
+	margin: 44px auto 0;
 	display: flex; gap: 10px; align-items: flex-start; justify-content: center;
 	font-size: 13px; line-height: 1.5; color: var(--muted); text-align: left;
 }
@@ -440,10 +421,8 @@ body { top: 0 !important; }
 	.hero { padding: 56px 16px 36px; }
 	.hero .tagline { font-size: 16px; }
 	/* (phones: what I build across the top, years and commissions side by side under it) */
-	.facts { grid-template-columns: 1fr 1fr; gap: 24px 12px; margin-top: 30px; }
-	.facts .rule { display: none; }
-	.fact.chips { grid-column: 1 / -1; order: -1; }
-	.fact .value { font-size: 21px; }
+	.hero .kicker { font-size: 11px; margin-bottom: 14px; }
+	.chips { margin-top: 30px; }
 	.chip { padding: 6px 11px; font-size: 13px; }
 	.profile-note { margin-top: 28px; }
 	.ai { display: flex; flex-direction: column; gap: 18px; padding: 28px 16px 56px; }

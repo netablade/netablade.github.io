@@ -2,6 +2,7 @@
 // clips come first) and meta.json (each clip's shown title and hover description). Run after changes:  node build.js
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 // SETTINGS
 const NAME = "netablade";
@@ -68,6 +69,9 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const titleCase = (s) => s.replace(/\b[a-z]/g, (c) => c.toUpperCase());
 // a clip's own link: "Lock-On Targeting" -> #lock-on-targeting (always from the English title, so links work in every language)
 const slug = (s) => s.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+// the stylesheet and script get their content's fingerprint in the link (style.css?v=1a2b3c4d), so browsers load a
+// changed file at once instead of an old one they kept
+const ver = (file) => crypto.createHash("md5").update(fs.readFileSync(path.join(here, file))).digest("hex").slice(0, 8);
 // what search matches against: lower case, accents dropped ("animación" = "animacion", "kırma" = "kirma"); script.js does the same
 const fold = (s, lang) => s.toLocaleLowerCase(lang).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ı/g, "i");
 
@@ -181,7 +185,7 @@ function page(lang) {
 	<meta property="og:image:height" content="225">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="${SITE_URL}/img/reel.gif">
-	<link rel="stylesheet" href="${P}style.css">
+	<link rel="stylesheet" href="${P}style.css?v=${ver("style.css")}">
 </head>
 <body>
 	<header class="topbar">
@@ -200,15 +204,10 @@ function page(lang) {
 	</header>
 
 	<div class="hero">
+		<p class="kicker reveal">${esc(t("kicker"))}</p>
 		<h1 class="reveal">${esc(t("title"))}</h1>
 		<p class="tagline reveal">${esc(t("tagline"))}</p>
-		<div class="facts reveal">
-			<div class="fact"><span class="value">${esc(t("years"))}</span><span class="label">${esc(t("yearsLabel"))}</span></div>
-			<span class="rule" aria-hidden="true"></span>
-			<div class="fact chips">${chipRows(t("chips"))}</div>
-			<span class="rule" aria-hidden="true"></span>
-			<div class="fact"><span class="value ${COMMISSIONS_OPEN ? "open" : "closed"}"><span class="dot"></span>${esc(t(COMMISSIONS_OPEN ? "open" : "closed"))}</span><span class="label">${esc(t("commissions"))}</span></div>
-		</div>
+		<div class="chips reveal">${chipRows(t("chips"))}</div>
 		<p class="profile-note reveal">${ICON.info}<span>${esc(t("note"))}</span></p>
 	</div>
 
@@ -267,7 +266,7 @@ function page(lang) {
 	</div>
 ${lang === "en" ? `
 	<div id="google_translate_element" hidden></div>` : ""}
-	<script src="${P}script.js"></script>
+	<script src="${P}script.js?v=${ver("script.js")}"></script>
 </body>
 </html>
 `;
