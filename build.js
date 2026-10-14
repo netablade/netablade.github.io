@@ -170,8 +170,8 @@ function page(lang) {
 	<meta property="og:url" content="${pageUrl}">
 	<meta property="og:image" content="${SITE_URL}/img/reel.gif">
 	<meta property="og:image:type" content="image/gif">
-	<meta property="og:image:width" content="500">
-	<meta property="og:image:height" content="281">
+	<meta property="og:image:width" content="400">
+	<meta property="og:image:height" content="225">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="${SITE_URL}/img/reel.gif">
 	<link rel="stylesheet" href="${P}style.css">
