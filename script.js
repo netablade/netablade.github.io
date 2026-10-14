@@ -1,107 +1,300 @@
-// The page's moving parts: the category picker, the grid videos, the Discord buttons and a clip opened big.
+// The page's moving parts: light/dark, the language picker, search + categories (with animated changes), the grid
+// videos, the Discord buttons and a clip opened big.
+const $ = (s, root = document) => root.querySelector(s);
+const $$ = (s, root = document) => [...root.querySelectorAll(s)];
+const store = {
+	get(key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
+	set(key, value) { try { localStorage.setItem(key, value); } catch (e) {} },
+};
 
-// GRID VIDEOS, kept light so scrolling never stutters, even on a slow computer:
-//   * they play the small 640 px copies (still 60 fps); the full 1080p one only plays when a clip is opened big
-//   * a video starts only once it's mostly on screen AND the scrolling has stopped for a moment (starting a video
-//     is the heavy part), and pauses as soon as it's mostly off screen
-//   * one that's far away gives its video back (frees the decoder and memory); it reloads when it comes back
-const START_AFTER_SCROLL = 140;  // ms without scrolling before videos start
-const FAR = 1.5;                 // screens away before a video is unloaded
+// ---------------------------------------------------------------- LIGHT / DARK (dark unless the visitor picks light)
+$(".theme-button").addEventListener("click", () => {
+	const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+	document.documentElement.dataset.theme = next;
+	$('meta[name="theme-color"]').content = next === "dark" ? "#000000" : "#ffffff";
+	store.set("theme", next);
+	moveGlider();
+});
 
-const videos = [...document.querySelectorAll(".clip video")];
+// ---------------------------------------------------------------- LANGUAGE (Google Translate, driven by our own menu)
+const lang = $(".lang");
+const currentLang = (document.cookie.match(/googtrans=\/en\/([^;]+)/) || [])[1] || "en";
+$(".lang-code").textContent = currentLang.split("-")[0].toUpperCase();
+$$(".lang-menu button").forEach((b) => b.classList.toggle("current", b.dataset.lang === currentLang));
+$(".lang-button").addEventListener("click", (e) => { e.stopPropagation(); lang.classList.toggle("open"); });
+document.addEventListener("click", (e) => { if (!lang.contains(e.target)) lang.classList.remove("open"); });
+$$(".lang-menu button").forEach((b) => b.addEventListener("click", () => {
+	const code = b.dataset.lang;
+	if (code === currentLang) { lang.classList.remove("open"); return; }
+	const expire = "; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+	if (code === "en") {
+		document.cookie = "googtrans=; path=/" + expire;
+		document.cookie = "googtrans=; path=/; domain=" + location.hostname + expire;
+	} else {
+		document.cookie = "googtrans=/en/" + code + "; path=/";
+	}
+	location.reload();
+}));
+if (currentLang !== "en") {
+	// (only loaded when someone picked another language: English visitors never load anything from Google)
+	window.googleTranslateInit = () => new google.translate.TranslateElement({ pageLanguage: "en", autoDisplay: false }, "google_translate_element");
+	const s = document.createElement("script");
+	s.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateInit";
+	document.body.appendChild(s);
+}
+
+// ---------------------------------------------------------------- RISING IN AS THEY COME INTO VIEW
+const revealer = new IntersectionObserver((entries) => {
+	for (const entry of entries) {
+		if (entry.isIntersecting) {
+			entry.target.classList.add("shown");
+			revealer.unobserve(entry.target);
+		}
+	}
+}, { rootMargin: "0px 0px -40px 0px" });
+$$(".reveal, main .clip").forEach((el) => revealer.observe(el));
+
+// ---------------------------------------------------------------- VIDEOS, kept light so scrolling never stutters
+//   * only each category's BIG video plays; the small ones show their first frame (nothing to decode)
+//   * it plays the small 640 px copy (still 60 fps); the full 1080p one only plays when a clip is opened
+//   * it starts once it's mostly on screen AND the scrolling has stopped for a moment (starting a video is the
+//     heavy part), pauses when it's mostly off screen, and gives its video back when it's far away
+const START_AFTER_SCROLL = 140; // ms without scrolling before a video starts
+const FAR = 1.5;                // screens away before a video is unloaded
+const main = $("main");
+const videos = $$(".clip video");
 const onScreen = new Set();
 let lastScroll = 0;
 let startTimer = null;
+let viewerOpen = false;
 
+function playable(video) {
+	const clip = video.closest(".clip");
+	return clip.classList.contains("big") && !main.classList.contains("searching") && !clip.hidden && !clip.closest("section").hidden;
+}
+function unload(video) {
+	video.pause();
+	if (video.src) {
+		video.removeAttribute("src");
+		video.load(); // (back to its first frame, nothing kept in memory)
+	}
+}
 function startVisible() {
 	startTimer = null;
+	if (viewerOpen) return;
 	for (const video of onScreen) {
+		if (!playable(video)) continue;
 		if (!video.src) video.src = video.dataset.src;
 		if (video.paused) video.play().catch(() => {});
 	}
 }
 function scheduleStart() {
 	clearTimeout(startTimer);
-	const wait = Math.max(START_AFTER_SCROLL - (performance.now() - lastScroll), 0);
-	startTimer = setTimeout(startVisible, wait);
+	startTimer = setTimeout(startVisible, Math.max(START_AFTER_SCROLL - (performance.now() - lastScroll), 0));
 }
-
 const watcher = new IntersectionObserver((entries) => {
 	for (const entry of entries) {
-		const video = entry.target;
 		if (entry.intersectionRatio >= 0.5) {
-			onScreen.add(video);
+			onScreen.add(entry.target);
 		} else {
-			onScreen.delete(video);
-			if (!video.paused) video.pause();
+			onScreen.delete(entry.target);
+			if (!entry.target.paused) entry.target.pause();
 		}
 	}
 	scheduleStart();
 }, { threshold: [0, 0.5] });
 videos.forEach((v) => watcher.observe(v));
-
-window.addEventListener("scroll", () => {
-	lastScroll = performance.now();
-	scheduleStart();
-}, { passive: true });
-
-// (now and then: unload the far ones)
+window.addEventListener("scroll", () => { lastScroll = performance.now(); scheduleStart(); }, { passive: true });
 setInterval(() => {
 	const limit = innerHeight * FAR;
 	for (const video of videos) {
 		if (!video.src || onScreen.has(video)) continue;
 		const box = video.getBoundingClientRect();
-		if (box.bottom < -limit || box.top > innerHeight + limit) {
-			video.pause();
-			video.removeAttribute("src");
-			video.load();
-		}
+		if (box.bottom < -limit || box.top > innerHeight + limit) unload(video);
 	}
 }, 2000);
 
-// The category picker: All shows every section; a category shows only its own
-const pills = document.querySelectorAll(".pill");
-const sections = document.querySelectorAll("main section");
+// ---------------------------------------------------------------- BIG AND SMALL: a small one clicked swaps places with the big one
+// (both pictures glide and resize to each other's place; only transform is animated, so it costs nothing)
+const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+function glide(el, from) {
+	const to = el.getBoundingClientRect();
+	el.style.transition = "none";
+	el.style.transformOrigin = "0 0";
+	el.style.transform = `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${from.width / to.width})`;
+	requestAnimationFrame(() => requestAnimationFrame(() => {
+		el.style.transition = `transform 0.55s ${EASE}`;
+		el.style.transform = "";
+		setTimeout(() => { el.style.transition = ""; el.style.transformOrigin = ""; }, 560);
+	}));
+}
+function swap(small) {
+	const feature = small.parentElement;
+	const big = $(".clip.big", feature);
+	if (!big || big === small) return;
+	const bigFrame = $(".frame", big), smallFrame = $(".frame", small);
+	const bigWas = bigFrame.getBoundingClientRect(), smallWas = smallFrame.getBoundingClientRect();
+	unload($("video", big));
+	// (the small one goes first in the list, the big one takes its old place)
+	const marker = document.createComment("");
+	feature.replaceChild(marker, small);
+	feature.insertBefore(small, feature.firstChild);
+	feature.replaceChild(big, marker);
+	big.classList.replace("big", "small");
+	small.classList.replace("small", "big");
+	glide(smallFrame, smallWas);
+	glide(bigFrame, bigWas);
+	for (const clip of [big, small]) {
+		$(".text", clip).animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }],
+			{ duration: 380, delay: 160, easing: EASE, fill: "backwards" });
+	}
+	scheduleStart();
+}
+
+// ---------------------------------------------------------------- SEARCH + CATEGORIES
+const pills = $$(".pill");
+const glider = $(".glider");
+const sections = $$("main section");
+const clips = $$("main .clip");
+const search = $(".search input");
+const empty = $(".empty");
+let filter = "all";
+
+// the highlight slides under the picked category
+function moveGlider() {
+	const active = $(".pill.active");
+	if (!active) return;
+	glider.style.width = active.offsetWidth + "px";
+	glider.style.transform = `translateX(${active.offsetLeft}px)`;
+}
+moveGlider();
+window.addEventListener("resize", moveGlider);
+if (document.fonts) document.fonts.ready.then(moveGlider);
+
+// what shows: the picked category (all of its clips) or every category (the big one and two small ones each,
+// "See all" for the rest); while searching, every match as a plain card
+function apply() {
+	const words = search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+	const searching = words.length > 0;
+	main.classList.toggle("searching", searching);
+	let shown = 0;
+	for (const s of sections) {
+		const inCategory = filter === "all" || s.dataset.category === filter;
+		let any = false;
+		for (const c of $$(".clip", s)) {
+			const show = inCategory && words.every((w) => c.dataset.search.includes(w));
+			c.hidden = !show;
+			if (show) { any = true; shown++; }
+		}
+		s.hidden = !any;
+		const feature = $(".feature", s);
+		if (filter !== "all") feature.classList.remove("collapsed");
+		else if (!s.dataset.open) feature.classList.add("collapsed");
+		const more = $(".more", s);
+		if (more) more.hidden = filter !== "all";
+	}
+	empty.hidden = shown > 0;
+}
+
+// a change fades the list out, swaps it and fades it back in, the cards rising in one after another
+let fadeTimer = null;
+function change(then) {
+	clearTimeout(fadeTimer);
+	main.classList.add("fading");
+	fadeTimer = setTimeout(() => {
+		apply();
+		if (then) then();
+		let i = 0;
+		for (const c of clips) {
+			if (c.hidden || c.offsetParent === null) continue;
+			c.classList.add("shown");
+			c.style.animationDelay = Math.min(i++, 8) * 35 + "ms";
+			c.classList.remove("entering");
+			void c.offsetWidth;
+			c.classList.add("entering");
+		}
+		main.classList.remove("fading");
+		scheduleStart();
+	}, 180);
+}
+
 pills.forEach((pill) => pill.addEventListener("click", () => {
+	if (pill.classList.contains("active")) return;
 	pills.forEach((p) => p.classList.toggle("active", p === pill));
-	const filter = pill.dataset.filter;
-	sections.forEach((s) => { s.hidden = filter !== "all" && s.dataset.category !== filter; });
-	const top = document.querySelector(".filters").getBoundingClientRect().top + window.scrollY;
-	if (window.scrollY > top) window.scrollTo({ top, behavior: "smooth" });
+	moveGlider();
+	pill.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+	filter = pill.dataset.filter;
+	change(() => {
+		const top = $(".filters").getBoundingClientRect().top + window.scrollY;
+		if (window.scrollY > top) window.scrollTo({ top, behavior: "instant" });
+	});
 }));
 
-// The Discord buttons copy the name, and say so for a moment
-document.querySelectorAll(".discord").forEach((button) => button.addEventListener("click", async () => {
-	const name = button.dataset.copy;
-	try { await navigator.clipboard.writeText(name); } catch (e) {}
-	const action = button.querySelector(".action") || button.querySelector(".name");
-	const before = action.textContent;
+let searchTimer = null;
+search.addEventListener("input", () => {
+	clearTimeout(searchTimer);
+	searchTimer = setTimeout(() => change(), 160);
+});
+
+// "See all": the rest of that category opens up (and closes again)
+$$(".more").forEach((button) => button.addEventListener("click", () => {
+	const section = button.closest("section");
+	const feature = $(".feature", section);
+	const opening = feature.classList.contains("collapsed");
+	feature.classList.toggle("collapsed", !opening);
+	section.dataset.open = opening ? "1" : "";
+	button.textContent = opening ? button.dataset.less : button.dataset.more;
+	if (opening) {
+		$$(".clip", feature).slice(3).forEach((c, i) => {
+			c.classList.add("shown");
+			c.style.animationDelay = Math.min(i, 8) * 35 + "ms";
+			c.classList.remove("entering");
+			void c.offsetWidth;
+			c.classList.add("entering");
+		});
+	} else if (section.getBoundingClientRect().top < 0) {
+		section.scrollIntoView({ behavior: "smooth" });
+	}
+}));
+
+// ---------------------------------------------------------------- DISCORD: a click copies the name, and says so
+$$("[data-copy]").forEach((button) => button.addEventListener("click", async () => {
+	try { await navigator.clipboard.writeText(button.dataset.copy); } catch (e) {}
+	const label = $(".status-text", button) || $(".name", button);
+	const before = label.textContent;
 	button.classList.add("copied");
-	action.textContent = "Copied!";
+	label.textContent = "Copied!";
 	clearTimeout(button._reset);
-	button._reset = setTimeout(() => { button.classList.remove("copied"); action.textContent = before; }, 1600);
+	button._reset = setTimeout(() => { button.classList.remove("copied"); label.textContent = before; }, 1600);
 }));
 
-// A clip opened big, in full 1080p (click a clip; Esc, the X or the dark area closes it). The grid stops meanwhile.
-const viewer = document.getElementById("viewer");
-const big = viewer.querySelector("video");
-const caption = viewer.querySelector(".caption");
+// ---------------------------------------------------------------- A CLIP OPENED BIG (full 1080p; the page's videos stop meanwhile)
+const viewer = $("#viewer");
+const big = $("video", viewer);
 function openClip(clip) {
+	viewerOpen = true;
 	videos.forEach((v) => v.pause());
 	big.src = clip.dataset.video;
-	caption.textContent = clip.dataset.title;
+	$(".caption", viewer).textContent = $(".title", clip).textContent;
+	$(".viewer-desc", viewer).textContent = $(".desc", clip).textContent;
 	viewer.classList.add("open");
+	viewer.setAttribute("aria-hidden", "false");
 	document.body.style.overflow = "hidden";
 	big.play().catch(() => {});
 }
 function closeClip() {
+	viewerOpen = false;
 	viewer.classList.remove("open");
+	viewer.setAttribute("aria-hidden", "true");
 	document.body.style.overflow = "";
 	big.pause();
-	big.removeAttribute("src");
-	big.load();
+	setTimeout(() => { if (!viewerOpen) { big.removeAttribute("src"); big.load(); } }, 260);
 	scheduleStart();
 }
-document.querySelectorAll(".clip").forEach((clip) => clip.addEventListener("click", () => openClip(clip)));
+// (the big one opens; a small one swaps in first; while searching, any card opens)
+clips.forEach((clip) => clip.addEventListener("click", () => {
+	if (clip.classList.contains("big") || main.classList.contains("searching")) openClip(clip);
+	else swap(clip);
+}));
 viewer.addEventListener("click", (e) => { if (e.target === viewer || e.target.classList.contains("close")) closeClip(); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape" && viewer.classList.contains("open")) closeClip(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && viewerOpen) closeClip(); });

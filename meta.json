@@ -1,0 +1,160 @@
+{
+  "_about": "Each clip's shown title and its hover description, by '<category folder>/<file name>'. Clips not listed here use their file name.",
+
+  "combat & battlegrounds/lock on system": {
+    "title": "Lock-On Targeting",
+    "desc": "Locks onto the target closest to screen center. Over-the-shoulder camera on its own render step, the character auto-faces the target, a see-through highlight marks it, and it releases on death or distance."
+  },
+  "combat & battlegrounds/finisher cutscene": {
+    "title": "Finisher Cutscene",
+    "desc": "A scripted finisher with its own camera sequence. Both characters are locked into the move while it plays, then the result is applied once it ends."
+  },
+  "combat & battlegrounds/ground smash skill": {
+    "title": "Ground Smash Skill",
+    "desc": "A multi-hit skill ending in a ground slam: hit detection per phase, knockback, and a crater with debris that clears itself after the hit."
+  },
+  "combat & battlegrounds/grab slam skill": {
+    "title": "Grab & Slam Skill",
+    "desc": "A grab that holds the target through the whole animation, then slams and launches them, with VFX timed to the animation's keyframes."
+  },
+  "combat & battlegrounds/m1 combo": {
+    "title": "4-Hit M1 Combo",
+    "desc": "A 4-hit basic combo with a combo counter, reset timer and knockback on the last hit. Client-side prediction starts the swing the moment you click."
+  },
+  "combat & battlegrounds/counter": {
+    "title": "Counter",
+    "desc": "A counter stance: getting hit inside its window cancels the attacker's move and hits back with its own animation."
+  },
+  "combat & battlegrounds/perfect block": {
+    "title": "Perfect Block",
+    "desc": "Blocking right before a hit lands gives a perfect block: the attacker is stunned and the defender gets a free opening."
+  },
+  "combat & battlegrounds/dashes": {
+    "title": "Combat Dashes",
+    "desc": "Directional dashes with their own animations, trails and cooldowns, usable mid-combo."
+  },
+  "combat & battlegrounds/front dash finisher": {
+    "title": "Front Dash Finisher",
+    "desc": "A forward dash that turns into a finishing strike when it connects, chaining straight out of the combo."
+  },
+  "combat & battlegrounds/awakening animation": {
+    "title": "Awakening Transformation",
+    "desc": "The awakening sequence: a full-screen transformation with camera work, effects and a powered-up moveset afterwards."
+  },
+
+  "guns & shooter/running and shooting": {
+    "title": "Run & Gun",
+    "desc": "Shooting while sprinting: the aim, recoil and arm sway keep working on the move, and every shot is checked on the server."
+  },
+  "guns & shooter/dummy limb shots": {
+    "title": "Limb Dismemberment",
+    "desc": "Each hit checks which body part was hit: an upper arm or a leg comes off and flies with the bullet's momentum, a wrist hit bleeds, and a headshot kills. Physics is owned by the shooter, so it reacts instantly."
+  },
+  "guns & shooter/dummy shoot preview": {
+    "title": "Ragdoll & Blood Impacts",
+    "desc": "Hit reactions on a ragdoll dummy: blood drops that fly in real arcs and splat on the ground, wound stains on the body, then a respawn."
+  },
+  "guns & shooter/cursor follow aim": {
+    "title": "Cursor-Follow Aiming",
+    "desc": "The arm and the gun follow the mouse, smoothed and limited to natural angles, and other players see the same aim."
+  },
+  "guns & shooter/inferno gun skin + preview": {
+    "title": "Inferno Skin & Preview",
+    "desc": "A gun skin with its own textures and fire effects, and a preview of it in the inventory before you equip it."
+  },
+
+  "pets & rng/egg hatching": {
+    "title": "Click-to-Crack Egg Hatching",
+    "desc": "Every click cracks the egg somewhere new and its rarity's light leaks through the cracks. Common pets open fast; Legendary and Mythic take more clicks, charge up and burst. The server rolls the pet."
+  },
+  "pets & rng/mythic hatch": {
+    "title": "Mythic Hatch",
+    "desc": "The rarest tier: a longer charge-up, a screen tint, rays, sparkles and a screen shake. The odds come from weighted chances with luck and a pity counter."
+  },
+  "pets & rng/rainbow mutation": {
+    "title": "Rainbow Mutation",
+    "desc": "Mutations roll separately from the pet (Gold, Diamond, Rainbow) and multiply its power. Rainbow pets cycle their colors."
+  },
+  "pets & rng/auto hatch": {
+    "title": "Auto Hatch",
+    "desc": "Opens eggs on its own, three at a time when you can afford it, and stops when you walk away or run out of coins."
+  },
+  "pets & rng/pet inventory + following": {
+    "title": "Pet Inventory & Following",
+    "desc": "A stacked inventory with Equip Best. Equipped pets follow you on every client: walkers hop behind you and flyers hover, snapped to the ground below them."
+  },
+  "pets & rng/pets breaking coins": {
+    "title": "Pets Breaking Coins",
+    "desc": "Click a coin pile and your pets run over and attack it. Each hit is dealt by the server with the pet's power, shown as a damage number, and coins are split by damage dealt."
+  },
+  "pets & rng/safe break": {
+    "title": "Safe Break",
+    "desc": "Rare, high-HP breakables for strong pets: every hit shows its damage, and the safe bursts into coins that fly to the players who broke it."
+  },
+  "pets & rng/pet level up": {
+    "title": "Pet Level Up",
+    "desc": "Pets earn XP for every hit and level up, each level adding to their power. A short cutscene shows the pet and its new level."
+  },
+  "pets & rng/spin system + ui": {
+    "title": "Gun Skin Spin",
+    "desc": "A spin wheel for gun skins with weighted rarities, multi-spin packs and a possible-rewards list. The result is decided on the server before the wheel stops."
+  },
+  "pets & rng/emote spin system + ui": {
+    "title": "Emote Spin",
+    "desc": "The same spin system for emotes, with animated previews of each emote on the wheel."
+  },
+
+  "movement & parkour/parkour": {
+    "title": "Parkour Movement",
+    "desc": "Wall runs, vaults, slides, ledge climbs and double jumps, chained together with automatic vaulting and wall running."
+  },
+  "movement & parkour/basic dash": {
+    "title": "Directional Dash",
+    "desc": "Front, back and side dashes with their own animations, a trail on side dashes, and a sound everyone in range hears."
+  },
+  "movement & parkour/walk + run": {
+    "title": "Walk & Sprint",
+    "desc": "Walking and sprinting with a stamina bar, run animations and camera motion that follows your speed."
+  },
+
+  "ui & systems/pass shop + gifting": {
+    "title": "Gamepass Shop & Gifting",
+    "desc": "A gamepass shop where any pass can be gifted to a friend picked from your friends list. The purchase is verified before the gift is delivered."
+  },
+  "ui & systems/emote shop": {
+    "title": "Emote Shop",
+    "desc": "Browse and buy emotes with live previews on your own character."
+  },
+  "ui & systems/emote wheel": {
+    "title": "Emote Wheel",
+    "desc": "A radial emote wheel: hold to open, pick a slot, and the emote plays for everyone."
+  },
+  "ui & systems/custom leaderboard": {
+    "title": "Custom Leaderboard",
+    "desc": "A custom in-game leaderboard that replaces Roblox's default player list."
+  },
+  "ui & systems/custom aura pop-up": {
+    "title": "Aura Unlock Pop-Up",
+    "desc": "An animated pop-up when you unlock an aura, showing which aura you got."
+  },
+  "ui & systems/aura selection": {
+    "title": "Aura Selection",
+    "desc": "Pick and equip your auras, each with a preview before you equip it."
+  },
+  "ui & systems/gun skins inventory ui": {
+    "title": "Gun Skin Inventory",
+    "desc": "Owned gun skins with their rarity, and equipping one updates the gun right away."
+  },
+  "ui & systems/emote inventory ui": {
+    "title": "Emote Inventory",
+    "desc": "All your owned emotes in one list, ready to put on the wheel."
+  },
+  "ui & systems/emote replace + selection": {
+    "title": "Emote Slot Replace",
+    "desc": "Swap the emote in any wheel slot from your inventory; the menu slides open around the wheel."
+  },
+  "ui & systems/sync emote": {
+    "title": "Synced Emotes",
+    "desc": "Join someone's emote and dance in sync: the animations start from the same point and the song is heard once."
+  }
+}

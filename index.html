@@ -1,235 +1,384 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>netablade's portfolio</title>
-	<meta name="description" content="Roblox scripter. Combat, guns, pets, movement and UI systems.">
+	<meta name="description" content="Roblox scripting &amp; UI · 4 years of experience. UI, combat, shops &amp; data systems.">
+	<meta name="theme-color" content="#000000">
+	<script>
+		// (the theme is set before anything draws: dark unless the visitor picked light)
+		try { if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}
+	</script>
+	<link rel="icon" href="img/avatar.webp">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<header class="topbar">
 		<div class="inner">
-			<a class="brand" href="#">netablade</a>
-			<nav class="nav"><a href="#work">Work</a><button class="discord small" data-copy="netablade" title="Copy my Discord name"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.618-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg><span class="name">netablade</span></button></nav>
+			<a class="brand notranslate" href="#"><img class="avatar" src="img/avatar.webp" alt="" width="32" height="32">netablade</a>
+			<nav class="tools">
+				<a class="nav-link" href="#ai">Do I work with AI?</a>
+				<div class="lang">
+					<button class="icon-button lang-button" aria-label="Language" aria-haspopup="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg><span class="lang-code notranslate">EN</span><svg class="chevron" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+					<ul class="lang-menu" role="menu"><li><button data-lang="en" class="current"><span class="notranslate">English</span></button></li><li><button data-lang="es"><span class="notranslate">Español</span></button></li><li><button data-lang="pt"><span class="notranslate">Português</span></button></li><li><button data-lang="fr"><span class="notranslate">Français</span></button></li><li><button data-lang="de"><span class="notranslate">Deutsch</span></button></li><li><button data-lang="it"><span class="notranslate">Italiano</span></button></li><li><button data-lang="ru"><span class="notranslate">Русский</span></button></li><li><button data-lang="tr"><span class="notranslate">Türkçe</span></button></li><li><button data-lang="ar"><span class="notranslate">العربية</span></button></li><li><button data-lang="hi"><span class="notranslate">हिन्दी</span></button></li><li><button data-lang="id"><span class="notranslate">Bahasa Indonesia</span></button></li><li><button data-lang="ja"><span class="notranslate">日本語</span></button></li><li><button data-lang="ko"><span class="notranslate">한국어</span></button></li><li><button data-lang="zh-CN"><span class="notranslate">简体中文</span></button></li><li><button data-lang="zh-TW"><span class="notranslate">繁體中文</span></button></li><li><button data-lang="vi"><span class="notranslate">Tiếng Việt</span></button></li><li><button data-lang="th"><span class="notranslate">ไทย</span></button></li><li><button data-lang="pl"><span class="notranslate">Polski</span></button></li><li><button data-lang="nl"><span class="notranslate">Nederlands</span></button></li><li><button data-lang="uk"><span class="notranslate">Українська</span></button></li><li><button data-lang="tl"><span class="notranslate">Filipino</span></button></li><li><button data-lang="ms"><span class="notranslate">Bahasa Melayu</span></button></li><li><button data-lang="sv"><span class="notranslate">Svenska</span></button></li><li><button data-lang="ro"><span class="notranslate">Română</span></button></li><li><button data-lang="cs"><span class="notranslate">Čeština</span></button></li></ul>
+				</div>
+				<button class="icon-button theme-button" aria-label="Light or dark"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.4 14.6A8.6 8.6 0 0 1 9.4 3.6a.6.6 0 0 0-.8-.7A9.6 9.6 0 1 0 21.1 15.4a.6.6 0 0 0-.7-.8z"/></svg></button>
+				<button class="discord small" data-copy="netablade" title="Copy my Discord name"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.618-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg><span class="name notranslate">netablade</span></button>
+			</nav>
 		</div>
 	</header>
 
 	<div class="hero">
-		<h1>netablade's portfolio</h1>
-		<div class="rule"></div>
-		<p>Roblox scripter. Combat, guns, pets, movement and UI systems.</p>
-		<div class="cta"><button class="discord big" data-copy="netablade"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.618-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg><span class="label"><span class="hint">Message me on Discord</span><span class="name">netablade</span></span><span class="action">Copy</span></button></div>
+		<h1 class="reveal">netablade's portfolio</h1>
+		<div class="bio reveal">
+			<p class="line1">Roblox scripting &amp; UI · 4 years of experience</p>
+			<p class="line2">UI, combat, shops &amp; data systems</p>
+			<p class="line3">↳ If you can imagine it, I can script it</p>
+			<button class="status" data-copy="netablade"><span class="dot"></span><span class="status-text">Commissions open · DM me</span></button>
+		</div>
 	</div>
 
 	<div class="filters" id="work">
 		<div class="inner">
-			<button class="pill active" data-filter="all">All<span class="count">38</span></button>
-			<button class="pill" data-filter="combat">Combat &amp; Battlegrounds<span class="count">10</span></button>
-			<button class="pill" data-filter="guns">Guns &amp; Shooter<span class="count">5</span></button>
-			<button class="pill" data-filter="pets">Pets &amp; RNG<span class="count">10</span></button>
-			<button class="pill" data-filter="movement">Movement &amp; Parkour<span class="count">3</span></button>
-			<button class="pill" data-filter="ui">UI &amp; Systems<span class="count">10</span></button>
+			<label class="search"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input type="search" placeholder="Search clips" aria-label="Search clips" autocomplete="off"></label>
+			<div class="pills">
+				<span class="glider" aria-hidden="true"></span>
+					<button class="pill active" data-filter="all">All<span class="count">38</span></button>
+					<button class="pill" data-filter="combat">Combat &amp; Battlegrounds<span class="count">10</span></button>
+					<button class="pill" data-filter="guns">Guns &amp; Shooter<span class="count">5</span></button>
+					<button class="pill" data-filter="pets">Pets &amp; RNG<span class="count">10</span></button>
+					<button class="pill" data-filter="movement">Movement &amp; Parkour<span class="count">3</span></button>
+					<button class="pill" data-filter="ui">UI &amp; Systems<span class="count">10</span></button>
+			</div>
 		</div>
 	</div>
 
 	<main>
 		<section id="combat" data-category="combat">
 			<h2>Combat &amp; Battlegrounds<span class="count">10</span></h2>
-			<div class="grid">
-				<div class="clip" data-video="videos/combat-and-battlegrounds/lock-on-system.mp4" data-title="lock on system">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/lock-on-system.jpg" data-src="videos/combat-and-battlegrounds/lock-on-system-sm.mp4"></video></div>
-					<div class="title">lock on system</div>
-				</div>
-				<div class="clip" data-video="videos/combat-and-battlegrounds/finisher-cutscene.mp4" data-title="finisher cutscene">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/finisher-cutscene.jpg" data-src="videos/combat-and-battlegrounds/finisher-cutscene-sm.mp4"></video></div>
-					<div class="title">finisher cutscene</div>
-				</div>
-				<div class="clip" data-video="videos/combat-and-battlegrounds/ground-smash-skill.mp4" data-title="ground smash skill">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/ground-smash-skill.jpg" data-src="videos/combat-and-battlegrounds/ground-smash-skill-sm.mp4"></video></div>
-					<div class="title">ground smash skill</div>
-				</div>
-				<div class="clip" data-video="videos/combat-and-battlegrounds/grab-slam-skill.mp4" data-title="grab slam skill">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/grab-slam-skill.jpg" data-src="videos/combat-and-battlegrounds/grab-slam-skill-sm.mp4"></video></div>
-					<div class="title">grab slam skill</div>
-				</div>
-				<div class="clip" data-video="videos/combat-and-battlegrounds/m1-combo.mp4" data-title="m1 combo">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/m1-combo.jpg" data-src="videos/combat-and-battlegrounds/m1-combo-sm.mp4"></video></div>
-					<div class="title">m1 combo</div>
-				</div>
-				<div class="clip" data-video="videos/combat-and-battlegrounds/counter.mp4" data-title="counter">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/counter.jpg" data-src="videos/combat-and-battlegrounds/counter-sm.mp4"></video></div>
-					<div class="title">counter</div>
-				</div>
-				<div class="clip" data-video="videos/combat-and-battlegrounds/perfect-block.mp4" data-title="perfect block">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/perfect-block.jpg" data-src="videos/combat-and-battlegrounds/perfect-block-sm.mp4"></video></div>
-					<div class="title">perfect block</div>
-				</div>
-				<div class="clip" data-video="videos/combat-and-battlegrounds/awakening-animation.mp4" data-title="awakening animation">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/awakening-animation.jpg" data-src="videos/combat-and-battlegrounds/awakening-animation-sm.mp4"></video></div>
-					<div class="title">awakening animation</div>
-				</div>
-				<div class="clip" data-video="videos/combat-and-battlegrounds/dashes.mp4" data-title="dashes">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/dashes.jpg" data-src="videos/combat-and-battlegrounds/dashes-sm.mp4"></video></div>
-					<div class="title">dashes</div>
-				</div>
-				<div class="clip" data-video="videos/combat-and-battlegrounds/front-dash-finisher.mp4" data-title="front dash finisher">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/front-dash-finisher.jpg" data-src="videos/combat-and-battlegrounds/front-dash-finisher-sm.mp4"></video></div>
-					<div class="title">front dash finisher</div>
-				</div>
+			<div class="feature collapsed">
+				<article class="clip big" data-video="videos/combat-and-battlegrounds/lock-on-system.mp4" data-search="lock-on targeting locks onto the target closest to screen center. over-the-shoulder camera on its own render step, the character auto-faces the target, a see-through highlight marks it, and it releases on death or distance. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/lock-on-system.jpg" data-src="videos/combat-and-battlegrounds/lock-on-system-sm.mp4"></video></div>
+						<div class="about"><p>Locks onto the target closest to screen center. Over-the-shoulder camera on its own render step, the character auto-faces the target, a see-through highlight marks it, and it releases on death or distance.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Lock-On Targeting</h3><p class="desc">Locks onto the target closest to screen center. Over-the-shoulder camera on its own render step, the character auto-faces the target, a see-through highlight marks it, and it releases on death or distance.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/combat-and-battlegrounds/finisher-cutscene.mp4" data-search="finisher cutscene a scripted finisher with its own camera sequence. both characters are locked into the move while it plays, then the result is applied once it ends. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/finisher-cutscene.jpg" data-src="videos/combat-and-battlegrounds/finisher-cutscene-sm.mp4"></video></div>
+						<div class="about"><p>A scripted finisher with its own camera sequence. Both characters are locked into the move while it plays, then the result is applied once it ends.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Finisher Cutscene</h3><p class="desc">A scripted finisher with its own camera sequence. Both characters are locked into the move while it plays, then the result is applied once it ends.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/combat-and-battlegrounds/ground-smash-skill.mp4" data-search="ground smash skill a multi-hit skill ending in a ground slam: hit detection per phase, knockback, and a crater with debris that clears itself after the hit. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/ground-smash-skill.jpg" data-src="videos/combat-and-battlegrounds/ground-smash-skill-sm.mp4"></video></div>
+						<div class="about"><p>A multi-hit skill ending in a ground slam: hit detection per phase, knockback, and a crater with debris that clears itself after the hit.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Ground Smash Skill</h3><p class="desc">A multi-hit skill ending in a ground slam: hit detection per phase, knockback, and a crater with debris that clears itself after the hit.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/combat-and-battlegrounds/grab-slam-skill.mp4" data-search="grab &amp; slam skill a grab that holds the target through the whole animation, then slams and launches them, with vfx timed to the animation's keyframes. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/grab-slam-skill.jpg" data-src="videos/combat-and-battlegrounds/grab-slam-skill-sm.mp4"></video></div>
+						<div class="about"><p>A grab that holds the target through the whole animation, then slams and launches them, with VFX timed to the animation's keyframes.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Grab &amp; Slam Skill</h3><p class="desc">A grab that holds the target through the whole animation, then slams and launches them, with VFX timed to the animation's keyframes.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/combat-and-battlegrounds/m1-combo.mp4" data-search="4-hit m1 combo a 4-hit basic combo with a combo counter, reset timer and knockback on the last hit. client-side prediction starts the swing the moment you click. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/m1-combo.jpg" data-src="videos/combat-and-battlegrounds/m1-combo-sm.mp4"></video></div>
+						<div class="about"><p>A 4-hit basic combo with a combo counter, reset timer and knockback on the last hit. Client-side prediction starts the swing the moment you click.</p></div>
+					</div>
+					<div class="text"><h3 class="title">4-Hit M1 Combo</h3><p class="desc">A 4-hit basic combo with a combo counter, reset timer and knockback on the last hit. Client-side prediction starts the swing the moment you click.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/combat-and-battlegrounds/counter.mp4" data-search="counter a counter stance: getting hit inside its window cancels the attacker's move and hits back with its own animation. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/counter.jpg" data-src="videos/combat-and-battlegrounds/counter-sm.mp4"></video></div>
+						<div class="about"><p>A counter stance: getting hit inside its window cancels the attacker's move and hits back with its own animation.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Counter</h3><p class="desc">A counter stance: getting hit inside its window cancels the attacker's move and hits back with its own animation.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/combat-and-battlegrounds/perfect-block.mp4" data-search="perfect block blocking right before a hit lands gives a perfect block: the attacker is stunned and the defender gets a free opening. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/perfect-block.jpg" data-src="videos/combat-and-battlegrounds/perfect-block-sm.mp4"></video></div>
+						<div class="about"><p>Blocking right before a hit lands gives a perfect block: the attacker is stunned and the defender gets a free opening.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Perfect Block</h3><p class="desc">Blocking right before a hit lands gives a perfect block: the attacker is stunned and the defender gets a free opening.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/combat-and-battlegrounds/awakening-animation.mp4" data-search="awakening transformation the awakening sequence: a full-screen transformation with camera work, effects and a powered-up moveset afterwards. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/awakening-animation.jpg" data-src="videos/combat-and-battlegrounds/awakening-animation-sm.mp4"></video></div>
+						<div class="about"><p>The awakening sequence: a full-screen transformation with camera work, effects and a powered-up moveset afterwards.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Awakening Transformation</h3><p class="desc">The awakening sequence: a full-screen transformation with camera work, effects and a powered-up moveset afterwards.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/combat-and-battlegrounds/dashes.mp4" data-search="combat dashes directional dashes with their own animations, trails and cooldowns, usable mid-combo. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/dashes.jpg" data-src="videos/combat-and-battlegrounds/dashes-sm.mp4"></video></div>
+						<div class="about"><p>Directional dashes with their own animations, trails and cooldowns, usable mid-combo.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Combat Dashes</h3><p class="desc">Directional dashes with their own animations, trails and cooldowns, usable mid-combo.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/combat-and-battlegrounds/front-dash-finisher.mp4" data-search="front dash finisher a forward dash that turns into a finishing strike when it connects, chaining straight out of the combo. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/combat-and-battlegrounds/front-dash-finisher.jpg" data-src="videos/combat-and-battlegrounds/front-dash-finisher-sm.mp4"></video></div>
+						<div class="about"><p>A forward dash that turns into a finishing strike when it connects, chaining straight out of the combo.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Front Dash Finisher</h3><p class="desc">A forward dash that turns into a finishing strike when it connects, chaining straight out of the combo.</p></div>
+				</article>
 			</div>
+			<button class="more" data-more="See all 10" data-less="Show less">See all 10</button>
 		</section>
 
 		<section id="guns" data-category="guns">
 			<h2>Guns &amp; Shooter<span class="count">5</span></h2>
-			<div class="grid">
-				<div class="clip" data-video="videos/guns-and-shooter/running-and-shooting.mp4" data-title="running and shooting">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/running-and-shooting.jpg" data-src="videos/guns-and-shooter/running-and-shooting-sm.mp4"></video></div>
-					<div class="title">running and shooting</div>
-				</div>
-				<div class="clip" data-video="videos/guns-and-shooter/dummy-limb-shots.mp4" data-title="dummy limb shots">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/dummy-limb-shots.jpg" data-src="videos/guns-and-shooter/dummy-limb-shots-sm.mp4"></video></div>
-					<div class="title">dummy limb shots</div>
-				</div>
-				<div class="clip" data-video="videos/guns-and-shooter/dummy-shoot-preview.mp4" data-title="dummy shoot preview">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/dummy-shoot-preview.jpg" data-src="videos/guns-and-shooter/dummy-shoot-preview-sm.mp4"></video></div>
-					<div class="title">dummy shoot preview</div>
-				</div>
-				<div class="clip" data-video="videos/guns-and-shooter/cursor-follow-aim.mp4" data-title="cursor follow aim">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/cursor-follow-aim.jpg" data-src="videos/guns-and-shooter/cursor-follow-aim-sm.mp4"></video></div>
-					<div class="title">cursor follow aim</div>
-				</div>
-				<div class="clip" data-video="videos/guns-and-shooter/inferno-gun-skin-preview.mp4" data-title="inferno gun skin + preview">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/inferno-gun-skin-preview.jpg" data-src="videos/guns-and-shooter/inferno-gun-skin-preview-sm.mp4"></video></div>
-					<div class="title">inferno gun skin + preview</div>
-				</div>
+			<div class="feature collapsed">
+				<article class="clip big" data-video="videos/guns-and-shooter/running-and-shooting.mp4" data-search="run &amp; gun shooting while sprinting: the aim, recoil and arm sway keep working on the move, and every shot is checked on the server. guns &amp; shooter">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/running-and-shooting.jpg" data-src="videos/guns-and-shooter/running-and-shooting-sm.mp4"></video></div>
+						<div class="about"><p>Shooting while sprinting: the aim, recoil and arm sway keep working on the move, and every shot is checked on the server.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Run &amp; Gun</h3><p class="desc">Shooting while sprinting: the aim, recoil and arm sway keep working on the move, and every shot is checked on the server.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/guns-and-shooter/dummy-limb-shots.mp4" data-search="limb dismemberment each hit checks which body part was hit: an upper arm or a leg comes off and flies with the bullet's momentum, a wrist hit bleeds, and a headshot kills. physics is owned by the shooter, so it reacts instantly. guns &amp; shooter">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/dummy-limb-shots.jpg" data-src="videos/guns-and-shooter/dummy-limb-shots-sm.mp4"></video></div>
+						<div class="about"><p>Each hit checks which body part was hit: an upper arm or a leg comes off and flies with the bullet's momentum, a wrist hit bleeds, and a headshot kills. Physics is owned by the shooter, so it reacts instantly.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Limb Dismemberment</h3><p class="desc">Each hit checks which body part was hit: an upper arm or a leg comes off and flies with the bullet's momentum, a wrist hit bleeds, and a headshot kills. Physics is owned by the shooter, so it reacts instantly.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/guns-and-shooter/dummy-shoot-preview.mp4" data-search="ragdoll &amp; blood impacts hit reactions on a ragdoll dummy: blood drops that fly in real arcs and splat on the ground, wound stains on the body, then a respawn. guns &amp; shooter">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/dummy-shoot-preview.jpg" data-src="videos/guns-and-shooter/dummy-shoot-preview-sm.mp4"></video></div>
+						<div class="about"><p>Hit reactions on a ragdoll dummy: blood drops that fly in real arcs and splat on the ground, wound stains on the body, then a respawn.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Ragdoll &amp; Blood Impacts</h3><p class="desc">Hit reactions on a ragdoll dummy: blood drops that fly in real arcs and splat on the ground, wound stains on the body, then a respawn.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/guns-and-shooter/cursor-follow-aim.mp4" data-search="cursor-follow aiming the arm and the gun follow the mouse, smoothed and limited to natural angles, and other players see the same aim. guns &amp; shooter">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/cursor-follow-aim.jpg" data-src="videos/guns-and-shooter/cursor-follow-aim-sm.mp4"></video></div>
+						<div class="about"><p>The arm and the gun follow the mouse, smoothed and limited to natural angles, and other players see the same aim.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Cursor-Follow Aiming</h3><p class="desc">The arm and the gun follow the mouse, smoothed and limited to natural angles, and other players see the same aim.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/guns-and-shooter/inferno-gun-skin-preview.mp4" data-search="inferno skin &amp; preview a gun skin with its own textures and fire effects, and a preview of it in the inventory before you equip it. guns &amp; shooter">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/guns-and-shooter/inferno-gun-skin-preview.jpg" data-src="videos/guns-and-shooter/inferno-gun-skin-preview-sm.mp4"></video></div>
+						<div class="about"><p>A gun skin with its own textures and fire effects, and a preview of it in the inventory before you equip it.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Inferno Skin &amp; Preview</h3><p class="desc">A gun skin with its own textures and fire effects, and a preview of it in the inventory before you equip it.</p></div>
+				</article>
 			</div>
+			<button class="more" data-more="See all 5" data-less="Show less">See all 5</button>
 		</section>
 
 		<section id="pets" data-category="pets">
 			<h2>Pets &amp; RNG<span class="count">10</span></h2>
-			<div class="grid">
-				<div class="clip" data-video="videos/pets-and-rng/egg-hatching.mp4" data-title="egg hatching">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/egg-hatching.jpg" data-src="videos/pets-and-rng/egg-hatching-sm.mp4"></video></div>
-					<div class="title">egg hatching</div>
-				</div>
-				<div class="clip" data-video="videos/pets-and-rng/mythic-hatch.mp4" data-title="mythic hatch">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/mythic-hatch.jpg" data-src="videos/pets-and-rng/mythic-hatch-sm.mp4"></video></div>
-					<div class="title">mythic hatch</div>
-				</div>
-				<div class="clip" data-video="videos/pets-and-rng/rainbow-mutation.mp4" data-title="rainbow mutation">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/rainbow-mutation.jpg" data-src="videos/pets-and-rng/rainbow-mutation-sm.mp4"></video></div>
-					<div class="title">rainbow mutation</div>
-				</div>
-				<div class="clip" data-video="videos/pets-and-rng/pets-breaking-coins.mp4" data-title="pets breaking coins">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/pets-breaking-coins.jpg" data-src="videos/pets-and-rng/pets-breaking-coins-sm.mp4"></video></div>
-					<div class="title">pets breaking coins</div>
-				</div>
-				<div class="clip" data-video="videos/pets-and-rng/safe-break.mp4" data-title="safe break">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/safe-break.jpg" data-src="videos/pets-and-rng/safe-break-sm.mp4"></video></div>
-					<div class="title">safe break</div>
-				</div>
-				<div class="clip" data-video="videos/pets-and-rng/pet-level-up.mp4" data-title="pet level up">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/pet-level-up.jpg" data-src="videos/pets-and-rng/pet-level-up-sm.mp4"></video></div>
-					<div class="title">pet level up</div>
-				</div>
-				<div class="clip" data-video="videos/pets-and-rng/pet-inventory-following.mp4" data-title="pet inventory + following">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/pet-inventory-following.jpg" data-src="videos/pets-and-rng/pet-inventory-following-sm.mp4"></video></div>
-					<div class="title">pet inventory + following</div>
-				</div>
-				<div class="clip" data-video="videos/pets-and-rng/auto-hatch.mp4" data-title="auto hatch">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/auto-hatch.jpg" data-src="videos/pets-and-rng/auto-hatch-sm.mp4"></video></div>
-					<div class="title">auto hatch</div>
-				</div>
-				<div class="clip" data-video="videos/pets-and-rng/emote-spin-system-ui.mp4" data-title="emote spin system + ui">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/emote-spin-system-ui.jpg" data-src="videos/pets-and-rng/emote-spin-system-ui-sm.mp4"></video></div>
-					<div class="title">emote spin system + ui</div>
-				</div>
-				<div class="clip" data-video="videos/pets-and-rng/spin-system-ui.mp4" data-title="spin system + ui">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/spin-system-ui.jpg" data-src="videos/pets-and-rng/spin-system-ui-sm.mp4"></video></div>
-					<div class="title">spin system + ui</div>
-				</div>
+			<div class="feature collapsed">
+				<article class="clip big" data-video="videos/pets-and-rng/egg-hatching.mp4" data-search="click-to-crack egg hatching every click cracks the egg somewhere new and its rarity's light leaks through the cracks. common pets open fast; legendary and mythic take more clicks, charge up and burst. the server rolls the pet. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/egg-hatching.jpg" data-src="videos/pets-and-rng/egg-hatching-sm.mp4"></video></div>
+						<div class="about"><p>Every click cracks the egg somewhere new and its rarity's light leaks through the cracks. Common pets open fast; Legendary and Mythic take more clicks, charge up and burst. The server rolls the pet.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Click-to-Crack Egg Hatching</h3><p class="desc">Every click cracks the egg somewhere new and its rarity's light leaks through the cracks. Common pets open fast; Legendary and Mythic take more clicks, charge up and burst. The server rolls the pet.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/pets-and-rng/mythic-hatch.mp4" data-search="mythic hatch the rarest tier: a longer charge-up, a screen tint, rays, sparkles and a screen shake. the odds come from weighted chances with luck and a pity counter. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/mythic-hatch.jpg" data-src="videos/pets-and-rng/mythic-hatch-sm.mp4"></video></div>
+						<div class="about"><p>The rarest tier: a longer charge-up, a screen tint, rays, sparkles and a screen shake. The odds come from weighted chances with luck and a pity counter.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Mythic Hatch</h3><p class="desc">The rarest tier: a longer charge-up, a screen tint, rays, sparkles and a screen shake. The odds come from weighted chances with luck and a pity counter.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/pets-and-rng/rainbow-mutation.mp4" data-search="rainbow mutation mutations roll separately from the pet (gold, diamond, rainbow) and multiply its power. rainbow pets cycle their colors. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/rainbow-mutation.jpg" data-src="videos/pets-and-rng/rainbow-mutation-sm.mp4"></video></div>
+						<div class="about"><p>Mutations roll separately from the pet (Gold, Diamond, Rainbow) and multiply its power. Rainbow pets cycle their colors.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Rainbow Mutation</h3><p class="desc">Mutations roll separately from the pet (Gold, Diamond, Rainbow) and multiply its power. Rainbow pets cycle their colors.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/pets-and-rng/pets-breaking-coins.mp4" data-search="pets breaking coins click a coin pile and your pets run over and attack it. each hit is dealt by the server with the pet's power, shown as a damage number, and coins are split by damage dealt. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/pets-breaking-coins.jpg" data-src="videos/pets-and-rng/pets-breaking-coins-sm.mp4"></video></div>
+						<div class="about"><p>Click a coin pile and your pets run over and attack it. Each hit is dealt by the server with the pet's power, shown as a damage number, and coins are split by damage dealt.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Pets Breaking Coins</h3><p class="desc">Click a coin pile and your pets run over and attack it. Each hit is dealt by the server with the pet's power, shown as a damage number, and coins are split by damage dealt.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/pets-and-rng/safe-break.mp4" data-search="safe break rare, high-hp breakables for strong pets: every hit shows its damage, and the safe bursts into coins that fly to the players who broke it. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/safe-break.jpg" data-src="videos/pets-and-rng/safe-break-sm.mp4"></video></div>
+						<div class="about"><p>Rare, high-HP breakables for strong pets: every hit shows its damage, and the safe bursts into coins that fly to the players who broke it.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Safe Break</h3><p class="desc">Rare, high-HP breakables for strong pets: every hit shows its damage, and the safe bursts into coins that fly to the players who broke it.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/pets-and-rng/pet-level-up.mp4" data-search="pet level up pets earn xp for every hit and level up, each level adding to their power. a short cutscene shows the pet and its new level. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/pet-level-up.jpg" data-src="videos/pets-and-rng/pet-level-up-sm.mp4"></video></div>
+						<div class="about"><p>Pets earn XP for every hit and level up, each level adding to their power. A short cutscene shows the pet and its new level.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Pet Level Up</h3><p class="desc">Pets earn XP for every hit and level up, each level adding to their power. A short cutscene shows the pet and its new level.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/pets-and-rng/pet-inventory-following.mp4" data-search="pet inventory &amp; following a stacked inventory with equip best. equipped pets follow you on every client: walkers hop behind you and flyers hover, snapped to the ground below them. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/pet-inventory-following.jpg" data-src="videos/pets-and-rng/pet-inventory-following-sm.mp4"></video></div>
+						<div class="about"><p>A stacked inventory with Equip Best. Equipped pets follow you on every client: walkers hop behind you and flyers hover, snapped to the ground below them.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Pet Inventory &amp; Following</h3><p class="desc">A stacked inventory with Equip Best. Equipped pets follow you on every client: walkers hop behind you and flyers hover, snapped to the ground below them.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/pets-and-rng/auto-hatch.mp4" data-search="auto hatch opens eggs on its own, three at a time when you can afford it, and stops when you walk away or run out of coins. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/auto-hatch.jpg" data-src="videos/pets-and-rng/auto-hatch-sm.mp4"></video></div>
+						<div class="about"><p>Opens eggs on its own, three at a time when you can afford it, and stops when you walk away or run out of coins.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Auto Hatch</h3><p class="desc">Opens eggs on its own, three at a time when you can afford it, and stops when you walk away or run out of coins.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/pets-and-rng/emote-spin-system-ui.mp4" data-search="emote spin the same spin system for emotes, with animated previews of each emote on the wheel. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/emote-spin-system-ui.jpg" data-src="videos/pets-and-rng/emote-spin-system-ui-sm.mp4"></video></div>
+						<div class="about"><p>The same spin system for emotes, with animated previews of each emote on the wheel.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Emote Spin</h3><p class="desc">The same spin system for emotes, with animated previews of each emote on the wheel.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/pets-and-rng/spin-system-ui.mp4" data-search="gun skin spin a spin wheel for gun skins with weighted rarities, multi-spin packs and a possible-rewards list. the result is decided on the server before the wheel stops. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/pets-and-rng/spin-system-ui.jpg" data-src="videos/pets-and-rng/spin-system-ui-sm.mp4"></video></div>
+						<div class="about"><p>A spin wheel for gun skins with weighted rarities, multi-spin packs and a possible-rewards list. The result is decided on the server before the wheel stops.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Gun Skin Spin</h3><p class="desc">A spin wheel for gun skins with weighted rarities, multi-spin packs and a possible-rewards list. The result is decided on the server before the wheel stops.</p></div>
+				</article>
 			</div>
+			<button class="more" data-more="See all 10" data-less="Show less">See all 10</button>
 		</section>
 
 		<section id="movement" data-category="movement">
 			<h2>Movement &amp; Parkour<span class="count">3</span></h2>
-			<div class="grid">
-				<div class="clip" data-video="videos/movement-and-parkour/parkour.mp4" data-title="parkour">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/movement-and-parkour/parkour.jpg" data-src="videos/movement-and-parkour/parkour-sm.mp4"></video></div>
-					<div class="title">parkour</div>
-				</div>
-				<div class="clip" data-video="videos/movement-and-parkour/basic-dash.mp4" data-title="basic dash">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/movement-and-parkour/basic-dash.jpg" data-src="videos/movement-and-parkour/basic-dash-sm.mp4"></video></div>
-					<div class="title">basic dash</div>
-				</div>
-				<div class="clip" data-video="videos/movement-and-parkour/walk-run.mp4" data-title="walk + run">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/movement-and-parkour/walk-run.jpg" data-src="videos/movement-and-parkour/walk-run-sm.mp4"></video></div>
-					<div class="title">walk + run</div>
-				</div>
+			<div class="feature collapsed">
+				<article class="clip big" data-video="videos/movement-and-parkour/parkour.mp4" data-search="parkour movement wall runs, vaults, slides, ledge climbs and double jumps, chained together with automatic vaulting and wall running. movement &amp; parkour">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/movement-and-parkour/parkour.jpg" data-src="videos/movement-and-parkour/parkour-sm.mp4"></video></div>
+						<div class="about"><p>Wall runs, vaults, slides, ledge climbs and double jumps, chained together with automatic vaulting and wall running.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Parkour Movement</h3><p class="desc">Wall runs, vaults, slides, ledge climbs and double jumps, chained together with automatic vaulting and wall running.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/movement-and-parkour/basic-dash.mp4" data-search="directional dash front, back and side dashes with their own animations, a trail on side dashes, and a sound everyone in range hears. movement &amp; parkour">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/movement-and-parkour/basic-dash.jpg" data-src="videos/movement-and-parkour/basic-dash-sm.mp4"></video></div>
+						<div class="about"><p>Front, back and side dashes with their own animations, a trail on side dashes, and a sound everyone in range hears.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Directional Dash</h3><p class="desc">Front, back and side dashes with their own animations, a trail on side dashes, and a sound everyone in range hears.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/movement-and-parkour/walk-run.mp4" data-search="walk &amp; sprint walking and sprinting with a stamina bar, run animations and camera motion that follows your speed. movement &amp; parkour">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/movement-and-parkour/walk-run.jpg" data-src="videos/movement-and-parkour/walk-run-sm.mp4"></video></div>
+						<div class="about"><p>Walking and sprinting with a stamina bar, run animations and camera motion that follows your speed.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Walk &amp; Sprint</h3><p class="desc">Walking and sprinting with a stamina bar, run animations and camera motion that follows your speed.</p></div>
+				</article>
 			</div>
 		</section>
 
 		<section id="ui" data-category="ui">
 			<h2>UI &amp; Systems<span class="count">10</span></h2>
-			<div class="grid">
-				<div class="clip" data-video="videos/ui-and-systems/pass-shop-gifting.mp4" data-title="pass shop + gifting">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/pass-shop-gifting.jpg" data-src="videos/ui-and-systems/pass-shop-gifting-sm.mp4"></video></div>
-					<div class="title">pass shop + gifting</div>
-				</div>
-				<div class="clip" data-video="videos/ui-and-systems/emote-shop.mp4" data-title="emote shop">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/emote-shop.jpg" data-src="videos/ui-and-systems/emote-shop-sm.mp4"></video></div>
-					<div class="title">emote shop</div>
-				</div>
-				<div class="clip" data-video="videos/ui-and-systems/emote-wheel.mp4" data-title="emote wheel">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/emote-wheel.jpg" data-src="videos/ui-and-systems/emote-wheel-sm.mp4"></video></div>
-					<div class="title">emote wheel</div>
-				</div>
-				<div class="clip" data-video="videos/ui-and-systems/custom-leaderboard.mp4" data-title="custom leaderboard">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/custom-leaderboard.jpg" data-src="videos/ui-and-systems/custom-leaderboard-sm.mp4"></video></div>
-					<div class="title">custom leaderboard</div>
-				</div>
-				<div class="clip" data-video="videos/ui-and-systems/custom-aura-popup.mp4" data-title="custom aura pop-up">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/custom-aura-popup.jpg" data-src="videos/ui-and-systems/custom-aura-popup-sm.mp4"></video></div>
-					<div class="title">custom aura pop-up</div>
-				</div>
-				<div class="clip" data-video="videos/ui-and-systems/aura-selection.mp4" data-title="aura selection">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/aura-selection.jpg" data-src="videos/ui-and-systems/aura-selection-sm.mp4"></video></div>
-					<div class="title">aura selection</div>
-				</div>
-				<div class="clip" data-video="videos/ui-and-systems/emote-inventory-ui.mp4" data-title="emote inventory ui">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/emote-inventory-ui.jpg" data-src="videos/ui-and-systems/emote-inventory-ui-sm.mp4"></video></div>
-					<div class="title">emote inventory ui</div>
-				</div>
-				<div class="clip" data-video="videos/ui-and-systems/emote-replace-selection.mp4" data-title="emote replace + selection">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/emote-replace-selection.jpg" data-src="videos/ui-and-systems/emote-replace-selection-sm.mp4"></video></div>
-					<div class="title">emote replace + selection</div>
-				</div>
-				<div class="clip" data-video="videos/ui-and-systems/gun-skins-inventory-ui.mp4" data-title="gun skins inventory ui">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/gun-skins-inventory-ui.jpg" data-src="videos/ui-and-systems/gun-skins-inventory-ui-sm.mp4"></video></div>
-					<div class="title">gun skins inventory ui</div>
-				</div>
-				<div class="clip" data-video="videos/ui-and-systems/sync-emote.mp4" data-title="sync emote">
-					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/sync-emote.jpg" data-src="videos/ui-and-systems/sync-emote-sm.mp4"></video></div>
-					<div class="title">sync emote</div>
-				</div>
+			<div class="feature collapsed">
+				<article class="clip big" data-video="videos/ui-and-systems/pass-shop-gifting.mp4" data-search="gamepass shop &amp; gifting a gamepass shop where any pass can be gifted to a friend picked from your friends list. the purchase is verified before the gift is delivered. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/pass-shop-gifting.jpg" data-src="videos/ui-and-systems/pass-shop-gifting-sm.mp4"></video></div>
+						<div class="about"><p>A gamepass shop where any pass can be gifted to a friend picked from your friends list. The purchase is verified before the gift is delivered.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Gamepass Shop &amp; Gifting</h3><p class="desc">A gamepass shop where any pass can be gifted to a friend picked from your friends list. The purchase is verified before the gift is delivered.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/ui-and-systems/emote-shop.mp4" data-search="emote shop browse and buy emotes with live previews on your own character. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/emote-shop.jpg" data-src="videos/ui-and-systems/emote-shop-sm.mp4"></video></div>
+						<div class="about"><p>Browse and buy emotes with live previews on your own character.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Emote Shop</h3><p class="desc">Browse and buy emotes with live previews on your own character.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/ui-and-systems/emote-wheel.mp4" data-search="emote wheel a radial emote wheel: hold to open, pick a slot, and the emote plays for everyone. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/emote-wheel.jpg" data-src="videos/ui-and-systems/emote-wheel-sm.mp4"></video></div>
+						<div class="about"><p>A radial emote wheel: hold to open, pick a slot, and the emote plays for everyone.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Emote Wheel</h3><p class="desc">A radial emote wheel: hold to open, pick a slot, and the emote plays for everyone.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/ui-and-systems/custom-leaderboard.mp4" data-search="custom leaderboard a custom in-game leaderboard that replaces roblox's default player list. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/custom-leaderboard.jpg" data-src="videos/ui-and-systems/custom-leaderboard-sm.mp4"></video></div>
+						<div class="about"><p>A custom in-game leaderboard that replaces Roblox's default player list.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Custom Leaderboard</h3><p class="desc">A custom in-game leaderboard that replaces Roblox's default player list.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/ui-and-systems/custom-aura-popup.mp4" data-search="aura unlock pop-up an animated pop-up when you unlock an aura, showing which aura you got. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/custom-aura-popup.jpg" data-src="videos/ui-and-systems/custom-aura-popup-sm.mp4"></video></div>
+						<div class="about"><p>An animated pop-up when you unlock an aura, showing which aura you got.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Aura Unlock Pop-Up</h3><p class="desc">An animated pop-up when you unlock an aura, showing which aura you got.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/ui-and-systems/aura-selection.mp4" data-search="aura selection pick and equip your auras, each with a preview before you equip it. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/aura-selection.jpg" data-src="videos/ui-and-systems/aura-selection-sm.mp4"></video></div>
+						<div class="about"><p>Pick and equip your auras, each with a preview before you equip it.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Aura Selection</h3><p class="desc">Pick and equip your auras, each with a preview before you equip it.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/ui-and-systems/emote-inventory-ui.mp4" data-search="emote inventory all your owned emotes in one list, ready to put on the wheel. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/emote-inventory-ui.jpg" data-src="videos/ui-and-systems/emote-inventory-ui-sm.mp4"></video></div>
+						<div class="about"><p>All your owned emotes in one list, ready to put on the wheel.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Emote Inventory</h3><p class="desc">All your owned emotes in one list, ready to put on the wheel.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/ui-and-systems/emote-replace-selection.mp4" data-search="emote slot replace swap the emote in any wheel slot from your inventory; the menu slides open around the wheel. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/emote-replace-selection.jpg" data-src="videos/ui-and-systems/emote-replace-selection-sm.mp4"></video></div>
+						<div class="about"><p>Swap the emote in any wheel slot from your inventory; the menu slides open around the wheel.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Emote Slot Replace</h3><p class="desc">Swap the emote in any wheel slot from your inventory; the menu slides open around the wheel.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/ui-and-systems/gun-skins-inventory-ui.mp4" data-search="gun skin inventory owned gun skins with their rarity, and equipping one updates the gun right away. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/gun-skins-inventory-ui.jpg" data-src="videos/ui-and-systems/gun-skins-inventory-ui-sm.mp4"></video></div>
+						<div class="about"><p>Owned gun skins with their rarity, and equipping one updates the gun right away.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Gun Skin Inventory</h3><p class="desc">Owned gun skins with their rarity, and equipping one updates the gun right away.</p></div>
+				</article>
+				<article class="clip small" data-video="videos/ui-and-systems/sync-emote.mp4" data-search="synced emotes join someone's emote and dance in sync: the animations start from the same point and the song is heard once. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="videos/ui-and-systems/sync-emote.jpg" data-src="videos/ui-and-systems/sync-emote-sm.mp4"></video></div>
+						<div class="about"><p>Join someone's emote and dance in sync: the animations start from the same point and the song is heard once.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Synced Emotes</h3><p class="desc">Join someone's emote and dance in sync: the animations start from the same point and the song is heard once.</p></div>
+				</article>
 			</div>
+			<button class="more" data-more="See all 10" data-less="Show less">See all 10</button>
 		</section>
+		<p class="empty" hidden>No clips match that search.</p>
 	</main>
 
-	<footer id="contact">
+	<section class="ai" id="ai">
+		<h2 class="reveal">Do I work with AI?</h2>
+		<div class="reveal"><p>Yes, as a tool, not a replacement. I use Claude to speed up the work; the systems, the code that ships and the final quality are mine.</p><p>If you're fine with AI-assisted work, I deliver about 3 to 4 times faster. If you'd rather I don't use it, just say so: you'll get the same quality, written entirely by hand.</p></div>
+	</section>
+
+	<footer>
 		<div class="inner">
-			<span>© 2026 netablade</span>
-			<span>Discord: netablade</span>
+			<p class="note"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg><span>Animations and some assets come from my teammates and free resources. All scripting, UI components and everything else are made by me.</span></p>
+			<p class="copyright">© 2026 <span class="notranslate">netablade</span> · All rights reserved</p>
 		</div>
 	</footer>
 
-	<div class="viewer" id="viewer">
+	<div class="viewer" id="viewer" aria-hidden="true">
 		<button class="close" aria-label="Close">×</button>
-		<video controls loop playsinline muted></video>
-		<div class="caption"></div>
+		<div class="viewer-box">
+			<video controls loop playsinline muted></video>
+			<h3 class="caption"></h3>
+			<p class="viewer-desc"></p>
+		</div>
 	</div>
 
+	<div id="google_translate_element" hidden></div>
 	<script src="script.js"></script>
 </body>
 </html>
