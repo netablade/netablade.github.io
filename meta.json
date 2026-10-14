@@ -1,6 +1,5 @@
 {
   "_about": "Each clip's shown title and its hover description, by '<category folder>/<file name>'. Clips not listed here use their file name.",
-
   "combat & battlegrounds/lock on system": {
     "title": "Lock-On Targeting",
     "desc": "Locks onto the target closest to screen center. Over-the-shoulder camera on its own render step, the character auto-faces the target, a see-through highlight marks it, and it releases on death or distance."
@@ -41,7 +40,6 @@
     "title": "Awakening Transformation",
     "desc": "The awakening sequence: a full-screen transformation with camera work, effects and a powered-up moveset afterwards."
   },
-
   "guns & shooter/running and shooting": {
     "title": "Run & Gun",
     "desc": "Shooting while sprinting: the aim, recoil and arm sway keep working on the move, and every shot is checked on the server."
@@ -62,7 +60,6 @@
     "title": "Inferno Skin & Preview",
     "desc": "A gun skin with its own textures and fire effects, and a preview of it in the inventory before you equip it."
   },
-
   "pets & rng/egg hatching": {
     "title": "Click-to-Crack Egg Hatching",
     "desc": "Every click cracks the egg somewhere new and its rarity's light leaks through the cracks. Common pets open fast; Legendary and Mythic take more clicks, charge up and burst. The server rolls the pet."
@@ -97,13 +94,12 @@
   },
   "pets & rng/spin system + ui": {
     "title": "Gun Skin Spin",
-    "desc": "A spin wheel for gun skins with weighted rarities, multi-spin packs and a possible-rewards list. The result is decided on the server before the wheel stops."
+    "desc": "The gun skin spin shop: weighted rarities, 1 to 50 spin packs and a possible-rewards list showing every skin's odds."
   },
   "pets & rng/emote spin system + ui": {
     "title": "Emote Spin",
-    "desc": "The same spin system for emotes, with animated previews of each emote on the wheel."
+    "desc": "The emote spin shop with spin packs, the possible-rewards list and animated previews of each emote on the reel."
   },
-
   "movement & parkour/parkour": {
     "title": "Parkour Movement",
     "desc": "Wall runs, vaults, slides, ledge climbs and double jumps, chained together with automatic vaulting and wall running."
@@ -116,7 +112,6 @@
     "title": "Walk & Sprint",
     "desc": "Walking and sprinting with a stamina bar, run animations and camera motion that follows your speed."
   },
-
   "ui & systems/pass shop + gifting": {
     "title": "Gamepass Shop & Gifting",
     "desc": "A gamepass shop where any pass can be gifted to a friend picked from your friends list. The purchase is verified before the gift is delivered."
@@ -156,5 +151,17 @@
   "ui & systems/sync emote": {
     "title": "Synced Emotes",
     "desc": "Join someone's emote and dance in sync: the animations start from the same point and the song is heard once."
+  },
+  "combat & battlegrounds/m1 optimization old vs new": {
+    "title": "M1 Optimization: Old vs New",
+    "desc": "Left: the swing only showed up once the server's copy came back, a full ping after the click. Right: client-side prediction starts it on the same frame you click, while the server still decides every hit."
+  },
+  "pets & rng/cinematic gun skin spin": {
+    "title": "Cinematic Gun Skin Spin",
+    "desc": "The spin as a full-screen cinematic: the reel speeds up, slows down onto the winning skin and bursts in its rarity color, then the reward card shows. The result is rolled on the server before the reel moves."
+  },
+  "pets & rng/cinematic emote spin": {
+    "title": "Cinematic Emote Spin",
+    "desc": "The same cinematic reel for emotes, every slot showing the emote's pose, ending on the won emote with its rarity burst and reward card."
   }
 }

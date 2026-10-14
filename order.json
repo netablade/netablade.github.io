@@ -1,16 +1,71 @@
 {
   "categories": [
-    { "folder": "combat & battlegrounds", "name": "Combat & Battlegrounds", "id": "combat" },
-    { "folder": "guns & shooter", "name": "Guns & Shooter", "id": "guns" },
-    { "folder": "pets & rng", "name": "Pets & RNG", "id": "pets" },
-    { "folder": "movement & parkour", "name": "Movement & Parkour", "id": "movement" },
-    { "folder": "ui & systems", "name": "UI & Systems", "id": "ui" }
+    {
+      "folder": "combat & battlegrounds",
+      "name": "Combat & Battlegrounds",
+      "id": "combat"
+    },
+    {
+      "folder": "guns & shooter",
+      "name": "Guns & Shooter",
+      "id": "guns"
+    },
+    {
+      "folder": "pets & rng",
+      "name": "Pets & RNG",
+      "id": "pets"
+    },
+    {
+      "folder": "movement & parkour",
+      "name": "Movement & Parkour",
+      "id": "movement"
+    },
+    {
+      "folder": "ui & systems",
+      "name": "UI & Systems",
+      "id": "ui"
+    }
   ],
   "first": {
-    "combat & battlegrounds": ["lock on system", "finisher cutscene", "ground smash skill", "grab slam skill", "m1 combo", "counter", "perfect block"],
-    "guns & shooter": ["running and shooting", "dummy limb shots", "dummy shoot preview"],
-    "pets & rng": ["egg hatching", "mythic hatch", "rainbow mutation", "pets breaking coins", "safe break", "pet level up", "pet inventory + following"],
-    "movement & parkour": ["parkour", "basic dash"],
-    "ui & systems": ["pass shop + gifting", "emote shop", "emote wheel", "custom leaderboard", "custom aura pop-up"]
+    "combat & battlegrounds": [
+      "lock on system",
+      "finisher cutscene",
+      "ground smash skill",
+      "m1 optimization old vs new",
+      "grab slam skill",
+      "m1 combo",
+      "counter",
+      "perfect block"
+    ],
+    "guns & shooter": [
+      "running and shooting",
+      "dummy limb shots",
+      "dummy shoot preview"
+    ],
+    "pets & rng": [
+      "egg hatching",
+      "mythic hatch",
+      "cinematic gun skin spin",
+      "pets breaking coins",
+      "safe break",
+      "pet level up",
+      "rainbow mutation",
+      "cinematic emote spin",
+      "pet inventory + following",
+      "auto hatch",
+      "spin system + ui",
+      "emote spin system + ui"
+    ],
+    "movement & parkour": [
+      "parkour",
+      "basic dash"
+    ],
+    "ui & systems": [
+      "pass shop + gifting",
+      "emote shop",
+      "emote wheel",
+      "custom leaderboard",
+      "custom aura pop-up"
+    ]
   }
 }

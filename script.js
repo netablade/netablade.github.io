@@ -114,6 +114,36 @@ setInterval(() => {
 	}
 }, 2000);
 
+// ---------------------------------------------------------------- THE LAYOUT OF A CATEGORY (no row left half empty)
+// The big one takes the left 4 of 6 columns over two rows, the next two stand on its right. The rest go in rows of
+// three; if that leaves one or two over, the last rows hold two each (wider), or a single one sits in the middle.
+// (Phones: two across; a last one left alone sits in the middle.)
+function layout(feature) {
+	const cards = [...feature.children].filter((c) => !c.hidden && getComputedStyle(c).display !== "none");
+	for (const c of feature.children) c.classList.remove("side1", "side2", "w3", "w-center", "m-center");
+	cards.forEach((c, i) => {
+		c.classList.toggle("big", i === 0);
+		c.classList.toggle("small", i !== 0);
+	});
+	if (cards[1]) cards[1].classList.add("side1");
+	if (cards[2]) cards[2].classList.add("side2");
+	const rest = cards.slice(3);
+	const r = rest.length % 3;
+	if (r === 2) {
+		rest.slice(-2).forEach((c) => c.classList.add("w3"));
+	} else if (r === 1 && rest.length === 1) {
+		rest[0].classList.add("w-center");
+	} else if (r === 1) {
+		rest.slice(-4).forEach((c) => c.classList.add("w3"));
+	}
+	// (phones: everything after the big one in pairs)
+	if ((cards.length - 1) % 2 === 1) cards[cards.length - 1].classList.add("m-center");
+}
+function layoutAll() {
+	if (main.classList.contains("searching")) return;
+	$(".feature").forEach(layout);
+}
+
 // ---------------------------------------------------------------- BIG AND SMALL: a small one clicked swaps places with the big one
 // (both pictures glide and resize to each other's place; only transform is animated, so it costs nothing)
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -140,8 +170,7 @@ function swap(small) {
 	feature.replaceChild(marker, small);
 	feature.insertBefore(small, feature.firstChild);
 	feature.replaceChild(big, marker);
-	big.classList.replace("big", "small");
-	small.classList.replace("small", "big");
+	layout(feature);
 	glide(smallFrame, smallWas);
 	glide(bigFrame, bigWas);
 	for (const clip of [big, small]) {
@@ -194,6 +223,8 @@ function apply() {
 		if (more) more.hidden = filter !== "all";
 	}
 	empty.hidden = shown > 0;
+	if (searching) $(".feature .clip").forEach((c) => c.classList.remove("side1", "side2", "w3", "w-center", "m-center"));
+	else layoutAll();
 }
 
 // a change fades the list out, swaps it and fades it back in, the cards rising in one after another
@@ -244,6 +275,7 @@ $$(".more").forEach((button) => button.addEventListener("click", () => {
 	feature.classList.toggle("collapsed", !opening);
 	section.dataset.open = opening ? "1" : "";
 	button.textContent = opening ? button.dataset.less : button.dataset.more;
+	layout(feature);
 	if (opening) {
 		$$(".clip", feature).slice(3).forEach((c, i) => {
 			c.classList.add("shown");
@@ -260,7 +292,7 @@ $$(".more").forEach((button) => button.addEventListener("click", () => {
 // ---------------------------------------------------------------- DISCORD: a click copies the name, and says so
 $$("[data-copy]").forEach((button) => button.addEventListener("click", async () => {
 	try { await navigator.clipboard.writeText(button.dataset.copy); } catch (e) {}
-	const label = $(".status-text", button) || $(".name", button);
+	const label = $(".name", button);
 	const before = label.textContent;
 	button.classList.add("copied");
 	label.textContent = "Copied!";
@@ -298,3 +330,5 @@ clips.forEach((clip) => clip.addEventListener("click", () => {
 }));
 viewer.addEventListener("click", (e) => { if (e.target === viewer || e.target.classList.contains("close")) closeClip(); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && viewerOpen) closeClip(); });
+
+layoutAll();

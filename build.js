@@ -7,17 +7,19 @@ const path = require("path");
 const NAME = "netablade";
 const TITLE = "netablade's portfolio";
 const BIO = {
-	line1: "Roblox scripting & UI · 4 years of experience",
-	line2: "UI, combat, shops & data systems",
-	line3: "↳ If you can imagine it, I can script it",
-	status: "Commissions open · DM me",
+	kicker: "Roblox scripting & UI · 4 years of experience",
+	focus: "UI, combat, shops & data systems",
+	tagline: "↳ If you can imagine it, I can script it",
 };
+const COMMISSIONS_OPEN = true; // (false shows "Closed")
 const NOTE = "Animations and some assets come from my teammates and free resources. All scripting, UI components and everything else are made by me.";
 const AI = {
 	question: "Do I work with AI?",
-	answer: [
-		"Yes, as a tool, not a replacement. I use Claude to speed up the work; the systems, the code that ships and the final quality are mine.",
-		"If you're fine with AI-assisted work, I deliver about 3 to 4 times faster. If you'd rather I don't use it, just say so: you'll get the same quality, written entirely by hand.",
+	lead: "Yes, but as a tool, not a replacement.",
+	body: "I use Claude to speed up the work; the systems, the code that ships and the final quality are mine.",
+	options: [
+		["With AI", "If you're fine with AI-assisted work, I deliver about 3 to 4 times faster."],
+		["Without AI", "If you'd rather I don't use it, just say so: you'll get the same quality, written entirely by hand."],
 	],
 };
 const DISCORD = "netablade"; // (the buttons copy it, since Discord has no public profile link by name)
@@ -65,23 +67,23 @@ const sections = order.categories.map((cat) => {
 }).filter((s) => s.list.length > 0);
 const total = sections.reduce((n, s) => n + s.list.length, 0);
 
-const pills = [`<button class="pill active" data-filter="all">All<span class="count">${total}</span></button>`]
-	.concat(sections.map((s) => `<button class="pill" data-filter="${s.id}">${esc(s.name)}<span class="count">${s.list.length}</span></button>`))
+const pills = [`<button class="pill active" data-filter="all">All</button>`]
+	.concat(sections.map((s) => `<button class="pill" data-filter="${s.id}">${esc(s.name)}</button>`))
 	.join("\n\t\t\t\t\t");
 
 const body = sections.map((s) => `
 		<section id="${s.id}" data-category="${s.id}">
-			<h2>${esc(s.name)}<span class="count">${s.list.length}</span></h2>
+			<h2>${esc(s.name)}</h2>
 			<div class="feature collapsed">${s.list.map((c, i) => `
 				<article class="clip ${i === 0 ? "big" : "small"}" data-video="${esc(c.video)}" data-search="${esc((c.name + " " + c.desc + " " + s.name).toLowerCase())}">
 					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="${esc(c.poster)}" data-src="${esc(c.small || c.video)}"></video></div>
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="${esc(c.poster)}" data-src="${esc(c.medium || c.small || c.video)}"></video></div>
 						<div class="about"><p>${esc(c.desc)}</p></div>
 					</div>
 					<div class="text"><h3 class="title">${esc(c.name)}</h3><p class="desc">${esc(c.desc)}</p></div>
 				</article>`).join("")}
 			</div>${s.list.length > 3 ? `
-			<button class="more" data-more="See all ${s.list.length}" data-less="Show less">See all ${s.list.length}</button>` : ""}
+			<button class="more" data-more="See all" data-less="Show less">See all</button>` : ""}
 		</section>`).join("\n");
 
 const languages = LANGUAGES.map(([code, name]) =>
@@ -93,7 +95,7 @@ const html = `<!doctype html>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>${esc(TITLE)}</title>
-	<meta name="description" content="${esc(BIO.line1 + ". " + BIO.line2 + ".")}">
+	<meta name="description" content="${esc(BIO.kicker + ". " + BIO.focus + ".")}">
 	<meta name="theme-color" content="#000000">
 	<script>
 		// (the theme is set before anything draws: dark unless the visitor picked light)
@@ -120,11 +122,17 @@ const html = `<!doctype html>
 
 	<div class="hero">
 		<h1 class="reveal">${esc(TITLE)}</h1>
-		<div class="bio reveal">
-			<p class="line1">${esc(BIO.line1)}</p>
-			<p class="line2">${esc(BIO.line2)}</p>
-			<p class="line3">${esc(BIO.line3)}</p>
-			<button class="status" data-copy="${esc(DISCORD)}"><span class="dot"></span><span class="status-text">${esc(BIO.status)}</span></button>
+		<div class="profile reveal">
+			<div class="profile-main">
+				<p class="kicker">${esc(BIO.kicker)}</p>
+				<p class="focus">${esc(BIO.focus)}</p>
+				<p class="tagline">${esc(BIO.tagline)}</p>
+			</div>
+			<div class="profile-side">
+				<span class="label">Commissions</span>
+				<span class="state ${COMMISSIONS_OPEN ? "open" : "closed"}"><span class="dot"></span>${COMMISSIONS_OPEN ? "Open" : "Closed"}</span>
+			</div>
+			<p class="profile-note">${ICON.info}<span>${esc(NOTE)}</span></p>
 		</div>
 	</div>
 
@@ -143,13 +151,20 @@ const html = `<!doctype html>
 	</main>
 
 	<section class="ai" id="ai">
-		<h2 class="reveal">${esc(AI.question)}</h2>
-		<div class="reveal">${AI.answer.map((p) => `<p>${esc(p)}</p>`).join("")}</div>
+		<div class="ai-card reveal">
+			<h2>${esc(AI.question)}</h2>
+			<div class="ai-text">
+				<p class="lead">${esc(AI.lead)}</p>
+				<p class="body">${esc(AI.body)}</p>
+				<div class="ai-options">${AI.options.map(([label, text]) => `
+					<div class="option"><span class="option-label">${esc(label)}</span><p>${esc(text)}</p></div>`).join("")}
+				</div>
+			</div>
+		</div>
 	</section>
 
 	<footer>
 		<div class="inner">
-			<p class="note">${ICON.info}<span>${esc(NOTE)}</span></p>
 			<p class="copyright">© ${new Date().getFullYear()} <span class="notranslate">${esc(NAME)}</span> · All rights reserved</p>
 		</div>
 	</footer>
