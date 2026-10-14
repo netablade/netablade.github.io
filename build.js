@@ -148,8 +148,14 @@ function page(lang) {
 	<link rel="icon" type="image/png" sizes="192x192" href="${P}img/icon-192.png">
 	<link rel="apple-touch-icon" href="${P}img/apple-touch-icon.png">
 	${alternates}
-	<!-- the card a shared link shows (Discord, Twitter...) -->
-	<meta property="og:type" content="website">
+	<!-- the card a shared link shows (Discord, Twitter...): Discord plays the short reel in it (made by ai-video/reel/make_reel.sh, keep it under 8 MB) -->
+	<meta property="og:type" content="video.other">
+	<meta property="og:video" content="${SITE_URL}/videos/reel.mp4">
+	<meta property="og:video:url" content="${SITE_URL}/videos/reel.mp4">
+	<meta property="og:video:secure_url" content="${SITE_URL}/videos/reel.mp4">
+	<meta property="og:video:type" content="video/mp4">
+	<meta property="og:video:width" content="1280">
+	<meta property="og:video:height" content="720">
 	<meta property="og:site_name" content="${esc(NAME)}">
 	<meta property="og:title" content="${esc(t("title"))}">
 	<meta property="og:description" content="${esc(description + (COMMISSIONS_OPEN ? " " + t("commissionsOpen") : ""))}">

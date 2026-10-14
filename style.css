@@ -338,22 +338,24 @@ main.searching .clip.big:hover .about { transform: translateY(0); }
 
 .empty { margin: 60px 0; text-align: center; color: var(--muted); font-size: 16px; }
 
-/* "Do I work with AI?": a card, the question on the left, the answer on the right */
+/* "Do I work with AI?": a card, everything centered: the question, the answer, then the two ways side by side */
 .ai { max-width: var(--max); margin: 0 auto; padding: 40px 24px 72px; scroll-margin-top: 80px; }
 .ai-card {
-	max-width: 980px; margin: 0 auto;
-	display: grid; grid-template-columns: 260px 1fr; gap: 28px 40px;
-	padding: 34px 36px;
+	max-width: 820px; margin: 0 auto;
+	padding: 38px 40px 40px;
+	text-align: center;
 	background: var(--card); border: 1px solid var(--card-line); border-radius: 22px;
 }
 .ai-card h2 { margin: 0; font-size: 34px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
+.ai-text { margin-top: 16px; }
 .ai-text p { margin: 0; }
 .ai-text .lead { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
-.ai-text .body { margin-top: 8px; font-size: 16px; line-height: 1.5; color: var(--muted); }
-.ai-options { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.option { padding: 15px 16px; border-radius: 14px; background: var(--soft); }
+.ai-text .body { margin: 8px auto 0; max-width: 560px; font-size: 16px; line-height: 1.5; color: var(--muted); }
+.ai-options { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.option { padding: 16px 18px 17px; border-radius: 14px; background: var(--soft); }
 .option-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .option p { margin-top: 6px; font-size: 15px; line-height: 1.45; }
+.ai-card p { text-wrap: balance; }
 
 /* bottom */
 footer { border-top: 1px solid var(--line); }
@@ -432,7 +434,7 @@ body { top: 0 !important; }
 	.profile-side { flex-direction: row; align-items: center; justify-content: space-between; }
 	.profile .focus { font-size: 21px; }
 	.profile-note { margin: 0 -20px; padding: 13px 20px 15px; }
-	.ai-card { grid-template-columns: 1fr; padding: 26px 22px; gap: 16px; }
+	.ai-card { padding: 28px 20px; }
 	.ai-card h2 { font-size: 28px; }
 	.ai-options { grid-template-columns: 1fr; }
 	.ai { padding: 28px 16px 56px; }
