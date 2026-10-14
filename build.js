@@ -13,7 +13,7 @@ const BIO = {
 	tagline: "If you can imagine it, I can script it.",
 	// the three facts under the title: value, then the small label under it
 	years: "4 years", yearsLabel: "Roblox scripting & UI",
-	chips: "UI · Combat · Guns · Pets & RNG · Shops · Data · Movement · Optimization", // (shown in two rows)
+	chips: "UI · Combat · Optimization · Monetization · Shops · Data · Movement · Anti-exploit", // (shown in two rows)
 };
 // the box next to "Do I work with AI?"
 const TRIAL = {
