@@ -38,7 +38,7 @@ const body = sections.map((s) => `
 			<h2>${esc(s.name)}<span class="count">${s.list.length}</span></h2>
 			<div class="grid">${s.list.map((c) => `
 				<div class="clip" data-video="${esc(c.video)}" data-title="${esc(c.title)}">
-					<div class="frame"><video muted loop playsinline preload="none" poster="${esc(c.poster)}" data-src="${esc(c.video)}"></video></div>
+					<div class="frame"><video muted loop playsinline disablepictureinpicture preload="none" poster="${esc(c.poster)}" data-src="${esc(c.small || c.video)}"></video></div>
 					<div class="title">${esc(c.title)}</div>
 				</div>`).join("")}
 			</div>

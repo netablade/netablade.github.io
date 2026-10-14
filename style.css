@@ -24,9 +24,8 @@ a { color: inherit; text-decoration: none; }
 .topbar {
 	position: sticky; top: 0; z-index: 20;
 	height: 56px;
-	background: rgba(255, 255, 255, 0.92);
-	backdrop-filter: saturate(180%) blur(12px);
-	-webkit-backdrop-filter: saturate(180%) blur(12px);
+	/* (solid, no blur: a blur over playing videos is redrawn every frame and makes scrolling stutter) */
+	background: #fff;
 	border-bottom: 1px solid var(--line);
 }
 .topbar .inner {
@@ -89,9 +88,8 @@ a { color: inherit; text-decoration: none; }
 /* category picker (stays under the top bar while you scroll) */
 .filters {
 	position: sticky; top: 56px; z-index: 10;
-	background: rgba(255, 255, 255, 0.92);
-	backdrop-filter: saturate(180%) blur(12px);
-	-webkit-backdrop-filter: saturate(180%) blur(12px);
+	/* (solid, no blur: a blur over playing videos is redrawn every frame and makes scrolling stutter) */
+	background: #fff;
 	border-bottom: 1px solid var(--line);
 }
 .filters .inner {
@@ -135,6 +133,7 @@ section h2 .count { font-size: 16px; font-weight: 500; color: var(--muted); lett
 .clip { cursor: pointer; }
 .clip .frame {
 	position: relative;
+	contain: layout paint; /* (each video is drawn on its own: scrolling moves it, never redraws the page) */
 	aspect-ratio: 16 / 9;
 	border-radius: var(--radius);
 	overflow: hidden;
