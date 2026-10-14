@@ -8,9 +8,20 @@ const NAME = "netablade";
 const SITE_URL = "https://netablade.github.io";
 const TITLE = "netablade's portfolio";
 const BIO = {
-	kicker: "Roblox scripting & UI · 4 years of experience",
+	kicker: "Roblox scripting & UI · 4 years of experience", // (the link preview text)
 	focus: "UI, combat, shops & data systems",
-	tagline: "↳ If you can imagine it, I can script it",
+	tagline: "If you can imagine it, I can script it.",
+	// the three facts under the title: value, then the small label under it
+	years: "4 years", yearsLabel: "Roblox scripting & UI",
+	chips: "UI · Combat · Shops · Data", chipsLabel: "What I build",
+};
+// the box next to "Do I work with AI?"
+const TRIAL = {
+	title: "Didn't find what you need?",
+	lead: "Try me first, for free.",
+	body: "Tell me your idea. If you like the free part, we build the rest together.",
+	step: ["Free trial", "A small part of your system, scripted for free."],
+	contact: "Message me",
 };
 const COMMISSIONS_OPEN = true; // (false shows "Closed")
 const NOTE = "Animations and some assets come from my teammates and free resources. All scripting, UI components and everything else are made by me.";
@@ -19,7 +30,7 @@ const AI = {
 	lead: "Yes, but as a tool, not a replacement.",
 	body: "I use Claude to speed up the work; the systems, the code that ships and the final quality are mine.",
 	options: [
-		["With AI", "If you're fine with AI-assisted work, I deliver about 3 to 4 times faster."],
+		["With AI", "If you're fine with AI‑assisted work, I deliver about 3 to 4 times faster."],
 		["Without AI", "If you'd rather I don't use it, just say so: you'll get the same quality, written entirely by hand."],
 	],
 };
@@ -63,6 +74,8 @@ const fold = (s, lang) => s.toLocaleLowerCase(lang).normalize("NFD").replace(/[�
 // the English words of the page (the translations replace these by name)
 const EN = {
 	title: TITLE, kicker: BIO.kicker, focus: BIO.focus, tagline: BIO.tagline,
+	years: BIO.years, yearsLabel: BIO.yearsLabel, chips: BIO.chips, chipsLabel: BIO.chipsLabel,
+	trialTitle: TRIAL.title, trialLead: TRIAL.lead, trialBody: TRIAL.body, trialStep: TRIAL.step[0], trialStepText: TRIAL.step[1], contact: TRIAL.contact,
 	commissions: "Commissions", open: "Open", closed: "Closed", commissionsOpen: "Commissions open.", note: NOTE,
 	aiQuestion: AI.question, aiLead: AI.lead, aiBody: AI.body,
 	withAI: AI.options[0][0], withAIText: AI.options[0][1], withoutAI: AI.options[1][0], withoutAIText: AI.options[1][1],
@@ -148,22 +161,19 @@ function page(lang) {
 	<link rel="icon" type="image/png" sizes="192x192" href="${P}img/icon-192.png">
 	<link rel="apple-touch-icon" href="${P}img/apple-touch-icon.png">
 	${alternates}
-	<!-- the card a shared link shows (Discord, Twitter...): Discord plays the short reel in it (made by ai-video/reel/make_reel.sh, keep it under 8 MB) -->
-	<meta property="og:type" content="video.other">
-	<meta property="og:video" content="${SITE_URL}/videos/reel.mp4">
-	<meta property="og:video:url" content="${SITE_URL}/videos/reel.mp4">
-	<meta property="og:video:secure_url" content="${SITE_URL}/videos/reel.mp4">
-	<meta property="og:video:type" content="video/mp4">
-	<meta property="og:video:width" content="1280">
-	<meta property="og:video:height" content="720">
+	<!-- the card a shared link shows (Discord, Twitter...): the reel as a GIF, so Discord plays it by itself, looping
+	     (a video there would wait for a click). Made by ai-video/reel/make_reel.sh; keep it under 8 MB. -->
+	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="${esc(NAME)}">
 	<meta property="og:title" content="${esc(t("title"))}">
 	<meta property="og:description" content="${esc(description + (COMMISSIONS_OPEN ? " " + t("commissionsOpen") : ""))}">
 	<meta property="og:url" content="${pageUrl}">
-	<meta property="og:image" content="${SITE_URL}/img/og.png">
-	<meta property="og:image:width" content="1200">
-	<meta property="og:image:height" content="630">
+	<meta property="og:image" content="${SITE_URL}/img/reel.gif">
+	<meta property="og:image:type" content="image/gif">
+	<meta property="og:image:width" content="500">
+	<meta property="og:image:height" content="281">
 	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="${SITE_URL}/img/reel.gif">
 	<link rel="stylesheet" href="${P}style.css">
 </head>
 <body>
@@ -184,18 +194,15 @@ function page(lang) {
 
 	<div class="hero">
 		<h1 class="reveal">${esc(t("title"))}</h1>
-		<div class="profile reveal">
-			<div class="profile-main">
-				<p class="kicker">${esc(t("kicker"))}</p>
-				<p class="focus">${esc(t("focus"))}</p>
-				<p class="tagline">${esc(t("tagline"))}</p>
-			</div>
-			<div class="profile-side">
-				<span class="label">${esc(t("commissions"))}</span>
-				<span class="state ${COMMISSIONS_OPEN ? "open" : "closed"}"><span class="dot"></span>${esc(t(COMMISSIONS_OPEN ? "open" : "closed"))}</span>
-			</div>
-			<p class="profile-note">${ICON.info}<span>${esc(t("note"))}</span></p>
+		<p class="tagline reveal">${esc(t("tagline"))}</p>
+		<div class="facts reveal">
+			<div class="fact"><span class="value">${esc(t("years"))}</span><span class="label">${esc(t("yearsLabel"))}</span></div>
+			<span class="rule" aria-hidden="true"></span>
+			<div class="fact chips"><span class="value">${t("chips").split(" · ").map((c) => `<span class="chip">${esc(c)}</span>`).join("")}</span><span class="label">${esc(t("chipsLabel"))}</span></div>
+			<span class="rule" aria-hidden="true"></span>
+			<div class="fact"><span class="value ${COMMISSIONS_OPEN ? "open" : "closed"}"><span class="dot"></span>${esc(t(COMMISSIONS_OPEN ? "open" : "closed"))}</span><span class="label">${esc(t("commissions"))}</span></div>
 		</div>
+		<p class="profile-note reveal">${ICON.info}<span>${esc(t("note"))}</span></p>
 	</div>
 
 	<div class="filters" id="work">
@@ -215,12 +222,19 @@ function page(lang) {
 	<section class="ai" id="ai">
 		<div class="ai-card reveal">
 			<h2>${esc(t("aiQuestion"))}</h2>
-			<div class="ai-text">
-				<p class="lead">${esc(t("aiLead"))}</p>
-				<p class="body">${esc(t("aiBody"))}</p>
-				<div class="ai-options">${[["withAI", "withAIText"], ["withoutAI", "withoutAIText"]].map(([label, text]) => `
-					<div class="option"><span class="option-label">${esc(t(label))}</span><p>${esc(t(text))}</p></div>`).join("")}
-				</div>
+			<p class="lead">${esc(t("aiLead"))}</p>
+			<p class="body">${esc(t("aiBody"))}</p>
+			<div class="ai-options">${[["withAI", "withAIText"], ["withoutAI", "withoutAIText"]].map(([label, text]) => `
+				<div class="option"><span class="option-label">${esc(t(label))}</span><p>${esc(t(text))}</p></div>`).join("")}
+			</div>
+		</div>
+		<div class="ai-card reveal">
+			<h2>${esc(t("trialTitle"))}</h2>
+			<p class="lead">${esc(t("trialLead"))}</p>
+			<p class="body">${esc(t("trialBody"))}</p>
+			<div class="ai-options">
+				<div class="option"><span class="option-label">${esc(t("trialStep"))}</span><p>${esc(t("trialStepText"))}</p></div>
+				<div class="option"><span class="option-label">${esc(t("contact"))}</span><button class="discord" data-copy="${esc(DISCORD)}" data-done="${esc(t("copied"))}" title="${esc(t("copyDiscord"))}">${ICON.discord}<span class="name notranslate">${esc(DISCORD)}</span></button></div>
 			</div>
 		</div>
 	</section>

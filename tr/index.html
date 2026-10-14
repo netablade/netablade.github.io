@@ -19,22 +19,19 @@
 	<link rel="alternate" hreflang="es" href="https://netablade.github.io/es/">
 	<link rel="alternate" hreflang="pt" href="https://netablade.github.io/pt/">
 	<link rel="alternate" hreflang="x-default" href="https://netablade.github.io/">
-	<!-- the card a shared link shows (Discord, Twitter...): Discord plays the short reel in it (made by ai-video/reel/make_reel.sh, keep it under 8 MB) -->
-	<meta property="og:type" content="video.other">
-	<meta property="og:video" content="https://netablade.github.io/videos/reel.mp4">
-	<meta property="og:video:url" content="https://netablade.github.io/videos/reel.mp4">
-	<meta property="og:video:secure_url" content="https://netablade.github.io/videos/reel.mp4">
-	<meta property="og:video:type" content="video/mp4">
-	<meta property="og:video:width" content="1280">
-	<meta property="og:video:height" content="720">
+	<!-- the card a shared link shows (Discord, Twitter...): the reel as a GIF, so Discord plays it by itself, looping
+	     (a video there would wait for a click). Made by ai-video/reel/make_reel.sh; keep it under 8 MB. -->
+	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="netablade">
 	<meta property="og:title" content="netablade'in portfolyosu">
 	<meta property="og:description" content="Roblox kodlama &amp; UI · 4 yıllık deneyim. UI, dövüş, mağaza ve veri sistemleri. Siparişler açık.">
 	<meta property="og:url" content="https://netablade.github.io/tr/">
-	<meta property="og:image" content="https://netablade.github.io/img/og.png">
-	<meta property="og:image:width" content="1200">
-	<meta property="og:image:height" content="630">
+	<meta property="og:image" content="https://netablade.github.io/img/reel.gif">
+	<meta property="og:image:type" content="image/gif">
+	<meta property="og:image:width" content="500">
+	<meta property="og:image:height" content="281">
 	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="https://netablade.github.io/img/reel.gif">
 	<link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -55,18 +52,15 @@
 
 	<div class="hero">
 		<h1 class="reveal">netablade'in portfolyosu</h1>
-		<div class="profile reveal">
-			<div class="profile-main">
-				<p class="kicker">Roblox kodlama &amp; UI · 4 yıllık deneyim</p>
-				<p class="focus">UI, dövüş, mağaza ve veri sistemleri</p>
-				<p class="tagline">↳ Hayal edebiliyorsan, kodlayabilirim</p>
-			</div>
-			<div class="profile-side">
-				<span class="label">Siparişler</span>
-				<span class="state open"><span class="dot"></span>Açık</span>
-			</div>
-			<p class="profile-note"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg><span>Animasyonlar ve bazı asset'ler takım arkadaşlarımdan ve ücretsiz kaynaklardan alınmıştır. Tüm kodlama, UI bileşenleri ve geri kalan her şey benim tarafımdan yapılmıştır.</span></p>
+		<p class="tagline reveal">Hayal edebiliyorsan, kodlayabilirim.</p>
+		<div class="facts reveal">
+			<div class="fact"><span class="value">4 yıl</span><span class="label">Roblox kodlama &amp; UI</span></div>
+			<span class="rule" aria-hidden="true"></span>
+			<div class="fact chips"><span class="value"><span class="chip">UI</span><span class="chip">Dövüş</span><span class="chip">Mağaza</span><span class="chip">Veri</span></span><span class="label">Yaptıklarım</span></div>
+			<span class="rule" aria-hidden="true"></span>
+			<div class="fact"><span class="value open"><span class="dot"></span>Açık</span><span class="label">Siparişler</span></div>
 		</div>
+		<p class="profile-note reveal"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg><span>Animasyonlar ve bazı asset'ler takım arkadaşlarımdan ve ücretsiz kaynaklardan alınmıştır. Tüm kodlama, UI bileşenleri ve geri kalan her şey benim tarafımdan yapılmıştır.</span></p>
 	</div>
 
 	<div class="filters" id="work">
@@ -88,19 +82,26 @@
 		<section id="combat" data-category="combat">
 			<h2>Dövüş &amp; Battlegrounds</h2>
 			<div class="feature collapsed">
-				<article class="clip big" id="lock-on-targeting" data-video="../videos/combat-and-battlegrounds/lock-on-system.mp4" data-search="hedefe kilitlenme ekranin ortasina en yakin hedefe kilitlenir. omuz ustu kamera kendi render adiminda calisir, karakter hedefe otomatik doner, hedefi duvar arkasindan da gorunen bir vurgu isaretler; hedef olunce ya da uzaklasinca kilit kalkar. dovus &amp; battlegrounds lock-on targeting locks onto the target closest to screen center. over-the-shoulder camera on its own render step, the character auto-faces the target, a see-through highlight marks it, and it releases on death or distance. combat &amp; battlegrounds">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/lock-on-system.jpg" data-src="../videos/combat-and-battlegrounds/lock-on-system-md.mp4"></video></div>
-						<div class="about"><p>Ekranın ortasına en yakın hedefe kilitlenir. Omuz üstü kamera kendi render adımında çalışır, karakter hedefe otomatik döner, hedefi duvar arkasından da görünen bir vurgu işaretler; hedef ölünce ya da uzaklaşınca kilit kalkar.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Hedefe Kilitlenme</h3><p class="desc">Ekranın ortasına en yakın hedefe kilitlenir. Omuz üstü kamera kendi render adımında çalışır, karakter hedefe otomatik döner, hedefi duvar arkasından da görünen bir vurgu işaretler; hedef ölünce ya da uzaklaşınca kilit kalkar.</p></div>
-				</article>
-				<article class="clip small" id="finisher-cutscene" data-video="../videos/combat-and-battlegrounds/finisher-cutscene.mp4" data-search="finisher ara sahnesi kendi kamera sekansi olan, kodla yonetilen bir bitirici hareket. oynarken iki karakter de harekete kilitlenir, bitince sonuc uygulanir. dovus &amp; battlegrounds finisher cutscene a scripted finisher with its own camera sequence. both characters are locked into the move while it plays, then the result is applied once it ends. combat &amp; battlegrounds">
+				<article class="clip big" id="finisher-cutscene" data-video="../videos/combat-and-battlegrounds/finisher-cutscene.mp4" data-search="finisher ara sahnesi kendi kamera sekansi olan, kodla yonetilen bir bitirici hareket. oynarken iki karakter de harekete kilitlenir, bitince sonuc uygulanir. dovus &amp; battlegrounds finisher cutscene a scripted finisher with its own camera sequence. both characters are locked into the move while it plays, then the result is applied once it ends. combat &amp; battlegrounds">
 					<div class="frame">
 						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/finisher-cutscene.jpg" data-src="../videos/combat-and-battlegrounds/finisher-cutscene-md.mp4"></video></div>
 						<div class="about"><p>Kendi kamera sekansı olan, kodla yönetilen bir bitirici hareket. Oynarken iki karakter de harekete kilitlenir, bitince sonuç uygulanır.</p></div>
 					</div>
 					<div class="text"><h3 class="title">Finisher Ara Sahnesi</h3><p class="desc">Kendi kamera sekansı olan, kodla yönetilen bir bitirici hareket. Oynarken iki karakter de harekete kilitlenir, bitince sonuç uygulanır.</p></div>
+				</article>
+				<article class="clip small" id="perfect-block" data-video="../videos/combat-and-battlegrounds/perfect-block.mp4" data-search="kusursuz blok vurus gelmeden hemen once blok yapmak kusursuz blok sayilir: saldiran sersemler, savunan bedava bir acik yakalar. dovus &amp; battlegrounds perfect block blocking right before a hit lands gives a perfect block: the attacker is stunned and the defender gets a free opening. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/perfect-block.jpg" data-src="../videos/combat-and-battlegrounds/perfect-block-md.mp4"></video></div>
+						<div class="about"><p>Vuruş gelmeden hemen önce blok yapmak kusursuz blok sayılır: saldıran sersemler, savunan bedava bir açık yakalar.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Kusursuz Blok</h3><p class="desc">Vuruş gelmeden hemen önce blok yapmak kusursuz blok sayılır: saldıran sersemler, savunan bedava bir açık yakalar.</p></div>
+				</article>
+				<article class="clip small" id="lock-on-targeting" data-video="../videos/combat-and-battlegrounds/lock-on-system.mp4" data-search="hedefe kilitlenme ekranin ortasina en yakin hedefe kilitlenir. omuz ustu kamera kendi render adiminda calisir, karakter hedefe otomatik doner, hedefi duvar arkasindan da gorunen bir vurgu isaretler; hedef olunce ya da uzaklasinca kilit kalkar. dovus &amp; battlegrounds lock-on targeting locks onto the target closest to screen center. over-the-shoulder camera on its own render step, the character auto-faces the target, a see-through highlight marks it, and it releases on death or distance. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/lock-on-system.jpg" data-src="../videos/combat-and-battlegrounds/lock-on-system-md.mp4"></video></div>
+						<div class="about"><p>Ekranın ortasına en yakın hedefe kilitlenir. Omuz üstü kamera kendi render adımında çalışır, karakter hedefe otomatik döner, hedefi duvar arkasından da görünen bir vurgu işaretler; hedef ölünce ya da uzaklaşınca kilit kalkar.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Hedefe Kilitlenme</h3><p class="desc">Ekranın ortasına en yakın hedefe kilitlenir. Omuz üstü kamera kendi render adımında çalışır, karakter hedefe otomatik döner, hedefi duvar arkasından da görünen bir vurgu işaretler; hedef ölünce ya da uzaklaşınca kilit kalkar.</p></div>
 				</article>
 				<article class="clip small" id="ground-smash-skill" data-video="../videos/combat-and-battlegrounds/ground-smash-skill.mp4" data-search="yere carpma yetenegi yere vurusla biten cok vuruslu bir yetenek: her asamada ayri hit tespiti, geri itme ve vurustan sonra kendini temizleyen enkazli bir krater. dovus &amp; battlegrounds ground smash skill a multi-hit skill ending in a ground slam: hit detection per phase, knockback, and a crater with debris that clears itself after the hit. combat &amp; battlegrounds">
 					<div class="frame">
@@ -137,13 +138,6 @@
 					</div>
 					<div class="text"><h3 class="title">Karşı Saldırı</h3><p class="desc">Bir karşılık duruşu: süresi içinde vurulursan saldıranın hareketi iptal olur ve kendi animasyonuyla karşılık verir.</p></div>
 				</article>
-				<article class="clip small" id="perfect-block" data-video="../videos/combat-and-battlegrounds/perfect-block.mp4" data-search="kusursuz blok vurus gelmeden hemen once blok yapmak kusursuz blok sayilir: saldiran sersemler, savunan bedava bir acik yakalar. dovus &amp; battlegrounds perfect block blocking right before a hit lands gives a perfect block: the attacker is stunned and the defender gets a free opening. combat &amp; battlegrounds">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/perfect-block.jpg" data-src="../videos/combat-and-battlegrounds/perfect-block-md.mp4"></video></div>
-						<div class="about"><p>Vuruş gelmeden hemen önce blok yapmak kusursuz blok sayılır: saldıran sersemler, savunan bedava bir açık yakalar.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Kusursuz Blok</h3><p class="desc">Vuruş gelmeden hemen önce blok yapmak kusursuz blok sayılır: saldıran sersemler, savunan bedava bir açık yakalar.</p></div>
-				</article>
 				<article class="clip small" id="awakening-transformation" data-video="../videos/combat-and-battlegrounds/awakening-animation.mp4" data-search="uyanis donusumu uyanis sekansi: kamera calismasi ve efektlerle tam ekran bir donusum, ardindan guclendirilmis bir hareket seti. dovus &amp; battlegrounds awakening transformation the awakening sequence: a full-screen transformation with camera work, effects and a powered-up moveset afterwards. combat &amp; battlegrounds">
 					<div class="frame">
 						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/awakening-animation.jpg" data-src="../videos/combat-and-battlegrounds/awakening-animation-md.mp4"></video></div>
@@ -172,12 +166,12 @@
 		<section id="guns" data-category="guns">
 			<h2>Silahlar &amp; Shooter</h2>
 			<div class="feature collapsed">
-				<article class="clip big" id="run-and-gun" data-video="../videos/guns-and-shooter/running-and-shooting.mp4" data-search="kosarak ates kosarken ates etme: nisan, geri tepme ve kol sallanmasi hareket halinde de calisir, her atis sunucuda kontrol edilir. silahlar &amp; shooter run &amp; gun shooting while sprinting: the aim, recoil and arm sway keep working on the move, and every shot is checked on the server. guns &amp; shooter">
+				<article class="clip big" id="cursor-follow-aiming" data-video="../videos/guns-and-shooter/cursor-follow-aim.mp4" data-search="imleci takip eden nisan kol ve silah fareyi takip eder; yumusatilmis ve dogal acilarla sinirlidir, diger oyuncular da ayni nisani gorur. silahlar &amp; shooter cursor-follow aiming the arm and the gun follow the mouse, smoothed and limited to natural angles, and other players see the same aim. guns &amp; shooter">
 					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/running-and-shooting.jpg" data-src="../videos/guns-and-shooter/running-and-shooting-md.mp4"></video></div>
-						<div class="about"><p>Koşarken ateş etme: nişan, geri tepme ve kol sallanması hareket halinde de çalışır, her atış sunucuda kontrol edilir.</p></div>
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/cursor-follow-aim.jpg" data-src="../videos/guns-and-shooter/cursor-follow-aim-md.mp4"></video></div>
+						<div class="about"><p>Kol ve silah fareyi takip eder; yumuşatılmış ve doğal açılarla sınırlıdır, diğer oyuncular da aynı nişanı görür.</p></div>
 					</div>
-					<div class="text"><h3 class="title">Koşarak Ateş</h3><p class="desc">Koşarken ateş etme: nişan, geri tepme ve kol sallanması hareket halinde de çalışır, her atış sunucuda kontrol edilir.</p></div>
+					<div class="text"><h3 class="title">İmleci Takip Eden Nişan</h3><p class="desc">Kol ve silah fareyi takip eder; yumuşatılmış ve doğal açılarla sınırlıdır, diğer oyuncular da aynı nişanı görür.</p></div>
 				</article>
 				<article class="clip small" id="limb-dismemberment" data-video="../videos/guns-and-shooter/dummy-limb-shots.mp4" data-search="uzuv koparma her isabet vucudun hangi bolgesine geldigini kontrol eder: ust kol ya da bacak kopup merminin ivmesiyle ucar, bilege gelen atis kanatir, kafadan vurus oldurur. fizik ates edene ait oldugu icin aninda tepki verir. silahlar &amp; shooter limb dismemberment each hit checks which body part was hit: an upper arm or a leg comes off and flies with the bullet's momentum, a wrist hit bleeds, and a headshot kills. physics is owned by the shooter, so it reacts instantly. guns &amp; shooter">
 					<div class="frame">
@@ -186,26 +180,26 @@
 					</div>
 					<div class="text"><h3 class="title">Uzuv Koparma</h3><p class="desc">Her isabet vücudun hangi bölgesine geldiğini kontrol eder: üst kol ya da bacak kopup merminin ivmesiyle uçar, bileğe gelen atış kanatır, kafadan vuruş öldürür. Fizik ateş edene ait olduğu için anında tepki verir.</p></div>
 				</article>
-				<article class="clip small" id="ragdoll-and-blood-impacts" data-video="../videos/guns-and-shooter/dummy-shoot-preview.mp4" data-search="ragdoll &amp; kan efektleri ragdoll mankende vurus tepkileri: gercek yaylar cizerek ucup yere sicrayan kan damlalari, vucutta yara lekeleri, ardindan yeniden dogma. silahlar &amp; shooter ragdoll &amp; blood impacts hit reactions on a ragdoll dummy: blood drops that fly in real arcs and splat on the ground, wound stains on the body, then a respawn. guns &amp; shooter">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/dummy-shoot-preview.jpg" data-src="../videos/guns-and-shooter/dummy-shoot-preview-md.mp4"></video></div>
-						<div class="about"><p>Ragdoll mankende vuruş tepkileri: gerçek yaylar çizerek uçup yere sıçrayan kan damlaları, vücutta yara lekeleri, ardından yeniden doğma.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Ragdoll &amp; Kan Efektleri</h3><p class="desc">Ragdoll mankende vuruş tepkileri: gerçek yaylar çizerek uçup yere sıçrayan kan damlaları, vücutta yara lekeleri, ardından yeniden doğma.</p></div>
-				</article>
-				<article class="clip small" id="cursor-follow-aiming" data-video="../videos/guns-and-shooter/cursor-follow-aim.mp4" data-search="imleci takip eden nisan kol ve silah fareyi takip eder; yumusatilmis ve dogal acilarla sinirlidir, diger oyuncular da ayni nisani gorur. silahlar &amp; shooter cursor-follow aiming the arm and the gun follow the mouse, smoothed and limited to natural angles, and other players see the same aim. guns &amp; shooter">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/cursor-follow-aim.jpg" data-src="../videos/guns-and-shooter/cursor-follow-aim-md.mp4"></video></div>
-						<div class="about"><p>Kol ve silah fareyi takip eder; yumuşatılmış ve doğal açılarla sınırlıdır, diğer oyuncular da aynı nişanı görür.</p></div>
-					</div>
-					<div class="text"><h3 class="title">İmleci Takip Eden Nişan</h3><p class="desc">Kol ve silah fareyi takip eder; yumuşatılmış ve doğal açılarla sınırlıdır, diğer oyuncular da aynı nişanı görür.</p></div>
-				</article>
 				<article class="clip small" id="inferno-skin-and-preview" data-video="../videos/guns-and-shooter/inferno-gun-skin-preview.mp4" data-search="inferno skin &amp; onizleme kendi dokulari ve ates efektleri olan bir silah skini; kusanmadan once envanterde onizlemesi. silahlar &amp; shooter inferno skin &amp; preview a gun skin with its own textures and fire effects, and a preview of it in the inventory before you equip it. guns &amp; shooter">
 					<div class="frame">
 						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/inferno-gun-skin-preview.jpg" data-src="../videos/guns-and-shooter/inferno-gun-skin-preview-md.mp4"></video></div>
 						<div class="about"><p>Kendi dokuları ve ateş efektleri olan bir silah skini; kuşanmadan önce envanterde önizlemesi.</p></div>
 					</div>
 					<div class="text"><h3 class="title">Inferno Skin &amp; Önizleme</h3><p class="desc">Kendi dokuları ve ateş efektleri olan bir silah skini; kuşanmadan önce envanterde önizlemesi.</p></div>
+				</article>
+				<article class="clip small" id="run-and-gun" data-video="../videos/guns-and-shooter/running-and-shooting.mp4" data-search="kosarak ates kosarken ates etme: nisan, geri tepme ve kol sallanmasi hareket halinde de calisir, her atis sunucuda kontrol edilir. silahlar &amp; shooter run &amp; gun shooting while sprinting: the aim, recoil and arm sway keep working on the move, and every shot is checked on the server. guns &amp; shooter">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/running-and-shooting.jpg" data-src="../videos/guns-and-shooter/running-and-shooting-md.mp4"></video></div>
+						<div class="about"><p>Koşarken ateş etme: nişan, geri tepme ve kol sallanması hareket halinde de çalışır, her atış sunucuda kontrol edilir.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Koşarak Ateş</h3><p class="desc">Koşarken ateş etme: nişan, geri tepme ve kol sallanması hareket halinde de çalışır, her atış sunucuda kontrol edilir.</p></div>
+				</article>
+				<article class="clip small" id="ragdoll-and-blood-impacts" data-video="../videos/guns-and-shooter/dummy-shoot-preview.mp4" data-search="ragdoll &amp; kan efektleri ragdoll mankende vurus tepkileri: gercek yaylar cizerek ucup yere sicrayan kan damlalari, vucutta yara lekeleri, ardindan yeniden dogma. silahlar &amp; shooter ragdoll &amp; blood impacts hit reactions on a ragdoll dummy: blood drops that fly in real arcs and splat on the ground, wound stains on the body, then a respawn. guns &amp; shooter">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/dummy-shoot-preview.jpg" data-src="../videos/guns-and-shooter/dummy-shoot-preview-md.mp4"></video></div>
+						<div class="about"><p>Ragdoll mankende vuruş tepkileri: gerçek yaylar çizerek uçup yere sıçrayan kan damlaları, vücutta yara lekeleri, ardından yeniden doğma.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Ragdoll &amp; Kan Efektleri</h3><p class="desc">Ragdoll mankende vuruş tepkileri: gerçek yaylar çizerek uçup yere sıçrayan kan damlaları, vücutta yara lekeleri, ardından yeniden doğma.</p></div>
 				</article>
 			</div>
 			<button class="more" data-more="Tümünü gör" data-less="Daha az göster">Tümünü gör</button>
@@ -214,12 +208,12 @@
 		<section id="pets" data-category="pets">
 			<h2>Petler &amp; RNG</h2>
 			<div class="feature collapsed">
-				<article class="clip big" id="click-to-crack-egg-hatching" data-video="../videos/pets-and-rng/egg-hatching.mp4" data-search="tiklayarak yumurta kirma her tiklama yumurtayi yeni bir yerinden catlatir, nadirliginin isigi catlaklardan sizar. siradan petler hizli acilir; legendary ve mythic daha cok tiklama ister, guc toplar ve patlar. peti sunucu belirler. petler &amp; rng click-to-crack egg hatching every click cracks the egg somewhere new and its rarity's light leaks through the cracks. common pets open fast; legendary and mythic take more clicks, charge up and burst. the server rolls the pet. pets &amp; rng">
+				<article class="clip big" id="cinematic-gun-skin-spin" data-video="../videos/pets-and-rng/cinematic-gun-skin-spin.mp4" data-search="sinematik silah skini spin tam ekran sinematik spin: serit hizlanir, kazanan skinde yavaslar ve nadirlik rengiyle patlar, ardindan odul karti cikar. sonuc, serit donmeden once sunucuda belirlenir. petler &amp; rng cinematic gun skin spin the spin as a full-screen cinematic: the reel speeds up, slows down onto the winning skin and bursts in its rarity color, then the reward card shows. the result is rolled on the server before the reel moves. pets &amp; rng">
 					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/egg-hatching.jpg" data-src="../videos/pets-and-rng/egg-hatching-md.mp4"></video></div>
-						<div class="about"><p>Her tıklama yumurtayı yeni bir yerinden çatlatır, nadirliğinin ışığı çatlaklardan sızar. Sıradan petler hızlı açılır; Legendary ve Mythic daha çok tıklama ister, güç toplar ve patlar. Peti sunucu belirler.</p></div>
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/cinematic-gun-skin-spin.jpg" data-src="../videos/pets-and-rng/cinematic-gun-skin-spin-md.mp4"></video></div>
+						<div class="about"><p>Tam ekran sinematik spin: şerit hızlanır, kazanan skinde yavaşlar ve nadirlik rengiyle patlar, ardından ödül kartı çıkar. Sonuç, şerit dönmeden önce sunucuda belirlenir.</p></div>
 					</div>
-					<div class="text"><h3 class="title">Tıklayarak Yumurta Kırma</h3><p class="desc">Her tıklama yumurtayı yeni bir yerinden çatlatır, nadirliğinin ışığı çatlaklardan sızar. Sıradan petler hızlı açılır; Legendary ve Mythic daha çok tıklama ister, güç toplar ve patlar. Peti sunucu belirler.</p></div>
+					<div class="text"><h3 class="title">Sinematik Silah Skini Spin</h3><p class="desc">Tam ekran sinematik spin: şerit hızlanır, kazanan skinde yavaşlar ve nadirlik rengiyle patlar, ardından ödül kartı çıkar. Sonuç, şerit dönmeden önce sunucuda belirlenir.</p></div>
 				</article>
 				<article class="clip small" id="mythic-hatch" data-video="../videos/pets-and-rng/mythic-hatch.mp4" data-search="mythic cikisi en nadir seviye: daha uzun bir guc toplama, ekran tonu, isinlar, pariltilar ve ekran sarsintisi. sanslar, luck ve pity sayaciyla agirlikli olasiliklardan gelir. petler &amp; rng mythic hatch the rarest tier: a longer charge-up, a screen tint, rays, sparkles and a screen shake. the odds come from weighted chances with luck and a pity counter. pets &amp; rng">
 					<div class="frame">
@@ -228,12 +222,19 @@
 					</div>
 					<div class="text"><h3 class="title">Mythic Çıkışı</h3><p class="desc">En nadir seviye: daha uzun bir güç toplama, ekran tonu, ışınlar, parıltılar ve ekran sarsıntısı. Şanslar, luck ve pity sayacıyla ağırlıklı olasılıklardan gelir.</p></div>
 				</article>
-				<article class="clip small" id="cinematic-gun-skin-spin" data-video="../videos/pets-and-rng/cinematic-gun-skin-spin.mp4" data-search="sinematik silah skini spin tam ekran sinematik spin: serit hizlanir, kazanan skinde yavaslar ve nadirlik rengiyle patlar, ardindan odul karti cikar. sonuc, serit donmeden once sunucuda belirlenir. petler &amp; rng cinematic gun skin spin the spin as a full-screen cinematic: the reel speeds up, slows down onto the winning skin and bursts in its rarity color, then the reward card shows. the result is rolled on the server before the reel moves. pets &amp; rng">
+				<article class="clip small" id="pet-level-up" data-video="../videos/pets-and-rng/pet-level-up.mp4" data-search="pet seviye atlama petler her vurusta xp kazanip seviye atlar, her seviye guclerini artirir. kisa bir ara sahne peti ve yeni seviyesini gosterir. petler &amp; rng pet level up pets earn xp for every hit and level up, each level adding to their power. a short cutscene shows the pet and its new level. pets &amp; rng">
 					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/cinematic-gun-skin-spin.jpg" data-src="../videos/pets-and-rng/cinematic-gun-skin-spin-md.mp4"></video></div>
-						<div class="about"><p>Tam ekran sinematik spin: şerit hızlanır, kazanan skinde yavaşlar ve nadirlik rengiyle patlar, ardından ödül kartı çıkar. Sonuç, şerit dönmeden önce sunucuda belirlenir.</p></div>
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/pet-level-up.jpg" data-src="../videos/pets-and-rng/pet-level-up-md.mp4"></video></div>
+						<div class="about"><p>Petler her vuruşta XP kazanıp seviye atlar, her seviye güçlerini artırır. Kısa bir ara sahne peti ve yeni seviyesini gösterir.</p></div>
 					</div>
-					<div class="text"><h3 class="title">Sinematik Silah Skini Spin</h3><p class="desc">Tam ekran sinematik spin: şerit hızlanır, kazanan skinde yavaşlar ve nadirlik rengiyle patlar, ardından ödül kartı çıkar. Sonuç, şerit dönmeden önce sunucuda belirlenir.</p></div>
+					<div class="text"><h3 class="title">Pet Seviye Atlama</h3><p class="desc">Petler her vuruşta XP kazanıp seviye atlar, her seviye güçlerini artırır. Kısa bir ara sahne peti ve yeni seviyesini gösterir.</p></div>
+				</article>
+				<article class="clip small" id="click-to-crack-egg-hatching" data-video="../videos/pets-and-rng/egg-hatching.mp4" data-search="tiklayarak yumurta kirma her tiklama yumurtayi yeni bir yerinden catlatir, nadirliginin isigi catlaklardan sizar. siradan petler hizli acilir; legendary ve mythic daha cok tiklama ister, guc toplar ve patlar. peti sunucu belirler. petler &amp; rng click-to-crack egg hatching every click cracks the egg somewhere new and its rarity's light leaks through the cracks. common pets open fast; legendary and mythic take more clicks, charge up and burst. the server rolls the pet. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/egg-hatching.jpg" data-src="../videos/pets-and-rng/egg-hatching-md.mp4"></video></div>
+						<div class="about"><p>Her tıklama yumurtayı yeni bir yerinden çatlatır, nadirliğinin ışığı çatlaklardan sızar. Sıradan petler hızlı açılır; Legendary ve Mythic daha çok tıklama ister, güç toplar ve patlar. Peti sunucu belirler.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Tıklayarak Yumurta Kırma</h3><p class="desc">Her tıklama yumurtayı yeni bir yerinden çatlatır, nadirliğinin ışığı çatlaklardan sızar. Sıradan petler hızlı açılır; Legendary ve Mythic daha çok tıklama ister, güç toplar ve patlar. Peti sunucu belirler.</p></div>
 				</article>
 				<article class="clip small" id="pets-breaking-coins" data-video="../videos/pets-and-rng/pets-breaking-coins.mp4" data-search="coin kiran petler bir coin yiginina tikla, petlerin kosup saldirsin. her vurusu sunucu petin gucuyle uygular, hasar sayisi olarak gosterilir ve coin'ler verilen hasara gore paylasilir. petler &amp; rng pets breaking coins click a coin pile and your pets run over and attack it. each hit is dealt by the server with the pet's power, shown as a damage number, and coins are split by damage dealt. pets &amp; rng">
 					<div class="frame">
@@ -241,20 +242,6 @@
 						<div class="about"><p>Bir coin yığınına tıkla, petlerin koşup saldırsın. Her vuruşu sunucu petin gücüyle uygular, hasar sayısı olarak gösterilir ve coin'ler verilen hasara göre paylaşılır.</p></div>
 					</div>
 					<div class="text"><h3 class="title">Coin Kıran Petler</h3><p class="desc">Bir coin yığınına tıkla, petlerin koşup saldırsın. Her vuruşu sunucu petin gücüyle uygular, hasar sayısı olarak gösterilir ve coin'ler verilen hasara göre paylaşılır.</p></div>
-				</article>
-				<article class="clip small" id="safe-break" data-video="../videos/pets-and-rng/safe-break.mp4" data-search="kasa kirma guclu petler icin nadir, yuksek canli kirilabilirler: her vurus hasarini gosterir, kasa patlayip onu kiran oyunculara ucan coin'lere donusur. petler &amp; rng safe break rare, high-hp breakables for strong pets: every hit shows its damage, and the safe bursts into coins that fly to the players who broke it. pets &amp; rng">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/safe-break.jpg" data-src="../videos/pets-and-rng/safe-break-md.mp4"></video></div>
-						<div class="about"><p>Güçlü petler için nadir, yüksek canlı kırılabilirler: her vuruş hasarını gösterir, kasa patlayıp onu kıran oyunculara uçan coin'lere dönüşür.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Kasa Kırma</h3><p class="desc">Güçlü petler için nadir, yüksek canlı kırılabilirler: her vuruş hasarını gösterir, kasa patlayıp onu kıran oyunculara uçan coin'lere dönüşür.</p></div>
-				</article>
-				<article class="clip small" id="pet-level-up" data-video="../videos/pets-and-rng/pet-level-up.mp4" data-search="pet seviye atlama petler her vurusta xp kazanip seviye atlar, her seviye guclerini artirir. kisa bir ara sahne peti ve yeni seviyesini gosterir. petler &amp; rng pet level up pets earn xp for every hit and level up, each level adding to their power. a short cutscene shows the pet and its new level. pets &amp; rng">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/pet-level-up.jpg" data-src="../videos/pets-and-rng/pet-level-up-md.mp4"></video></div>
-						<div class="about"><p>Petler her vuruşta XP kazanıp seviye atlar, her seviye güçlerini artırır. Kısa bir ara sahne peti ve yeni seviyesini gösterir.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Pet Seviye Atlama</h3><p class="desc">Petler her vuruşta XP kazanıp seviye atlar, her seviye güçlerini artırır. Kısa bir ara sahne peti ve yeni seviyesini gösterir.</p></div>
 				</article>
 				<article class="clip small" id="rainbow-mutation" data-video="../videos/pets-and-rng/rainbow-mutation.mp4" data-search="rainbow mutasyonu mutasyonlar petten ayri cekilir (gold, diamond, rainbow) ve gucunu katlar. rainbow petlerin renkleri surekli doner. petler &amp; rng rainbow mutation mutations roll separately from the pet (gold, diamond, rainbow) and multiply its power. rainbow pets cycle their colors. pets &amp; rng">
 					<div class="frame">
@@ -339,6 +326,20 @@
 					</div>
 					<div class="text"><h3 class="title">Gamepass Mağazası &amp; Hediye</h3><p class="desc">Her pass'in arkadaş listenden seçtiğin birine hediye edilebildiği bir gamepass mağazası. Hediye teslim edilmeden önce satın alma doğrulanır.</p></div>
 				</article>
+				<article class="clip small" id="gun-skin-inventory" data-video="../videos/ui-and-systems/gun-skins-inventory-ui.mp4" data-search="silah skini envanteri sahip oldugun silah skinleri nadirlikleriyle; birini kusaninca silah aninda guncellenir. ui &amp; sistemler gun skin inventory owned gun skins with their rarity, and equipping one updates the gun right away. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/gun-skins-inventory-ui.jpg" data-src="../videos/ui-and-systems/gun-skins-inventory-ui-md.mp4"></video></div>
+						<div class="about"><p>Sahip olduğun silah skinleri nadirlikleriyle; birini kuşanınca silah anında güncellenir.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Silah Skini Envanteri</h3><p class="desc">Sahip olduğun silah skinleri nadirlikleriyle; birini kuşanınca silah anında güncellenir.</p></div>
+				</article>
+				<article class="clip small" id="synced-emotes" data-video="../videos/ui-and-systems/sync-emote.mp4" data-search="senkron emote'lar birinin emote'una katil ve senkron dans et: animasyonlar ayni noktadan baslar, sarki tek sefer duyulur. ui &amp; sistemler synced emotes join someone's emote and dance in sync: the animations start from the same point and the song is heard once. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/sync-emote.jpg" data-src="../videos/ui-and-systems/sync-emote-md.mp4"></video></div>
+						<div class="about"><p>Birinin emote'una katıl ve senkron dans et: animasyonlar aynı noktadan başlar, şarkı tek sefer duyulur.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Senkron Emote'lar</h3><p class="desc">Birinin emote'una katıl ve senkron dans et: animasyonlar aynı noktadan başlar, şarkı tek sefer duyulur.</p></div>
+				</article>
 				<article class="clip small" id="emote-shop" data-video="../videos/ui-and-systems/emote-shop.mp4" data-search="emote magazasi emote'lara goz at ve satin al; kendi karakterinde canli onizlemeyle. ui &amp; sistemler emote shop browse and buy emotes with live previews on your own character. ui &amp; systems">
 					<div class="frame">
 						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/emote-shop.jpg" data-src="../videos/ui-and-systems/emote-shop-md.mp4"></video></div>
@@ -388,20 +389,6 @@
 					</div>
 					<div class="text"><h3 class="title">Emote Slotu Değiştirme</h3><p class="desc">Çarktaki herhangi bir slotun emote'unu envanterinden değiştir; menü çarkın etrafında kayarak açılır.</p></div>
 				</article>
-				<article class="clip small" id="gun-skin-inventory" data-video="../videos/ui-and-systems/gun-skins-inventory-ui.mp4" data-search="silah skini envanteri sahip oldugun silah skinleri nadirlikleriyle; birini kusaninca silah aninda guncellenir. ui &amp; sistemler gun skin inventory owned gun skins with their rarity, and equipping one updates the gun right away. ui &amp; systems">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/gun-skins-inventory-ui.jpg" data-src="../videos/ui-and-systems/gun-skins-inventory-ui-md.mp4"></video></div>
-						<div class="about"><p>Sahip olduğun silah skinleri nadirlikleriyle; birini kuşanınca silah anında güncellenir.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Silah Skini Envanteri</h3><p class="desc">Sahip olduğun silah skinleri nadirlikleriyle; birini kuşanınca silah anında güncellenir.</p></div>
-				</article>
-				<article class="clip small" id="synced-emotes" data-video="../videos/ui-and-systems/sync-emote.mp4" data-search="senkron emote'lar birinin emote'una katil ve senkron dans et: animasyonlar ayni noktadan baslar, sarki tek sefer duyulur. ui &amp; sistemler synced emotes join someone's emote and dance in sync: the animations start from the same point and the song is heard once. ui &amp; systems">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/sync-emote.jpg" data-src="../videos/ui-and-systems/sync-emote-md.mp4"></video></div>
-						<div class="about"><p>Birinin emote'una katıl ve senkron dans et: animasyonlar aynı noktadan başlar, şarkı tek sefer duyulur.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Senkron Emote'lar</h3><p class="desc">Birinin emote'una katıl ve senkron dans et: animasyonlar aynı noktadan başlar, şarkı tek sefer duyulur.</p></div>
-				</article>
 			</div>
 			<button class="more" data-more="Tümünü gör" data-less="Daha az göster">Tümünü gör</button>
 		</section>
@@ -411,13 +398,20 @@
 	<section class="ai" id="ai">
 		<div class="ai-card reveal">
 			<h2>Yapay zeka kullanıyor muyum?</h2>
-			<div class="ai-text">
-				<p class="lead">Evet, ama bir araç olarak; yerime değil.</p>
-				<p class="body">İşi hızlandırmak için Claude kullanıyorum; sistemler, teslim edilen kod ve son kalite bana ait.</p>
-				<div class="ai-options">
-					<div class="option"><span class="option-label">Yapay zeka ile</span><p>Yapay zeka destekli çalışmama sorun yoksa, yaklaşık 3-4 kat daha hızlı teslim ederim.</p></div>
-					<div class="option"><span class="option-label">Yapay zeka olmadan</span><p>Kullanmamamı istersen söylemen yeterli: aynı kaliteyi, tamamen elle yazılmış olarak alırsın.</p></div>
-				</div>
+			<p class="lead">Evet, ama bir araç olarak; yerime değil.</p>
+			<p class="body">İşi hızlandırmak için Claude kullanıyorum; sistemler, teslim edilen kod ve son kalite bana ait.</p>
+			<div class="ai-options">
+				<div class="option"><span class="option-label">Yapay zeka ile</span><p>Yapay zeka destekli çalışmama sorun yoksa, yaklaşık 3-4 kat daha hızlı teslim ederim.</p></div>
+				<div class="option"><span class="option-label">Yapay zeka olmadan</span><p>Kullanmamamı istersen söylemen yeterli: aynı kaliteyi, tamamen elle yazılmış olarak alırsın.</p></div>
+			</div>
+		</div>
+		<div class="ai-card reveal">
+			<h2>Aradığını bulamadın mı?</h2>
+			<p class="lead">Önce ücretsiz dene.</p>
+			<p class="body">Fikrini anlat. Ücretsiz kısmı beğenirsen gerisini birlikte yaparız.</p>
+			<div class="ai-options">
+				<div class="option"><span class="option-label">Ücretsiz deneme</span><p>Sisteminin küçük bir kısmını ücretsiz kodlarım.</p></div>
+				<div class="option"><span class="option-label">Bana yaz</span><button class="discord" data-copy="netablade" data-done="Kopyalandı!" title="Discord adımı kopyala"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.618-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg><span class="name notranslate">netablade</span></button></div>
 			</div>
 		</div>
 	</section>

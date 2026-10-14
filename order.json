@@ -28,27 +28,28 @@
   ],
   "first": {
     "combat & battlegrounds": [
-      "lock on system",
       "finisher cutscene",
+      "perfect block",
+      "lock on system",
       "ground smash skill",
       "m1 optimization old vs new",
       "grab slam skill",
       "m1 combo",
-      "counter",
-      "perfect block"
+      "counter"
     ],
     "guns & shooter": [
-      "running and shooting",
+      "cursor follow aim",
       "dummy limb shots",
+      "inferno gun skin + preview",
+      "running and shooting",
       "dummy shoot preview"
     ],
     "pets & rng": [
-      "egg hatching",
-      "mythic hatch",
       "cinematic gun skin spin",
-      "pets breaking coins",
-      "safe break",
+      "mythic hatch",
       "pet level up",
+      "egg hatching",
+      "pets breaking coins",
       "rainbow mutation",
       "cinematic emote spin",
       "pet inventory + following",
@@ -62,6 +63,8 @@
     ],
     "ui & systems": [
       "pass shop + gifting",
+      "gun skins inventory ui",
+      "sync emote",
       "emote shop",
       "emote wheel",
       "custom leaderboard",

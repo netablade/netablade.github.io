@@ -144,11 +144,31 @@ function layout(feature) {
 	}
 	// (phones: everything after the big one in pairs)
 	if ((cards.length - 1) % 2 === 1) cards[cards.length - 1].classList.add("m-center");
+	fitSides(feature);
 }
 function layoutAll() {
 	if (main.classList.contains("searching")) return;
 	$$(".feature").forEach(layout);
 }
+// The two next to the big one line up with it exactly: their pictures are cut a little shorter, so that
+// small one + its title + the gap + small two = the big picture (tops, picture bottoms and title lines all meet).
+const phone = matchMedia("(max-width: 760px)");
+function fitSides(feature) {
+	const big = $(".clip.big", feature), side = $(".clip.side1", feature);
+	const fits = big && side && $(".clip.side2", feature) && !phone.matches;
+	feature.classList.toggle("fitted", !!fits);
+	if (!fits) return;
+	const textHeight = (clip) => { const t = $(".text", clip); return t.offsetHeight + parseFloat(getComputedStyle(t).marginTop); };
+	const gap = parseFloat(getComputedStyle(feature).rowGap);
+	feature.style.setProperty("--side-h", Math.max(0, ($(".frame", big).offsetHeight - textHeight(side) - gap) / 2) + "px");
+	// (the big one's title + description run lower than small two's title: that much room goes under small two,
+	// or the grid would stretch both rows and push small two down)
+	feature.style.setProperty("--side-pad", Math.max(0, textHeight(big) - textHeight($(".clip.side2", feature))) + "px");
+}
+let fitFrame = 0;
+const refit = () => { cancelAnimationFrame(fitFrame); fitFrame = requestAnimationFrame(() => $$(".feature").forEach(fitSides)); };
+window.addEventListener("resize", refit);
+if (document.fonts) document.fonts.ready.then(refit);
 
 // ---------------------------------------------------------------- BIG AND SMALL: a small one clicked swaps places with the big one
 // (both pictures glide and resize to each other's place; only transform is animated, so it costs nothing)

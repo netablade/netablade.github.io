@@ -19,22 +19,19 @@
 	<link rel="alternate" hreflang="es" href="https://netablade.github.io/es/">
 	<link rel="alternate" hreflang="pt" href="https://netablade.github.io/pt/">
 	<link rel="alternate" hreflang="x-default" href="https://netablade.github.io/">
-	<!-- the card a shared link shows (Discord, Twitter...): Discord plays the short reel in it (made by ai-video/reel/make_reel.sh, keep it under 8 MB) -->
-	<meta property="og:type" content="video.other">
-	<meta property="og:video" content="https://netablade.github.io/videos/reel.mp4">
-	<meta property="og:video:url" content="https://netablade.github.io/videos/reel.mp4">
-	<meta property="og:video:secure_url" content="https://netablade.github.io/videos/reel.mp4">
-	<meta property="og:video:type" content="video/mp4">
-	<meta property="og:video:width" content="1280">
-	<meta property="og:video:height" content="720">
+	<!-- the card a shared link shows (Discord, Twitter...): the reel as a GIF, so Discord plays it by itself, looping
+	     (a video there would wait for a click). Made by ai-video/reel/make_reel.sh; keep it under 8 MB. -->
+	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="netablade">
 	<meta property="og:title" content="portfólio de netablade">
 	<meta property="og:description" content="Scripting e UI no Roblox · 4 anos de experiência. UI, combate, lojas e sistemas de dados. Comissões abertas.">
 	<meta property="og:url" content="https://netablade.github.io/pt/">
-	<meta property="og:image" content="https://netablade.github.io/img/og.png">
-	<meta property="og:image:width" content="1200">
-	<meta property="og:image:height" content="630">
+	<meta property="og:image" content="https://netablade.github.io/img/reel.gif">
+	<meta property="og:image:type" content="image/gif">
+	<meta property="og:image:width" content="500">
+	<meta property="og:image:height" content="281">
 	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="https://netablade.github.io/img/reel.gif">
 	<link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -55,18 +52,15 @@
 
 	<div class="hero">
 		<h1 class="reveal">portfólio de netablade</h1>
-		<div class="profile reveal">
-			<div class="profile-main">
-				<p class="kicker">Scripting e UI no Roblox · 4 anos de experiência</p>
-				<p class="focus">UI, combate, lojas e sistemas de dados</p>
-				<p class="tagline">↳ Se você consegue imaginar, eu consigo programar</p>
-			</div>
-			<div class="profile-side">
-				<span class="label">Comissões</span>
-				<span class="state open"><span class="dot"></span>Abertas</span>
-			</div>
-			<p class="profile-note"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg><span>As animações e alguns assets vêm dos meus colegas de equipe e de recursos gratuitos. Todo o scripting, os componentes de UI e todo o resto foram feitos por mim.</span></p>
+		<p class="tagline reveal">Se você consegue imaginar, eu consigo programar.</p>
+		<div class="facts reveal">
+			<div class="fact"><span class="value">4 anos</span><span class="label">Scripting e UI no Roblox</span></div>
+			<span class="rule" aria-hidden="true"></span>
+			<div class="fact chips"><span class="value"><span class="chip">UI</span><span class="chip">Combate</span><span class="chip">Lojas</span><span class="chip">Dados</span></span><span class="label">O que eu faço</span></div>
+			<span class="rule" aria-hidden="true"></span>
+			<div class="fact"><span class="value open"><span class="dot"></span>Abertas</span><span class="label">Comissões</span></div>
 		</div>
+		<p class="profile-note reveal"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg><span>As animações e alguns assets vêm dos meus colegas de equipe e de recursos gratuitos. Todo o scripting, os componentes de UI e todo o resto foram feitos por mim.</span></p>
 	</div>
 
 	<div class="filters" id="work">
@@ -88,19 +82,26 @@
 		<section id="combat" data-category="combat">
 			<h2>Combate e Battlegrounds</h2>
 			<div class="feature collapsed">
-				<article class="clip big" id="lock-on-targeting" data-video="../videos/combat-and-battlegrounds/lock-on-system.mp4" data-search="trava de alvo trava no alvo mais proximo do centro da tela. camera sobre o ombro no seu proprio passo de render, o personagem vira para o alvo sozinho, um destaque visivel atraves das paredes o marca, e a trava solta quando o alvo morre ou se afasta. combate e battlegrounds lock-on targeting locks onto the target closest to screen center. over-the-shoulder camera on its own render step, the character auto-faces the target, a see-through highlight marks it, and it releases on death or distance. combat &amp; battlegrounds">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/lock-on-system.jpg" data-src="../videos/combat-and-battlegrounds/lock-on-system-md.mp4"></video></div>
-						<div class="about"><p>Trava no alvo mais próximo do centro da tela. Câmera sobre o ombro no seu próprio passo de render, o personagem vira para o alvo sozinho, um destaque visível através das paredes o marca, e a trava solta quando o alvo morre ou se afasta.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Trava de alvo</h3><p class="desc">Trava no alvo mais próximo do centro da tela. Câmera sobre o ombro no seu próprio passo de render, o personagem vira para o alvo sozinho, um destaque visível através das paredes o marca, e a trava solta quando o alvo morre ou se afasta.</p></div>
-				</article>
-				<article class="clip small" id="finisher-cutscene" data-video="../videos/combat-and-battlegrounds/finisher-cutscene.mp4" data-search="cutscene de finalizacao uma finalizacao programada com sua propria sequencia de camera. os dois personagens ficam presos no golpe enquanto ele toca, e o resultado e aplicado quando termina. combate e battlegrounds finisher cutscene a scripted finisher with its own camera sequence. both characters are locked into the move while it plays, then the result is applied once it ends. combat &amp; battlegrounds">
+				<article class="clip big" id="finisher-cutscene" data-video="../videos/combat-and-battlegrounds/finisher-cutscene.mp4" data-search="cutscene de finalizacao uma finalizacao programada com sua propria sequencia de camera. os dois personagens ficam presos no golpe enquanto ele toca, e o resultado e aplicado quando termina. combate e battlegrounds finisher cutscene a scripted finisher with its own camera sequence. both characters are locked into the move while it plays, then the result is applied once it ends. combat &amp; battlegrounds">
 					<div class="frame">
 						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/finisher-cutscene.jpg" data-src="../videos/combat-and-battlegrounds/finisher-cutscene-md.mp4"></video></div>
 						<div class="about"><p>Uma finalização programada com sua própria sequência de câmera. Os dois personagens ficam presos no golpe enquanto ele toca, e o resultado é aplicado quando termina.</p></div>
 					</div>
 					<div class="text"><h3 class="title">Cutscene de finalização</h3><p class="desc">Uma finalização programada com sua própria sequência de câmera. Os dois personagens ficam presos no golpe enquanto ele toca, e o resultado é aplicado quando termina.</p></div>
+				</article>
+				<article class="clip small" id="perfect-block" data-video="../videos/combat-and-battlegrounds/perfect-block.mp4" data-search="bloqueio perfeito bloquear logo antes do golpe acertar da um bloqueio perfeito: o atacante fica atordoado e o defensor ganha uma abertura livre. combate e battlegrounds perfect block blocking right before a hit lands gives a perfect block: the attacker is stunned and the defender gets a free opening. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/perfect-block.jpg" data-src="../videos/combat-and-battlegrounds/perfect-block-md.mp4"></video></div>
+						<div class="about"><p>Bloquear logo antes do golpe acertar dá um bloqueio perfeito: o atacante fica atordoado e o defensor ganha uma abertura livre.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Bloqueio perfeito</h3><p class="desc">Bloquear logo antes do golpe acertar dá um bloqueio perfeito: o atacante fica atordoado e o defensor ganha uma abertura livre.</p></div>
+				</article>
+				<article class="clip small" id="lock-on-targeting" data-video="../videos/combat-and-battlegrounds/lock-on-system.mp4" data-search="trava de alvo trava no alvo mais proximo do centro da tela. camera sobre o ombro no seu proprio passo de render, o personagem vira para o alvo sozinho, um destaque visivel atraves das paredes o marca, e a trava solta quando o alvo morre ou se afasta. combate e battlegrounds lock-on targeting locks onto the target closest to screen center. over-the-shoulder camera on its own render step, the character auto-faces the target, a see-through highlight marks it, and it releases on death or distance. combat &amp; battlegrounds">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/lock-on-system.jpg" data-src="../videos/combat-and-battlegrounds/lock-on-system-md.mp4"></video></div>
+						<div class="about"><p>Trava no alvo mais próximo do centro da tela. Câmera sobre o ombro no seu próprio passo de render, o personagem vira para o alvo sozinho, um destaque visível através das paredes o marca, e a trava solta quando o alvo morre ou se afasta.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Trava de alvo</h3><p class="desc">Trava no alvo mais próximo do centro da tela. Câmera sobre o ombro no seu próprio passo de render, o personagem vira para o alvo sozinho, um destaque visível através das paredes o marca, e a trava solta quando o alvo morre ou se afasta.</p></div>
 				</article>
 				<article class="clip small" id="ground-smash-skill" data-video="../videos/combat-and-battlegrounds/ground-smash-skill.mp4" data-search="habilidade de impacto no chao uma habilidade de varios golpes que termina com um impacto no chao: deteccao de acerto por fase, knockback e uma cratera com destrocos que se limpa sozinha depois do golpe. combate e battlegrounds ground smash skill a multi-hit skill ending in a ground slam: hit detection per phase, knockback, and a crater with debris that clears itself after the hit. combat &amp; battlegrounds">
 					<div class="frame">
@@ -137,13 +138,6 @@
 					</div>
 					<div class="text"><h3 class="title">Contra-ataque</h3><p class="desc">Uma postura de contra-ataque: ser atingido dentro da janela cancela o golpe do atacante e revida com uma animação própria.</p></div>
 				</article>
-				<article class="clip small" id="perfect-block" data-video="../videos/combat-and-battlegrounds/perfect-block.mp4" data-search="bloqueio perfeito bloquear logo antes do golpe acertar da um bloqueio perfeito: o atacante fica atordoado e o defensor ganha uma abertura livre. combate e battlegrounds perfect block blocking right before a hit lands gives a perfect block: the attacker is stunned and the defender gets a free opening. combat &amp; battlegrounds">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/perfect-block.jpg" data-src="../videos/combat-and-battlegrounds/perfect-block-md.mp4"></video></div>
-						<div class="about"><p>Bloquear logo antes do golpe acertar dá um bloqueio perfeito: o atacante fica atordoado e o defensor ganha uma abertura livre.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Bloqueio perfeito</h3><p class="desc">Bloquear logo antes do golpe acertar dá um bloqueio perfeito: o atacante fica atordoado e o defensor ganha uma abertura livre.</p></div>
-				</article>
 				<article class="clip small" id="awakening-transformation" data-video="../videos/combat-and-battlegrounds/awakening-animation.mp4" data-search="transformacao de despertar a sequencia de despertar: uma transformacao em tela cheia com trabalho de camera, efeitos e um moveset fortalecido depois. combate e battlegrounds awakening transformation the awakening sequence: a full-screen transformation with camera work, effects and a powered-up moveset afterwards. combat &amp; battlegrounds">
 					<div class="frame">
 						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/combat-and-battlegrounds/awakening-animation.jpg" data-src="../videos/combat-and-battlegrounds/awakening-animation-md.mp4"></video></div>
@@ -172,12 +166,12 @@
 		<section id="guns" data-category="guns">
 			<h2>Armas e Shooter</h2>
 			<div class="feature collapsed">
-				<article class="clip big" id="run-and-gun" data-video="../videos/guns-and-shooter/running-and-shooting.mp4" data-search="correr e atirar atirar correndo: a mira, o recuo e o balanco dos bracos continuam funcionando em movimento, e cada tiro e validado no servidor. armas e shooter run &amp; gun shooting while sprinting: the aim, recoil and arm sway keep working on the move, and every shot is checked on the server. guns &amp; shooter">
+				<article class="clip big" id="cursor-follow-aiming" data-video="../videos/guns-and-shooter/cursor-follow-aim.mp4" data-search="mira que segue o cursor o braco e a arma seguem o mouse, suavizados e limitados a angulos naturais, e os outros jogadores veem a mesma mira. armas e shooter cursor-follow aiming the arm and the gun follow the mouse, smoothed and limited to natural angles, and other players see the same aim. guns &amp; shooter">
 					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/running-and-shooting.jpg" data-src="../videos/guns-and-shooter/running-and-shooting-md.mp4"></video></div>
-						<div class="about"><p>Atirar correndo: a mira, o recuo e o balanço dos braços continuam funcionando em movimento, e cada tiro é validado no servidor.</p></div>
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/cursor-follow-aim.jpg" data-src="../videos/guns-and-shooter/cursor-follow-aim-md.mp4"></video></div>
+						<div class="about"><p>O braço e a arma seguem o mouse, suavizados e limitados a ângulos naturais, e os outros jogadores veem a mesma mira.</p></div>
 					</div>
-					<div class="text"><h3 class="title">Correr e atirar</h3><p class="desc">Atirar correndo: a mira, o recuo e o balanço dos braços continuam funcionando em movimento, e cada tiro é validado no servidor.</p></div>
+					<div class="text"><h3 class="title">Mira que segue o cursor</h3><p class="desc">O braço e a arma seguem o mouse, suavizados e limitados a ângulos naturais, e os outros jogadores veem a mesma mira.</p></div>
 				</article>
 				<article class="clip small" id="limb-dismemberment" data-video="../videos/guns-and-shooter/dummy-limb-shots.mp4" data-search="desmembramento cada acerto verifica qual parte do corpo foi atingida: um braco ou uma perna se solta e voa com o impulso da bala, um tiro no pulso sangra e um headshot mata. a fisica fica com quem atira, entao reage na hora. armas e shooter limb dismemberment each hit checks which body part was hit: an upper arm or a leg comes off and flies with the bullet's momentum, a wrist hit bleeds, and a headshot kills. physics is owned by the shooter, so it reacts instantly. guns &amp; shooter">
 					<div class="frame">
@@ -186,26 +180,26 @@
 					</div>
 					<div class="text"><h3 class="title">Desmembramento</h3><p class="desc">Cada acerto verifica qual parte do corpo foi atingida: um braço ou uma perna se solta e voa com o impulso da bala, um tiro no pulso sangra e um headshot mata. A física fica com quem atira, então reage na hora.</p></div>
 				</article>
-				<article class="clip small" id="ragdoll-and-blood-impacts" data-video="../videos/guns-and-shooter/dummy-shoot-preview.mp4" data-search="ragdoll e impactos de sangue reacoes a tiros em um boneco com ragdoll: gotas de sangue que voam em arcos reais e espirram no chao, manchas de ferimento no corpo e depois um respawn. armas e shooter ragdoll &amp; blood impacts hit reactions on a ragdoll dummy: blood drops that fly in real arcs and splat on the ground, wound stains on the body, then a respawn. guns &amp; shooter">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/dummy-shoot-preview.jpg" data-src="../videos/guns-and-shooter/dummy-shoot-preview-md.mp4"></video></div>
-						<div class="about"><p>Reações a tiros em um boneco com ragdoll: gotas de sangue que voam em arcos reais e espirram no chão, manchas de ferimento no corpo e depois um respawn.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Ragdoll e impactos de sangue</h3><p class="desc">Reações a tiros em um boneco com ragdoll: gotas de sangue que voam em arcos reais e espirram no chão, manchas de ferimento no corpo e depois um respawn.</p></div>
-				</article>
-				<article class="clip small" id="cursor-follow-aiming" data-video="../videos/guns-and-shooter/cursor-follow-aim.mp4" data-search="mira que segue o cursor o braco e a arma seguem o mouse, suavizados e limitados a angulos naturais, e os outros jogadores veem a mesma mira. armas e shooter cursor-follow aiming the arm and the gun follow the mouse, smoothed and limited to natural angles, and other players see the same aim. guns &amp; shooter">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/cursor-follow-aim.jpg" data-src="../videos/guns-and-shooter/cursor-follow-aim-md.mp4"></video></div>
-						<div class="about"><p>O braço e a arma seguem o mouse, suavizados e limitados a ângulos naturais, e os outros jogadores veem a mesma mira.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Mira que segue o cursor</h3><p class="desc">O braço e a arma seguem o mouse, suavizados e limitados a ângulos naturais, e os outros jogadores veem a mesma mira.</p></div>
-				</article>
 				<article class="clip small" id="inferno-skin-and-preview" data-video="../videos/guns-and-shooter/inferno-gun-skin-preview.mp4" data-search="skin inferno e previa uma skin de arma com texturas e efeitos de fogo proprios, e uma previa no inventario antes de equipar. armas e shooter inferno skin &amp; preview a gun skin with its own textures and fire effects, and a preview of it in the inventory before you equip it. guns &amp; shooter">
 					<div class="frame">
 						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/inferno-gun-skin-preview.jpg" data-src="../videos/guns-and-shooter/inferno-gun-skin-preview-md.mp4"></video></div>
 						<div class="about"><p>Uma skin de arma com texturas e efeitos de fogo próprios, e uma prévia no inventário antes de equipar.</p></div>
 					</div>
 					<div class="text"><h3 class="title">Skin Inferno e prévia</h3><p class="desc">Uma skin de arma com texturas e efeitos de fogo próprios, e uma prévia no inventário antes de equipar.</p></div>
+				</article>
+				<article class="clip small" id="run-and-gun" data-video="../videos/guns-and-shooter/running-and-shooting.mp4" data-search="correr e atirar atirar correndo: a mira, o recuo e o balanco dos bracos continuam funcionando em movimento, e cada tiro e validado no servidor. armas e shooter run &amp; gun shooting while sprinting: the aim, recoil and arm sway keep working on the move, and every shot is checked on the server. guns &amp; shooter">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/running-and-shooting.jpg" data-src="../videos/guns-and-shooter/running-and-shooting-md.mp4"></video></div>
+						<div class="about"><p>Atirar correndo: a mira, o recuo e o balanço dos braços continuam funcionando em movimento, e cada tiro é validado no servidor.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Correr e atirar</h3><p class="desc">Atirar correndo: a mira, o recuo e o balanço dos braços continuam funcionando em movimento, e cada tiro é validado no servidor.</p></div>
+				</article>
+				<article class="clip small" id="ragdoll-and-blood-impacts" data-video="../videos/guns-and-shooter/dummy-shoot-preview.mp4" data-search="ragdoll e impactos de sangue reacoes a tiros em um boneco com ragdoll: gotas de sangue que voam em arcos reais e espirram no chao, manchas de ferimento no corpo e depois um respawn. armas e shooter ragdoll &amp; blood impacts hit reactions on a ragdoll dummy: blood drops that fly in real arcs and splat on the ground, wound stains on the body, then a respawn. guns &amp; shooter">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/guns-and-shooter/dummy-shoot-preview.jpg" data-src="../videos/guns-and-shooter/dummy-shoot-preview-md.mp4"></video></div>
+						<div class="about"><p>Reações a tiros em um boneco com ragdoll: gotas de sangue que voam em arcos reais e espirram no chão, manchas de ferimento no corpo e depois um respawn.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Ragdoll e impactos de sangue</h3><p class="desc">Reações a tiros em um boneco com ragdoll: gotas de sangue que voam em arcos reais e espirram no chão, manchas de ferimento no corpo e depois um respawn.</p></div>
 				</article>
 			</div>
 			<button class="more" data-more="Ver tudo" data-less="Ver menos">Ver tudo</button>
@@ -214,12 +208,12 @@
 		<section id="pets" data-category="pets">
 			<h2>Pets e RNG</h2>
 			<div class="feature collapsed">
-				<article class="clip big" id="click-to-crack-egg-hatching" data-video="../videos/pets-and-rng/egg-hatching.mp4" data-search="chocar ovos com cliques cada clique racha o ovo em um ponto novo e a luz da raridade vaza pelas rachaduras. pets comuns abrem rapido; legendary e mythic pedem mais cliques, carregam e explodem. o servidor sorteia o pet. pets e rng click-to-crack egg hatching every click cracks the egg somewhere new and its rarity's light leaks through the cracks. common pets open fast; legendary and mythic take more clicks, charge up and burst. the server rolls the pet. pets &amp; rng">
+				<article class="clip big" id="cinematic-gun-skin-spin" data-video="../videos/pets-and-rng/cinematic-gun-skin-spin.mp4" data-search="roleta cinematica de skins o giro como cinematica em tela cheia: a roleta acelera, desacelera na skin vencedora e explode na cor da raridade, e depois aparece o card de premio. o resultado e sorteado no servidor antes da roleta girar. pets e rng cinematic gun skin spin the spin as a full-screen cinematic: the reel speeds up, slows down onto the winning skin and bursts in its rarity color, then the reward card shows. the result is rolled on the server before the reel moves. pets &amp; rng">
 					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/egg-hatching.jpg" data-src="../videos/pets-and-rng/egg-hatching-md.mp4"></video></div>
-						<div class="about"><p>Cada clique racha o ovo em um ponto novo e a luz da raridade vaza pelas rachaduras. Pets comuns abrem rápido; Legendary e Mythic pedem mais cliques, carregam e explodem. O servidor sorteia o pet.</p></div>
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/cinematic-gun-skin-spin.jpg" data-src="../videos/pets-and-rng/cinematic-gun-skin-spin-md.mp4"></video></div>
+						<div class="about"><p>O giro como cinemática em tela cheia: a roleta acelera, desacelera na skin vencedora e explode na cor da raridade, e depois aparece o card de prêmio. O resultado é sorteado no servidor antes da roleta girar.</p></div>
 					</div>
-					<div class="text"><h3 class="title">Chocar ovos com cliques</h3><p class="desc">Cada clique racha o ovo em um ponto novo e a luz da raridade vaza pelas rachaduras. Pets comuns abrem rápido; Legendary e Mythic pedem mais cliques, carregam e explodem. O servidor sorteia o pet.</p></div>
+					<div class="text"><h3 class="title">Roleta cinemática de skins</h3><p class="desc">O giro como cinemática em tela cheia: a roleta acelera, desacelera na skin vencedora e explode na cor da raridade, e depois aparece o card de prêmio. O resultado é sorteado no servidor antes da roleta girar.</p></div>
 				</article>
 				<article class="clip small" id="mythic-hatch" data-video="../videos/pets-and-rng/mythic-hatch.mp4" data-search="ovo mythic o nivel mais raro: uma carga mais longa, tela tingida, raios, brilhos e tremor de tela. as chances vem de pesos com sorte e um contador de pity. pets e rng mythic hatch the rarest tier: a longer charge-up, a screen tint, rays, sparkles and a screen shake. the odds come from weighted chances with luck and a pity counter. pets &amp; rng">
 					<div class="frame">
@@ -228,12 +222,19 @@
 					</div>
 					<div class="text"><h3 class="title">Ovo Mythic</h3><p class="desc">O nível mais raro: uma carga mais longa, tela tingida, raios, brilhos e tremor de tela. As chances vêm de pesos com sorte e um contador de pity.</p></div>
 				</article>
-				<article class="clip small" id="cinematic-gun-skin-spin" data-video="../videos/pets-and-rng/cinematic-gun-skin-spin.mp4" data-search="roleta cinematica de skins o giro como cinematica em tela cheia: a roleta acelera, desacelera na skin vencedora e explode na cor da raridade, e depois aparece o card de premio. o resultado e sorteado no servidor antes da roleta girar. pets e rng cinematic gun skin spin the spin as a full-screen cinematic: the reel speeds up, slows down onto the winning skin and bursts in its rarity color, then the reward card shows. the result is rolled on the server before the reel moves. pets &amp; rng">
+				<article class="clip small" id="pet-level-up" data-video="../videos/pets-and-rng/pet-level-up.mp4" data-search="level up de pets os pets ganham xp a cada golpe e sobem de nivel, e cada nivel aumenta o poder deles. uma cutscene curta mostra o pet e o novo nivel. pets e rng pet level up pets earn xp for every hit and level up, each level adding to their power. a short cutscene shows the pet and its new level. pets &amp; rng">
 					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/cinematic-gun-skin-spin.jpg" data-src="../videos/pets-and-rng/cinematic-gun-skin-spin-md.mp4"></video></div>
-						<div class="about"><p>O giro como cinemática em tela cheia: a roleta acelera, desacelera na skin vencedora e explode na cor da raridade, e depois aparece o card de prêmio. O resultado é sorteado no servidor antes da roleta girar.</p></div>
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/pet-level-up.jpg" data-src="../videos/pets-and-rng/pet-level-up-md.mp4"></video></div>
+						<div class="about"><p>Os pets ganham XP a cada golpe e sobem de nível, e cada nível aumenta o poder deles. Uma cutscene curta mostra o pet e o novo nível.</p></div>
 					</div>
-					<div class="text"><h3 class="title">Roleta cinemática de skins</h3><p class="desc">O giro como cinemática em tela cheia: a roleta acelera, desacelera na skin vencedora e explode na cor da raridade, e depois aparece o card de prêmio. O resultado é sorteado no servidor antes da roleta girar.</p></div>
+					<div class="text"><h3 class="title">Level up de pets</h3><p class="desc">Os pets ganham XP a cada golpe e sobem de nível, e cada nível aumenta o poder deles. Uma cutscene curta mostra o pet e o novo nível.</p></div>
+				</article>
+				<article class="clip small" id="click-to-crack-egg-hatching" data-video="../videos/pets-and-rng/egg-hatching.mp4" data-search="chocar ovos com cliques cada clique racha o ovo em um ponto novo e a luz da raridade vaza pelas rachaduras. pets comuns abrem rapido; legendary e mythic pedem mais cliques, carregam e explodem. o servidor sorteia o pet. pets e rng click-to-crack egg hatching every click cracks the egg somewhere new and its rarity's light leaks through the cracks. common pets open fast; legendary and mythic take more clicks, charge up and burst. the server rolls the pet. pets &amp; rng">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/egg-hatching.jpg" data-src="../videos/pets-and-rng/egg-hatching-md.mp4"></video></div>
+						<div class="about"><p>Cada clique racha o ovo em um ponto novo e a luz da raridade vaza pelas rachaduras. Pets comuns abrem rápido; Legendary e Mythic pedem mais cliques, carregam e explodem. O servidor sorteia o pet.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Chocar ovos com cliques</h3><p class="desc">Cada clique racha o ovo em um ponto novo e a luz da raridade vaza pelas rachaduras. Pets comuns abrem rápido; Legendary e Mythic pedem mais cliques, carregam e explodem. O servidor sorteia o pet.</p></div>
 				</article>
 				<article class="clip small" id="pets-breaking-coins" data-video="../videos/pets-and-rng/pets-breaking-coins.mp4" data-search="pets quebrando moedas clique em uma pilha de moedas e seus pets correm para atacar. cada golpe e aplicado pelo servidor com o poder do pet, aparece como numero de dano, e as moedas sao divididas pelo dano causado. pets e rng pets breaking coins click a coin pile and your pets run over and attack it. each hit is dealt by the server with the pet's power, shown as a damage number, and coins are split by damage dealt. pets &amp; rng">
 					<div class="frame">
@@ -241,20 +242,6 @@
 						<div class="about"><p>Clique em uma pilha de moedas e seus pets correm para atacar. Cada golpe é aplicado pelo servidor com o poder do pet, aparece como número de dano, e as moedas são divididas pelo dano causado.</p></div>
 					</div>
 					<div class="text"><h3 class="title">Pets quebrando moedas</h3><p class="desc">Clique em uma pilha de moedas e seus pets correm para atacar. Cada golpe é aplicado pelo servidor com o poder do pet, aparece como número de dano, e as moedas são divididas pelo dano causado.</p></div>
-				</article>
-				<article class="clip small" id="safe-break" data-video="../videos/pets-and-rng/safe-break.mp4" data-search="quebra de cofre quebraveis raros e com muita vida para pets fortes: cada golpe mostra o dano, e o cofre explode em moedas que voam para os jogadores que o quebraram. pets e rng safe break rare, high-hp breakables for strong pets: every hit shows its damage, and the safe bursts into coins that fly to the players who broke it. pets &amp; rng">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/safe-break.jpg" data-src="../videos/pets-and-rng/safe-break-md.mp4"></video></div>
-						<div class="about"><p>Quebráveis raros e com muita vida para pets fortes: cada golpe mostra o dano, e o cofre explode em moedas que voam para os jogadores que o quebraram.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Quebra de cofre</h3><p class="desc">Quebráveis raros e com muita vida para pets fortes: cada golpe mostra o dano, e o cofre explode em moedas que voam para os jogadores que o quebraram.</p></div>
-				</article>
-				<article class="clip small" id="pet-level-up" data-video="../videos/pets-and-rng/pet-level-up.mp4" data-search="level up de pets os pets ganham xp a cada golpe e sobem de nivel, e cada nivel aumenta o poder deles. uma cutscene curta mostra o pet e o novo nivel. pets e rng pet level up pets earn xp for every hit and level up, each level adding to their power. a short cutscene shows the pet and its new level. pets &amp; rng">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/pets-and-rng/pet-level-up.jpg" data-src="../videos/pets-and-rng/pet-level-up-md.mp4"></video></div>
-						<div class="about"><p>Os pets ganham XP a cada golpe e sobem de nível, e cada nível aumenta o poder deles. Uma cutscene curta mostra o pet e o novo nível.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Level up de pets</h3><p class="desc">Os pets ganham XP a cada golpe e sobem de nível, e cada nível aumenta o poder deles. Uma cutscene curta mostra o pet e o novo nível.</p></div>
 				</article>
 				<article class="clip small" id="rainbow-mutation" data-video="../videos/pets-and-rng/rainbow-mutation.mp4" data-search="mutacao rainbow as mutacoes sao sorteadas separadamente do pet (gold, diamond, rainbow) e multiplicam o poder dele. pets rainbow ficam trocando de cor. pets e rng rainbow mutation mutations roll separately from the pet (gold, diamond, rainbow) and multiply its power. rainbow pets cycle their colors. pets &amp; rng">
 					<div class="frame">
@@ -339,6 +326,20 @@
 					</div>
 					<div class="text"><h3 class="title">Loja de gamepasses e presentes</h3><p class="desc">Uma loja de gamepasses onde qualquer passe pode ser dado de presente a um amigo escolhido da sua lista. A compra é verificada antes do presente ser entregue.</p></div>
 				</article>
+				<article class="clip small" id="gun-skin-inventory" data-video="../videos/ui-and-systems/gun-skins-inventory-ui.mp4" data-search="inventario de skins de armas suas skins de armas com a raridade de cada uma; equipar uma atualiza a arma na hora. ui e sistemas gun skin inventory owned gun skins with their rarity, and equipping one updates the gun right away. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/gun-skins-inventory-ui.jpg" data-src="../videos/ui-and-systems/gun-skins-inventory-ui-md.mp4"></video></div>
+						<div class="about"><p>Suas skins de armas com a raridade de cada uma; equipar uma atualiza a arma na hora.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Inventário de skins de armas</h3><p class="desc">Suas skins de armas com a raridade de cada uma; equipar uma atualiza a arma na hora.</p></div>
+				</article>
+				<article class="clip small" id="synced-emotes" data-video="../videos/ui-and-systems/sync-emote.mp4" data-search="emotes sincronizados entre no emote de alguem e dancem em sincronia: as animacoes comecam do mesmo ponto e a musica toca uma vez so. ui e sistemas synced emotes join someone's emote and dance in sync: the animations start from the same point and the song is heard once. ui &amp; systems">
+					<div class="frame">
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/sync-emote.jpg" data-src="../videos/ui-and-systems/sync-emote-md.mp4"></video></div>
+						<div class="about"><p>Entre no emote de alguém e dancem em sincronia: as animações começam do mesmo ponto e a música toca uma vez só.</p></div>
+					</div>
+					<div class="text"><h3 class="title">Emotes sincronizados</h3><p class="desc">Entre no emote de alguém e dancem em sincronia: as animações começam do mesmo ponto e a música toca uma vez só.</p></div>
+				</article>
 				<article class="clip small" id="emote-shop" data-video="../videos/ui-and-systems/emote-shop.mp4" data-search="loja de emotes navegue e compre emotes com previas ao vivo no seu proprio personagem. ui e sistemas emote shop browse and buy emotes with live previews on your own character. ui &amp; systems">
 					<div class="frame">
 						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/emote-shop.jpg" data-src="../videos/ui-and-systems/emote-shop-md.mp4"></video></div>
@@ -388,20 +389,6 @@
 					</div>
 					<div class="text"><h3 class="title">Troca de emotes da roda</h3><p class="desc">Troque o emote de qualquer espaço da roda pelo inventário; o menu desliza aberto em volta da roda.</p></div>
 				</article>
-				<article class="clip small" id="gun-skin-inventory" data-video="../videos/ui-and-systems/gun-skins-inventory-ui.mp4" data-search="inventario de skins de armas suas skins de armas com a raridade de cada uma; equipar uma atualiza a arma na hora. ui e sistemas gun skin inventory owned gun skins with their rarity, and equipping one updates the gun right away. ui &amp; systems">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/gun-skins-inventory-ui.jpg" data-src="../videos/ui-and-systems/gun-skins-inventory-ui-md.mp4"></video></div>
-						<div class="about"><p>Suas skins de armas com a raridade de cada uma; equipar uma atualiza a arma na hora.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Inventário de skins de armas</h3><p class="desc">Suas skins de armas com a raridade de cada uma; equipar uma atualiza a arma na hora.</p></div>
-				</article>
-				<article class="clip small" id="synced-emotes" data-video="../videos/ui-and-systems/sync-emote.mp4" data-search="emotes sincronizados entre no emote de alguem e dancem em sincronia: as animacoes comecam do mesmo ponto e a musica toca uma vez so. ui e sistemas synced emotes join someone's emote and dance in sync: the animations start from the same point and the song is heard once. ui &amp; systems">
-					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="../videos/ui-and-systems/sync-emote.jpg" data-src="../videos/ui-and-systems/sync-emote-md.mp4"></video></div>
-						<div class="about"><p>Entre no emote de alguém e dancem em sincronia: as animações começam do mesmo ponto e a música toca uma vez só.</p></div>
-					</div>
-					<div class="text"><h3 class="title">Emotes sincronizados</h3><p class="desc">Entre no emote de alguém e dancem em sincronia: as animações começam do mesmo ponto e a música toca uma vez só.</p></div>
-				</article>
 			</div>
 			<button class="more" data-more="Ver tudo" data-less="Ver menos">Ver tudo</button>
 		</section>
@@ -411,13 +398,20 @@
 	<section class="ai" id="ai">
 		<div class="ai-card reveal">
 			<h2>Trabalho com IA?</h2>
-			<div class="ai-text">
-				<p class="lead">Sim, mas como ferramenta, não como substituto.</p>
-				<p class="body">Uso o Claude para acelerar o trabalho; os sistemas, o código entregue e a qualidade final são meus.</p>
-				<div class="ai-options">
-					<div class="option"><span class="option-label">Com IA</span><p>Se você não se importa com trabalho assistido por IA, entrego cerca de 3 a 4 vezes mais rápido.</p></div>
-					<div class="option"><span class="option-label">Sem IA</span><p>Se preferir que eu não use, é só falar: você recebe a mesma qualidade, escrita totalmente à mão.</p></div>
-				</div>
+			<p class="lead">Sim, mas como ferramenta, não como substituto.</p>
+			<p class="body">Uso o Claude para acelerar o trabalho; os sistemas, o código entregue e a qualidade final são meus.</p>
+			<div class="ai-options">
+				<div class="option"><span class="option-label">Com IA</span><p>Se você não se importa com trabalho assistido por IA, entrego cerca de 3 a 4 vezes mais rápido.</p></div>
+				<div class="option"><span class="option-label">Sem IA</span><p>Se preferir que eu não use, é só falar: você recebe a mesma qualidade, escrita totalmente à mão.</p></div>
+			</div>
+		</div>
+		<div class="ai-card reveal">
+			<h2>Não achou o que procurava?</h2>
+			<p class="lead">Me teste primeiro, de graça.</p>
+			<p class="body">Me conta sua ideia. Se gostar da parte grátis, fazemos o resto juntos.</p>
+			<div class="ai-options">
+				<div class="option"><span class="option-label">Teste grátis</span><p>Programo de graça uma pequena parte do seu sistema.</p></div>
+				<div class="option"><span class="option-label">Me chama</span><button class="discord" data-copy="netablade" data-done="Copiado!" title="Copiar meu nome do Discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.618-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg><span class="name notranslate">netablade</span></button></div>
 			</div>
 		</div>
 	</section>

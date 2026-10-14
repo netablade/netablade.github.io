@@ -140,42 +140,39 @@ svg { display: block; }
 	letter-spacing: -0.035em;
 	line-height: 1;
 }
-/* the profile card under the title: a wide box, not a stack of centered lines */
-.profile {
-	max-width: 980px; margin: 40px auto 0;
-	display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 18px 32px;
-	padding: 26px 30px 0;
-	text-align: left;
-	background: var(--card); border: 1px solid var(--card-line); border-radius: 22px;
+/* under the title: the one-liner, then three facts spread evenly with thin rules between them (no box) */
+.hero .tagline { margin: 16px 0 0; font-size: 18px; color: var(--muted); }
+.facts {
+	max-width: 920px; margin: 40px auto 0;
+	display: grid; grid-template-columns: 1fr 1px auto 1px 1fr; align-items: center; gap: 0 36px;
 }
-.profile p { margin: 0; }
-.profile .kicker { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.profile .focus { margin-top: 8px; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
-.profile .tagline { margin-top: 6px; font-size: 16px; color: var(--muted); }
-.profile-side { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-.profile-side .label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.state {
-	display: inline-flex; align-items: center; gap: 9px;
-	padding: 8px 16px 8px 13px; border-radius: 999px;
-	font-size: 15px; font-weight: 700;
+.fact { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; }
+.fact .value {
+	height: 34px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+	font-size: 24px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap;
 }
-.state.open { color: #30d158; background: rgba(48, 209, 88, 0.12); box-shadow: inset 0 0 0 1px rgba(48, 209, 88, 0.28); }
-.state.closed { color: #ff453a; background: rgba(255, 69, 58, 0.12); box-shadow: inset 0 0 0 1px rgba(255, 69, 58, 0.28); }
-.state .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-.state.open .dot { animation: pulse 2s infinite; }
+.fact .label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.facts .rule { width: 1px; height: 44px; background: var(--soft-hover); }
+.chip {
+	padding: 7px 13px; border-radius: 999px; background: var(--soft);
+	font-size: 14px; font-weight: 700; letter-spacing: 0;
+}
+.fact .value.open { color: #30d158; gap: 10px; }
+.fact .value.closed { color: #ff453a; gap: 10px; }
+.fact .dot { width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.fact .open .dot { animation: pulse 2s infinite; }
 @keyframes pulse {
 	0% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.55); }
 	70% { box-shadow: 0 0 0 8px rgba(48, 209, 88, 0); }
 	100% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0); }
 }
 .profile-note {
-	grid-column: 1 / -1;
-	display: flex; gap: 10px; align-items: flex-start;
-	margin: 0 -30px; padding: 14px 30px 16px;
-	border-top: 1px solid var(--card-line);
-	font-size: 13px; line-height: 1.5; color: var(--muted);
+	max-width: 780px; margin: 34px auto 0;
+	display: flex; gap: 10px; align-items: flex-start; justify-content: center;
+	font-size: 13px; line-height: 1.5; color: var(--muted); text-align: left;
 }
 .profile-note svg { width: 16px; height: 16px; flex: none; margin-top: 1px; }
+.profile-note span { text-wrap: balance; }
 
 /* search on the left, categories on the right (stays under the top bar while you scroll) */
 .filters {
@@ -275,6 +272,9 @@ main section h2 .count { font-size: 16px; font-weight: 500; color: var(--muted);
 	transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
 .clip.big .frame { border-radius: calc(var(--radius) + 4px); }
+/* (the two next to the big one: script.js works out --side-h so they end exactly where the big picture ends) */
+.feature.fitted .clip.side1 .frame, .feature.fitted .clip.side2 .frame { aspect-ratio: auto; height: var(--side-h); }
+.feature.fitted .clip.side2 { margin-bottom: var(--side-pad); }
 .clip .media { position: absolute; inset: 0; transition: transform 0.45s var(--ease); }
 .clip video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .clip .text { margin-top: 12px; }
@@ -338,24 +338,31 @@ main.searching .clip.big:hover .about { transform: translateY(0); }
 
 .empty { margin: 60px 0; text-align: center; color: var(--muted); font-size: 16px; }
 
-/* "Do I work with AI?": a card, everything centered: the question, the answer, then the two ways side by side */
-.ai { max-width: var(--max); margin: 0 auto; padding: 40px 24px 72px; scroll-margin-top: 80px; }
+/* the end: two boxes of the same shape side by side, "Do I work with AI?" and "Didn't find what you need?" */
+/* (the two share their rows, so titles, texts and the small boxes line up and match in height) */
+.ai {
+	max-width: 1120px; margin: 0 auto; padding: 40px 24px 72px; scroll-margin-top: 80px;
+	display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, auto); column-gap: 18px;
+}
 .ai-card {
-	max-width: 820px; margin: 0 auto;
-	padding: 38px 40px 40px;
+	grid-row: span 4; display: grid; grid-template-rows: subgrid; justify-items: center;
+	padding: 36px 32px 32px;
 	text-align: center;
 	background: var(--card); border: 1px solid var(--card-line); border-radius: 22px;
 }
-.ai-card h2 { margin: 0; font-size: 34px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
-.ai-text { margin-top: 16px; }
-.ai-text p { margin: 0; }
-.ai-text .lead { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
-.ai-text .body { margin: 8px auto 0; max-width: 560px; font-size: 16px; line-height: 1.5; color: var(--muted); }
-.ai-options { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.option { padding: 16px 18px 17px; border-radius: 14px; background: var(--soft); }
-.option-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.option p { margin-top: 6px; font-size: 15px; line-height: 1.45; }
-.ai-card p { text-wrap: balance; }
+.ai-card h2 { margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+.ai-card p { margin: 0; text-wrap: balance; }
+.ai-card .lead { margin-top: 14px; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
+.ai-card .body { margin-top: 8px; max-width: 440px; font-size: 15.5px; line-height: 1.5; color: var(--muted); }
+/* (the two small boxes sit at the bottom, so both cards end on the same line) */
+.ai-options { padding-top: 24px; justify-self: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.option {
+	display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+	min-height: 104px; padding: 16px 16px 17px; border-radius: 14px; background: var(--soft);
+}
+.option-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.option p { font-size: 14.5px; line-height: 1.45; }
+.option .discord { height: 38px; padding: 0 16px 0 12px; font-size: 15px; }
 
 /* bottom */
 footer { border-top: 1px solid var(--line); }
@@ -430,14 +437,20 @@ body { top: 0 !important; }
 	.search { flex: none; }
 	.pills { margin-left: 0; }
 	.hero { padding: 56px 16px 36px; }
-	.profile { grid-template-columns: 1fr; padding: 22px 20px 0; margin-top: 30px; }
-	.profile-side { flex-direction: row; align-items: center; justify-content: space-between; }
-	.profile .focus { font-size: 21px; }
-	.profile-note { margin: 0 -20px; padding: 13px 20px 15px; }
-	.ai-card { padding: 28px 20px; }
-	.ai-card h2 { font-size: 28px; }
+	.hero .tagline { font-size: 16px; }
+	/* (phones: what I build across the top, years and commissions side by side under it) */
+	.facts { grid-template-columns: 1fr 1fr; gap: 24px 12px; margin-top: 30px; }
+	.facts .rule { display: none; }
+	.fact.chips { grid-column: 1 / -1; order: -1; }
+	.fact .value { font-size: 21px; }
+	.chip { padding: 6px 11px; font-size: 13px; }
+	.profile-note { margin-top: 28px; }
+	.ai { display: flex; flex-direction: column; gap: 18px; padding: 28px 16px 56px; }
+	.ai-card { display: flex; flex-direction: column; align-items: center; padding: 28px 20px 22px; }
+	.ai-options { width: 100%; }
+	.ai-card h2 { font-size: 26px; }
 	.ai-options { grid-template-columns: 1fr; }
-	.ai { padding: 28px 16px 56px; }
+	.option { min-height: 0; }
 	.feature, main.searching .feature { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
 	.clip, .clip.side1, .clip.side2, .clip.w3, .clip.w-center { grid-column: auto; grid-row: auto; }
 	.clip.big { grid-column: 1 / -1; grid-row: auto; }
@@ -446,8 +459,8 @@ body { top: 0 !important; }
 	.clip.big .title { font-size: 18px; }
 	.nav-link { display: none; }
 	main section h2 { font-size: 23px; }
-	.discord .name { display: none; }
-	.discord { padding: 0 10px; }
+	.topbar .discord .name { display: none; }
+	.topbar .discord { padding: 0 10px; }
 	main section { scroll-margin-top: 190px; }
 }
 @media (hover: none) {
