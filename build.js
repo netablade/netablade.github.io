@@ -179,12 +179,12 @@ function page(lang) {
 	<meta property="og:title" content="${esc(t("title"))}">
 	<meta property="og:description" content="${esc(description + (COMMISSIONS_OPEN ? " " + t("commissionsOpen") : ""))}">
 	<meta property="og:url" content="${pageUrl}">
-	<meta property="og:image" content="${SITE_URL}/img/reel.gif">
+	<meta property="og:image" content="${SITE_URL}/img/reel.gif?v=${ver("img/reel.gif")}">
 	<meta property="og:image:type" content="image/gif">
 	<meta property="og:image:width" content="400">
 	<meta property="og:image:height" content="225">
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="${SITE_URL}/img/reel.gif">
+	<meta name="twitter:image" content="${SITE_URL}/img/reel.gif?v=${ver("img/reel.gif")}">
 	<link rel="stylesheet" href="${P}style.css?v=${ver("style.css")}">
 </head>
 <body>
