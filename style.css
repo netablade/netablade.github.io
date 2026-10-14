@@ -142,8 +142,8 @@ svg { display: block; }
 }
 /* everything centered: a small line above the title, the one-liner under it, then the skills in two rows */
 .hero .kicker { margin: 0 0 20px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-.hero .tagline { margin: 16px 0 0; font-size: 18px; color: var(--muted); }
-.chips { margin: 44px auto 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.hero .tagline { margin: 35px 0 0; font-size: 18px; color: var(--muted); }
+.chips { margin: 33px auto 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .chip-row { display: flex; justify-content: center; gap: 8px; }
 .chip {
 	padding: 7px 13px; border-radius: 999px; background: var(--soft);
