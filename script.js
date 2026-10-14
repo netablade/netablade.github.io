@@ -16,9 +16,14 @@ $(".theme-button").addEventListener("click", () => {
 	moveGlider();
 });
 
-// ---------------------------------------------------------------- LANGUAGE (Google Translate, driven by our own menu)
+// ---------------------------------------------------------------- LANGUAGE
+// Turkish, Spanish and Portuguese are translated by hand and have their own page (tr/, es/, pt/); every other language
+// is the English page run through Google Translate (only loaded when one of those is picked).
 const lang = $(".lang");
-const currentLang = (document.cookie.match(/googtrans=\/en\/([^;]+)/) || [])[1] || "en";
+const pageLang = document.documentElement.lang;
+const root = document.documentElement.dataset.root || "";
+const googleLang = (document.cookie.match(/googtrans=\/en\/([^;]+)/) || [])[1];
+const currentLang = pageLang !== "en" ? pageLang : googleLang || "en";
 $(".lang-code").textContent = currentLang.split("-")[0].toUpperCase();
 $$(".lang-menu button").forEach((b) => b.classList.toggle("current", b.dataset.lang === currentLang));
 $(".lang-button").addEventListener("click", (e) => { e.stopPropagation(); lang.classList.toggle("open"); });
@@ -27,16 +32,17 @@ $$(".lang-menu button").forEach((b) => b.addEventListener("click", () => {
 	const code = b.dataset.lang;
 	if (code === currentLang) { lang.classList.remove("open"); return; }
 	const expire = "; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-	if (code === "en") {
-		document.cookie = "googtrans=; path=/" + expire;
-		document.cookie = "googtrans=; path=/; domain=" + location.hostname + expire;
-	} else {
-		document.cookie = "googtrans=/en/" + code + "; path=/";
-	}
-	location.reload();
+	document.cookie = "googtrans=; path=/" + expire;
+	document.cookie = "googtrans=; path=/; domain=" + location.hostname + expire;
+	if (code !== "en" && !b.dataset.page) document.cookie = "googtrans=/en/" + code + "; path=/";
+	store.set("lang", code);
+	// (the same clip stays open in the new language)
+	const target = new URL(root + (b.dataset.page || "") || "./", location.href);
+	target.hash = location.hash;
+	if (target.pathname === location.pathname) location.reload();
+	else location.href = target.href;
 }));
-if (currentLang !== "en") {
-	// (only loaded when someone picked another language: English visitors never load anything from Google)
+if (pageLang === "en" && currentLang !== "en") {
 	window.googleTranslateInit = () => new google.translate.TranslateElement({ pageLanguage: "en", autoDisplay: false }, "google_translate_element");
 	const s = document.createElement("script");
 	s.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateInit";
@@ -141,7 +147,7 @@ function layout(feature) {
 }
 function layoutAll() {
 	if (main.classList.contains("searching")) return;
-	$(".feature").forEach(layout);
+	$$(".feature").forEach(layout);
 }
 
 // ---------------------------------------------------------------- BIG AND SMALL: a small one clicked swaps places with the big one
@@ -188,6 +194,8 @@ const clips = $$("main .clip");
 const search = $(".search input");
 const empty = $(".empty");
 let filter = "all";
+// (the same folding build.js gives each clip's words: lower case, no accents)
+const fold = (s) => s.toLocaleLowerCase(pageLang).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ı/g, "i");
 
 // the highlight slides under the picked category
 function moveGlider() {
@@ -200,10 +208,22 @@ moveGlider();
 window.addEventListener("resize", moveGlider);
 if (document.fonts) document.fonts.ready.then(moveGlider);
 
+// when the categories don't all fit, the row scrolls and fades on the side that has more
+const pillRow = $(".pills");
+function pillEdges() {
+	const end = pillRow.scrollWidth - pillRow.clientWidth;
+	pillRow.classList.toggle("more-left", pillRow.scrollLeft > 2);
+	pillRow.classList.toggle("more-right", pillRow.scrollLeft < end - 2);
+}
+pillEdges();
+pillRow.addEventListener("scroll", pillEdges, { passive: true });
+window.addEventListener("resize", pillEdges);
+if (document.fonts) document.fonts.ready.then(pillEdges);
+
 // what shows: the picked category (all of its clips) or every category (the big one and two small ones each,
 // "See all" for the rest); while searching, every match as a plain card
 function apply() {
-	const words = search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+	const words = fold(search.value).trim().split(/\s+/).filter(Boolean);
 	const searching = words.length > 0;
 	main.classList.toggle("searching", searching);
 	let shown = 0;
@@ -223,7 +243,7 @@ function apply() {
 		if (more) more.hidden = filter !== "all";
 	}
 	empty.hidden = shown > 0;
-	if (searching) $(".feature .clip").forEach((c) => c.classList.remove("side1", "side2", "w3", "w-center", "m-center"));
+	if (searching) $$(".feature .clip").forEach((c) => c.classList.remove("side1", "side2", "w3", "w-center", "m-center"));
 	else layoutAll();
 }
 
@@ -295,40 +315,98 @@ $$("[data-copy]").forEach((button) => button.addEventListener("click", async () 
 	const label = $(".name", button);
 	const before = label.textContent;
 	button.classList.add("copied");
-	label.textContent = "Copied!";
+	label.textContent = button.dataset.done;
 	clearTimeout(button._reset);
 	button._reset = setTimeout(() => { button.classList.remove("copied"); label.textContent = before; }, 1600);
 }));
 
 // ---------------------------------------------------------------- A CLIP OPENED BIG (full 1080p; the page's videos stop meanwhile)
+// Every clip has its own link (#lock-on-targeting): opening one puts it in the address bar, and a link like that
+// opens the clip straight away. ← / → (or the side buttons) go to the previous / next clip that's showing.
 const viewer = $("#viewer");
+const viewerBox = $(".viewer-box", viewer);
 const big = $("video", viewer);
-function openClip(clip) {
-	viewerOpen = true;
-	videos.forEach((v) => v.pause());
+const copyButton = $(".copy-link", viewer);
+let current = null;
+
+// the clips you can step through: the ones the categories and the search leave showing, in page order
+function showingClips() {
+	return clips.filter((c) => !c.hidden && !c.closest("section").hidden);
+}
+function fill(clip) {
+	current = clip;
 	big.src = clip.dataset.video;
 	$(".caption", viewer).textContent = $(".title", clip).textContent;
 	$(".viewer-desc", viewer).textContent = $(".desc", clip).textContent;
+	history.replaceState(null, "", "#" + clip.id);
+	big.play().catch(() => {});
+}
+function openClip(clip) {
+	viewerOpen = true;
+	videos.forEach((v) => v.pause());
+	fill(clip);
 	viewer.classList.add("open");
 	viewer.setAttribute("aria-hidden", "false");
 	document.body.style.overflow = "hidden";
-	big.play().catch(() => {});
 }
 function closeClip() {
 	viewerOpen = false;
+	current = null;
 	viewer.classList.remove("open");
 	viewer.setAttribute("aria-hidden", "true");
 	document.body.style.overflow = "";
 	big.pause();
+	history.replaceState(null, "", location.pathname + location.search);
 	setTimeout(() => { if (!viewerOpen) { big.removeAttribute("src"); big.load(); } }, 260);
 	scheduleStart();
 }
+// the next / previous clip, with a quick fade between them
+function step(direction) {
+	const list = showingClips();
+	if (!current || list.length < 2) return;
+	const next = list[(list.indexOf(current) + direction + list.length) % list.length];
+	viewerBox.classList.add("switching");
+	setTimeout(() => {
+		fill(next);
+		viewerBox.classList.remove("switching");
+	}, 150);
+}
+$(".prev", viewer).addEventListener("click", (e) => { e.stopPropagation(); step(-1); });
+$(".next", viewer).addEventListener("click", (e) => { e.stopPropagation(); step(1); });
+
+// copy this clip's link
+copyButton.addEventListener("click", async (e) => {
+	e.stopPropagation();
+	if (!current) return;
+	try { await navigator.clipboard.writeText(location.origin + location.pathname + "#" + current.id); } catch (err) {}
+	const label = $("span", copyButton);
+	const before = label.textContent;
+	copyButton.classList.add("copied");
+	label.textContent = copyButton.dataset.done;
+	clearTimeout(copyButton._reset);
+	copyButton._reset = setTimeout(() => { copyButton.classList.remove("copied"); label.textContent = before; }, 1600);
+});
+
 // (the big one opens; a small one swaps in first; while searching, any card opens)
 clips.forEach((clip) => clip.addEventListener("click", () => {
 	if (clip.classList.contains("big") || main.classList.contains("searching")) openClip(clip);
 	else swap(clip);
 }));
 viewer.addEventListener("click", (e) => { if (e.target === viewer || e.target.classList.contains("close")) closeClip(); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape" && viewerOpen) closeClip(); });
+document.addEventListener("keydown", (e) => {
+	if (!viewerOpen) return;
+	if (e.key === "Escape") closeClip();
+	else if (e.key === "ArrowRight") step(1);
+	else if (e.key === "ArrowLeft") step(-1);
+});
+
+// a link to one clip opens it
+function openFromLink() {
+	const id = decodeURIComponent(location.hash.slice(1));
+	const clip = id && document.getElementById(id);
+	if (clip && clip.classList.contains("clip") && clip !== current) openClip(clip);
+}
+window.addEventListener("hashchange", openFromLink);
 
 layoutAll();
+openFromLink();

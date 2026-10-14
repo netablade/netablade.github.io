@@ -5,6 +5,7 @@ const path = require("path");
 
 // SETTINGS
 const NAME = "netablade";
+const SITE_URL = "https://netablade.github.io";
 const TITLE = "netablade's portfolio";
 const BIO = {
 	kicker: "Roblox scripting & UI · 4 years of experience",
@@ -40,6 +41,9 @@ const ICON = {
 	globe: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg>',
 	search: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>',
 	chevron: '<svg class="chevron" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
+	left: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+	right: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
+	link: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg>',
 	info: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg>',
 };
 
@@ -48,14 +52,31 @@ const read = (file) => JSON.parse(fs.readFileSync(path.join(here, file), "utf8")
 const clips = read("clips.json");
 const order = read("order.json");
 const meta = read("meta.json");
+const i18n = read("i18n.json"); // (hand translations: each one gets its own page, tr/ es/ pt/)
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const titleCase = (s) => s.replace(/\b[a-z]/g, (c) => c.toUpperCase());
+// a clip's own link: "Lock-On Targeting" -> #lock-on-targeting (always from the English title, so links work in every language)
+const slug = (s) => s.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+// what search matches against: lower case, accents dropped ("animación" = "animacion", "kırma" = "kirma"); script.js does the same
+const fold = (s, lang) => s.toLocaleLowerCase(lang).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ı/g, "i");
+
+// the English words of the page (the translations replace these by name)
+const EN = {
+	title: TITLE, kicker: BIO.kicker, focus: BIO.focus, tagline: BIO.tagline,
+	commissions: "Commissions", open: "Open", closed: "Closed", commissionsOpen: "Commissions open.", note: NOTE,
+	aiQuestion: AI.question, aiLead: AI.lead, aiBody: AI.body,
+	withAI: AI.options[0][0], withAIText: AI.options[0][1], withoutAI: AI.options[1][0], withoutAIText: AI.options[1][1],
+	all: "All", search: "Search clips", seeAll: "See all", showLess: "Show less", empty: "No clips match that search.",
+	copyLink: "Copy link", copied: "Copied!", rights: "All rights reserved",
+	language: "Language", theme: "Light or dark", copyDiscord: "Copy my Discord name", close: "Close", prev: "Previous clip", next: "Next clip",
+};
+const HAND = Object.keys(i18n).filter((k) => !k.startsWith("_"));
 
 // each category's clips: the ones in "first" in that order, then the rest by name
 const sections = order.categories.map((cat) => {
 	const list = clips.filter((c) => c.category === cat.folder).map((c) => {
 		const m = meta[`${c.category}/${c.title}`] || {};
-		return { ...c, name: m.title || titleCase(c.title), desc: m.desc || "" };
+		return { ...c, key: `${c.category}/${c.title}`, name: m.title || titleCase(c.title), desc: m.desc || "" };
 	});
 	const first = order.first[cat.folder] || [];
 	list.sort((a, b) => {
@@ -67,78 +88,113 @@ const sections = order.categories.map((cat) => {
 }).filter((s) => s.list.length > 0);
 const total = sections.reduce((n, s) => n + s.list.length, 0);
 
-const pills = [`<button class="pill active" data-filter="all">All</button>`]
-	.concat(sections.map((s) => `<button class="pill" data-filter="${s.id}">${esc(s.name)}</button>`))
-	.join("\n\t\t\t\t\t");
+function page(lang) {
+	const tr = lang === "en" ? {} : i18n[lang];
+	const t = (key) => (tr.ui && tr.ui[key]) || EN[key];
+	const P = lang === "en" ? "" : "../"; // (the language pages sit one folder down)
+	const pageUrl = `${SITE_URL}/${lang === "en" ? "" : lang + "/"}`;
+	const description = `${t("kicker")}. ${t("focus")}.`;
 
-const body = sections.map((s) => `
+	const pills = [`<button class="pill active" data-filter="all">${esc(t("all"))}</button>`]
+		.concat(sections.map((s) => `<button class="pill" data-filter="${s.id}">${esc((tr.categories && tr.categories[s.id]) || s.name)}</button>`))
+		.join("\n\t\t\t\t\t");
+
+	const body = sections.map((s) => {
+		const catName = (tr.categories && tr.categories[s.id]) || s.name;
+		return `
 		<section id="${s.id}" data-category="${s.id}">
-			<h2>${esc(s.name)}</h2>
-			<div class="feature collapsed">${s.list.map((c, i) => `
-				<article class="clip ${i === 0 ? "big" : "small"}" data-video="${esc(c.video)}" data-search="${esc((c.name + " " + c.desc + " " + s.name).toLowerCase())}">
+			<h2>${esc(catName)}</h2>
+			<div class="feature collapsed">${s.list.map((c, i) => {
+				const [name, desc] = (tr.clips && tr.clips[c.key]) || [c.name, c.desc];
+				// (search finds a clip by its translated words and its English ones)
+				const words = fold([name, desc, catName].concat(lang === "en" ? [] : [c.name, c.desc, s.name]).join(" "), lang);
+				return `
+				<article class="clip ${i === 0 ? "big" : "small"}" id="${slug(c.name)}" data-video="${esc(P + c.video)}" data-search="${esc(words)}">
 					<div class="frame">
-						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="${esc(c.poster)}" data-src="${esc(c.medium || c.small || c.video)}"></video></div>
-						<div class="about"><p>${esc(c.desc)}</p></div>
+						<div class="media"><video muted loop playsinline disablepictureinpicture preload="none" poster="${esc(P + c.poster)}" data-src="${esc(P + (c.medium || c.small || c.video))}"></video></div>
+						<div class="about"><p>${esc(desc)}</p></div>
 					</div>
-					<div class="text"><h3 class="title">${esc(c.name)}</h3><p class="desc">${esc(c.desc)}</p></div>
-				</article>`).join("")}
+					<div class="text"><h3 class="title">${esc(name)}</h3><p class="desc">${esc(desc)}</p></div>
+				</article>`;
+			}).join("")}
 			</div>${s.list.length > 3 ? `
-			<button class="more" data-more="See all" data-less="Show less">See all</button>` : ""}
-		</section>`).join("\n");
+			<button class="more" data-more="${esc(t("seeAll"))}" data-less="${esc(t("showLess"))}">${esc(t("seeAll"))}</button>` : ""}
+		</section>`;
+	}).join("\n");
 
-const languages = LANGUAGES.map(([code, name]) =>
-	`<li><button data-lang="${code}"${code === "en" ? ' class="current"' : ""}><span class="notranslate">${esc(name)}</span></button></li>`).join("");
+	// (the hand-translated languages open their own page; the rest go through Google Translate on the English one)
+	const languages = LANGUAGES.map(([code, name]) =>
+		`<li><button data-lang="${code}"${HAND.includes(code) ? ` data-page="${code}/"` : ""}${code === lang ? ' class="current"' : ""}><span class="notranslate">${esc(name)}</span></button></li>`).join("");
+	const alternates = ["en"].concat(HAND).map((l) =>
+		`<link rel="alternate" hreflang="${l}" href="${SITE_URL}/${l === "en" ? "" : l + "/"}">`).join("\n\t") +
+		`\n\t<link rel="alternate" hreflang="x-default" href="${SITE_URL}/">`;
 
-const html = `<!doctype html>
-<html lang="en" data-theme="dark">
+	return `<!doctype html>
+<html lang="${lang}" data-theme="dark" data-root="${P}">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>${esc(TITLE)}</title>
-	<meta name="description" content="${esc(BIO.kicker + ". " + BIO.focus + ".")}">
+	<title>${esc(t("title"))}</title>
+	<meta name="description" content="${esc(description)}">
 	<meta name="theme-color" content="#000000">
 	<script>
 		// (the theme is set before anything draws: dark unless the visitor picked light)
-		try { if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}
+		try { if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}${lang === "en" ? `
+		// (someone who picked one of the hand-translated languages comes back to it)
+		try { var l = localStorage.getItem("lang"); if (${JSON.stringify(HAND)}.indexOf(l) !== -1) location.replace(l + "/" + location.hash); } catch (e) {}` : ""}
 	</script>
-	<link rel="icon" href="img/avatar.webp">
-	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="${P}favicon.ico" sizes="any">
+	<link rel="icon" type="image/png" sizes="32x32" href="${P}img/icon-32.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="${P}img/icon-192.png">
+	<link rel="apple-touch-icon" href="${P}img/apple-touch-icon.png">
+	${alternates}
+	<!-- the card a shared link shows (Discord, Twitter...) -->
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="${esc(NAME)}">
+	<meta property="og:title" content="${esc(t("title"))}">
+	<meta property="og:description" content="${esc(description + (COMMISSIONS_OPEN ? " " + t("commissionsOpen") : ""))}">
+	<meta property="og:url" content="${pageUrl}">
+	<meta property="og:image" content="${SITE_URL}/img/og.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="stylesheet" href="${P}style.css">
 </head>
 <body>
 	<header class="topbar">
 		<div class="inner">
-			<a class="brand notranslate" href="#"><img class="avatar" src="img/avatar.webp" alt="" width="32" height="32">${esc(NAME)}</a>
+			<a class="brand notranslate" href="#"><img class="avatar" src="${P}img/avatar.webp" alt="" width="32" height="32">${esc(NAME)}</a>
 			<nav class="tools">
-				<a class="nav-link" href="#ai">${esc(AI.question)}</a>
+				<a class="nav-link" href="#ai">${esc(t("aiQuestion"))}</a>
 				<div class="lang">
-					<button class="icon-button lang-button" aria-label="Language" aria-haspopup="true">${ICON.globe}<span class="lang-code notranslate">EN</span>${ICON.chevron}</button>
+					<button class="icon-button lang-button" aria-label="${esc(t("language"))}" aria-haspopup="true">${ICON.globe}<span class="lang-code notranslate">${lang.toUpperCase()}</span>${ICON.chevron}</button>
 					<ul class="lang-menu" role="menu">${languages}</ul>
 				</div>
-				<button class="icon-button theme-button" aria-label="Light or dark">${ICON.sun}${ICON.moon}</button>
-				<button class="discord small" data-copy="${esc(DISCORD)}" title="Copy my Discord name">${ICON.discord}<span class="name notranslate">${esc(DISCORD)}</span></button>
+				<button class="icon-button theme-button" aria-label="${esc(t("theme"))}">${ICON.sun}${ICON.moon}</button>
+				<button class="discord small" data-copy="${esc(DISCORD)}" data-done="${esc(t("copied"))}" title="${esc(t("copyDiscord"))}">${ICON.discord}<span class="name notranslate">${esc(DISCORD)}</span></button>
 			</nav>
 		</div>
 	</header>
 
 	<div class="hero">
-		<h1 class="reveal">${esc(TITLE)}</h1>
+		<h1 class="reveal">${esc(t("title"))}</h1>
 		<div class="profile reveal">
 			<div class="profile-main">
-				<p class="kicker">${esc(BIO.kicker)}</p>
-				<p class="focus">${esc(BIO.focus)}</p>
-				<p class="tagline">${esc(BIO.tagline)}</p>
+				<p class="kicker">${esc(t("kicker"))}</p>
+				<p class="focus">${esc(t("focus"))}</p>
+				<p class="tagline">${esc(t("tagline"))}</p>
 			</div>
 			<div class="profile-side">
-				<span class="label">Commissions</span>
-				<span class="state ${COMMISSIONS_OPEN ? "open" : "closed"}"><span class="dot"></span>${COMMISSIONS_OPEN ? "Open" : "Closed"}</span>
+				<span class="label">${esc(t("commissions"))}</span>
+				<span class="state ${COMMISSIONS_OPEN ? "open" : "closed"}"><span class="dot"></span>${esc(t(COMMISSIONS_OPEN ? "open" : "closed"))}</span>
 			</div>
-			<p class="profile-note">${ICON.info}<span>${esc(NOTE)}</span></p>
+			<p class="profile-note">${ICON.info}<span>${esc(t("note"))}</span></p>
 		</div>
 	</div>
 
 	<div class="filters" id="work">
 		<div class="inner">
-			<label class="search">${ICON.search}<input type="search" placeholder="Search clips" aria-label="Search clips" autocomplete="off"></label>
+			<label class="search">${ICON.search}<input type="search" placeholder="${esc(t("search"))}" aria-label="${esc(t("search"))}" autocomplete="off"></label>
 			<div class="pills">
 				<span class="glider" aria-hidden="true"></span>
 					${pills}
@@ -147,17 +203,17 @@ const html = `<!doctype html>
 	</div>
 
 	<main>${body}
-		<p class="empty" hidden>No clips match that search.</p>
+		<p class="empty" hidden>${esc(t("empty"))}</p>
 	</main>
 
 	<section class="ai" id="ai">
 		<div class="ai-card reveal">
-			<h2>${esc(AI.question)}</h2>
+			<h2>${esc(t("aiQuestion"))}</h2>
 			<div class="ai-text">
-				<p class="lead">${esc(AI.lead)}</p>
-				<p class="body">${esc(AI.body)}</p>
-				<div class="ai-options">${AI.options.map(([label, text]) => `
-					<div class="option"><span class="option-label">${esc(label)}</span><p>${esc(text)}</p></div>`).join("")}
+				<p class="lead">${esc(t("aiLead"))}</p>
+				<p class="body">${esc(t("aiBody"))}</p>
+				<div class="ai-options">${[["withAI", "withAIText"], ["withoutAI", "withoutAIText"]].map(([label, text]) => `
+					<div class="option"><span class="option-label">${esc(t(label))}</span><p>${esc(t(text))}</p></div>`).join("")}
 				</div>
 			</div>
 		</div>
@@ -165,23 +221,34 @@ const html = `<!doctype html>
 
 	<footer>
 		<div class="inner">
-			<p class="copyright">© ${new Date().getFullYear()} <span class="notranslate">${esc(NAME)}</span> · All rights reserved</p>
+			<p class="copyright">© ${new Date().getFullYear()} <span class="notranslate">${esc(NAME)}</span> · ${esc(t("rights"))}</p>
 		</div>
 	</footer>
 
 	<div class="viewer" id="viewer" aria-hidden="true">
-		<button class="close" aria-label="Close">×</button>
+		<button class="close" aria-label="${esc(t("close"))}">×</button>
+		<button class="step prev" aria-label="${esc(t("prev"))}">${ICON.left}</button>
+		<button class="step next" aria-label="${esc(t("next"))}">${ICON.right}</button>
 		<div class="viewer-box">
 			<video controls loop playsinline muted></video>
-			<h3 class="caption"></h3>
+			<div class="viewer-head">
+				<h3 class="caption"></h3>
+				<button class="copy-link" data-done="${esc(t("copied"))}">${ICON.link}<span>${esc(t("copyLink"))}</span></button>
+			</div>
 			<p class="viewer-desc"></p>
 		</div>
 	</div>
-
-	<div id="google_translate_element" hidden></div>
-	<script src="script.js"></script>
+${lang === "en" ? `
+	<div id="google_translate_element" hidden></div>` : ""}
+	<script src="${P}script.js"></script>
 </body>
 </html>
 `;
-fs.writeFileSync(path.join(here, "index.html"), html);
-console.log(`index.html: ${sections.length} categories, ${total} clips`);
+}
+
+fs.writeFileSync(path.join(here, "index.html"), page("en"));
+for (const lang of HAND) {
+	fs.mkdirSync(path.join(here, lang), { recursive: true });
+	fs.writeFileSync(path.join(here, lang, "index.html"), page(lang));
+}
+console.log(`index.html + ${HAND.map((l) => l + "/").join(" ")}: ${sections.length} categories, ${total} clips`);
