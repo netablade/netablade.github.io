@@ -140,17 +140,17 @@ svg { display: block; }
 	letter-spacing: -0.035em;
 	line-height: 1;
 }
-/* everything centered: a small line above the title, the one-liner under it, then the skills in two rows */
+/* everything centered: a small line above the title, the one-liner under it, then the skills in one row (two on phones) */
 .hero .kicker { margin: 0 0 20px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .hero .tagline { margin: 35px 0 0; font-size: 18px; color: var(--muted); }
-.chips { margin: 33px auto 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.chips { margin: 33px auto 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .chip-row { display: flex; justify-content: center; gap: 8px; }
 .chip {
 	padding: 7px 13px; border-radius: 999px; background: var(--soft);
 	font-size: 14px; font-weight: 700;
 }
 .profile-note {
-	margin: 44px auto 0;
+	margin: 30px auto 0;
 	display: flex; gap: 10px; align-items: flex-start; justify-content: center;
 	font-size: 13px; line-height: 1.5; color: var(--muted); text-align: left;
 }
@@ -422,7 +422,7 @@ body { top: 0 !important; }
 	.hero .tagline { font-size: 16px; }
 	/* (phones: what I build across the top, years and commissions side by side under it) */
 	.hero .kicker { font-size: 11px; margin-bottom: 14px; }
-	.chips { margin-top: 30px; }
+	.chips { margin-top: 30px; flex-direction: column; align-items: center; }
 	.chip { padding: 6px 11px; font-size: 13px; }
 	.profile-note { margin-top: 28px; }
 	.ai { display: flex; flex-direction: column; gap: 18px; padding: 28px 16px 56px; }
